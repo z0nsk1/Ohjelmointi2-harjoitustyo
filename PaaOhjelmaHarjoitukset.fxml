@@ -63,32 +63,22 @@
       <AnchorPane layoutX="2.0" layoutY="108.0" minHeight="0.0" minWidth="0.0" prefHeight="610.0" prefWidth="319.0">
          <children>
             <ListView layoutX="5.0" layoutY="37.0" prefHeight="567.0" prefWidth="310.0" />
-            <Label layoutX="14.0" layoutY="5.0" prefHeight="28.0" prefWidth="74.0" text="Jäsenet">
+            <Label layoutX="14.0" layoutY="5.0" prefHeight="30.0" prefWidth="121.0" text="Harjoitukset">
                <font>
                   <Font size="20.0" />
                </font>
             </Label>
-            <Label layoutX="325.0" layoutY="5.0" prefHeight="28.0" prefWidth="205.0" text="Jäsenen tiedot">
+            <Label layoutX="325.0" layoutY="5.0" prefHeight="28.0" prefWidth="205.0" text="Harjoituksen tiedot">
                <font>
                   <Font size="20.0" />
                </font>
             </Label>
-            <Label layoutX="13.0" layoutY="37.0" text="Mauno Mallikas" textFill="#0096ff">
+            <Label layoutX="14.0" layoutY="70.0" prefHeight="27.0" prefWidth="217.0" text="2020.02.02 16:00-17:30 Su" textFill="#0500ff">
                <font>
                   <Font size="18.0" />
                </font>
             </Label>
-            <Label layoutX="13.0" layoutY="91.0" prefHeight="17.0" prefWidth="126.0" text="Mikko Mallikas">
-               <font>
-                  <Font size="18.0" />
-               </font>
-            </Label>
-            <Label layoutX="13.0" layoutY="64.0" text="Erkki Esimerkki">
-               <font>
-                  <Font size="18.0" />
-               </font>
-            </Label>
-            <Label layoutX="13.0" layoutY="118.0" text="Jukka-Pekka Mäkinen-Järvinen">
+            <Label layoutX="14.0" layoutY="43.0" prefHeight="27.0" prefWidth="217.0" text="2020.02.07 16:00-18:00 Pe">
                <font>
                   <Font size="18.0" />
                </font>
@@ -99,50 +89,75 @@
       <Button layoutX="1110.0" layoutY="687.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="156.0" text="Poistu" />
       <Button layoutX="1110.0" layoutY="656.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="156.0" text="Eiku (peruuta)" />
       <Button layoutX="1110.0" layoutY="625.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="156.0" text="Tallenna" />
-      <Label layoutX="332.0" layoutY="149.0" text="Nimi">
-         <font>
-            <Font size="18.0" />
-         </font>
-      </Label>
-      <Label layoutX="332.0" layoutY="176.0" text="Syntymäpäivä">
-         <font>
-            <Font size="18.0" />
-         </font>
-      </Label>
-      <Label layoutX="332.0" layoutY="203.0" text="Pelinumero">
-         <font>
-            <Font size="18.0" />
-         </font>
-      </Label>
-      <Label layoutX="332.0" layoutY="230.0" text="Puhelinnumero">
-         <font>
-            <Font size="18.0" />
-         </font>
-      </Label>
-      <Label layoutX="332.0" layoutY="257.0" text="Aktiivisuus (paikalla/poissa)">
-         <font>
-            <Font size="18.0" />
-         </font>
-      </Label>
-      <Label layoutX="332.0" layoutY="284.0" text="Cooper">
-         <font>
-            <Font size="18.0" />
-         </font>
-      </Label>
-      <Label layoutX="332.0" layoutY="311.0" text="Lisätiedot ja muuta">
-         <font>
-            <Font size="18.0" />
-         </font>
-      </Label>
-      <TextField layoutX="566.0" layoutY="150.0" prefHeight="25.0" prefWidth="525.0" text="Mauno Mallikas" />
-      <TextField layoutX="566.0" layoutY="177.0" prefHeight="25.0" prefWidth="525.0" text="30.05.2007" />
-      <TextField layoutX="566.0" layoutY="204.0" prefHeight="25.0" prefWidth="525.0" text="4" />
-      <TextField layoutX="566.0" layoutY="231.0" prefHeight="25.0" prefWidth="525.0" text="9444445444" />
-      <TextField layoutX="566.0" layoutY="258.0" prefHeight="25.0" prefWidth="525.0" text="77% (170/50)" />
-      <TextField layoutX="566.0" layoutY="285.0" prefHeight="25.0" prefWidth="525.0" text="2200" />
-      <TextArea layoutX="566.0" layoutY="312.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="150.0" prefWidth="525.0" scaleShape="false" text="Haluaa vain kuntoilla ja pelailla." wrapText="true" />
-      <Button layoutX="1110.0" layoutY="70.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="156.0" text="Lisää jäsen" />
+      <Button layoutX="1110.0" layoutY="70.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="156.0" text="Lisää harjoitus" />
       <ToggleButton layoutX="325.0" layoutY="60.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="90.0" text="Jäsenet" />
       <ToggleButton layoutX="422.0" layoutY="60.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="90.0" text="Harjoitukset" />
+      <Label layoutX="328.0" layoutY="152.0" text="Päivämäärä">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <TextField layoutX="431.0" layoutY="153.0" prefHeight="25.0" prefWidth="73.0" text="2020.02.02" />
+      <Label layoutX="328.0" layoutY="179.0" text="Aloitus">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <Label layoutX="328.0" layoutY="206.0" text="Lopetus">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <TextField layoutX="430.0" layoutY="180.0" prefHeight="25.0" prefWidth="73.0" text="16:00" />
+      <TextField layoutX="430.0" layoutY="207.0" prefHeight="25.0" prefWidth="73.0" text="17:30" />
+      <Label layoutX="540.0" layoutY="158.0" text="Paikalla">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <Label layoutX="819.0" layoutY="157.0" text="Poissa">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <ListView layoutX="540.0" layoutY="193.0" prefHeight="500.0" prefWidth="260.0" />
+      <ListView layoutX="819.0" layoutY="193.0" prefHeight="500.0" prefWidth="260.0" />
+      <Label layoutX="800.0" layoutY="394.0" text="&gt;">
+         <font>
+            <Font size="29.0" />
+         </font>
+      </Label>
+      <Label layoutX="800.0" layoutY="417.0" text="&lt;">
+         <font>
+            <Font size="28.0" />
+         </font>
+      </Label>
+      <Label layoutX="328.0" layoutY="233.0" text="Lisätietoa">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <TextArea layoutX="330.0" layoutY="260.0" prefHeight="433.0" prefWidth="200.0" text="Mikolta oikein mallikasta toimintaa! Mahtavaa!" wrapText="true" />
+      <Label layoutX="548.0" layoutY="199.0" text="Mikko Mallikas">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <Label layoutX="549.0" layoutY="225.0" text="Jukka-Pekka Mäkinen-Järvinen">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <Label layoutX="548.0" layoutY="252.0" text="Erkki Esimerkki">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <Label layoutX="827.0" layoutY="199.0" text="Mauno Mallikas">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <Label layoutX="330.0" layoutY="266.0" />
    </children>
 </Pane>

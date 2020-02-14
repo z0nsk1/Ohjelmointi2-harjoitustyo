@@ -11,7 +11,6 @@
 <?import javafx.scene.control.SplitPane?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
-<?import javafx.scene.control.ToggleButton?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.Pane?>
@@ -68,7 +67,7 @@
                               <Insets />
                            </opaqueInsets>
                         </ComboBox>
-                        <TextField layoutX="1.0" layoutY="25.0" prefHeight="25.0" prefWidth="319.0">
+                        <TextField layoutX="1.0" layoutY="26.0" prefHeight="25.0" prefWidth="319.0">
                            <opaqueInsets>
                               <Insets />
                            </opaqueInsets>
@@ -103,9 +102,7 @@
    <center>
       <Pane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <children>
-            <ToggleButton mnemonicParsing="false" onAction="#handleToggle" prefHeight="25.0" prefWidth="90.0" text="Jäsenet" />
-            <Label layoutX="100.0" layoutY="4.0" text="Vaihda tilaa (Jäsenet/Harjoitukset)">
-            </Label>
+            <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="180.0" onAction="#handleTakaisin" text="Palaa harjoitusnäkymään" />
             <Label layoutX="8.0" layoutY="58.0" text="Jäsenen tiedot">
                <font>
                   <Font size="20.0" />

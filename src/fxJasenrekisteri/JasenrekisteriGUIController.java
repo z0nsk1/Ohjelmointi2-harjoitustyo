@@ -1,4 +1,5 @@
 package fxJasenrekisteri;
+
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -7,6 +8,7 @@ import javafx.application.Platform;
 //import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -26,6 +28,8 @@ public class JasenrekisteriGUIController implements Initializable {
     @FXML private ComboBoxChooser<String> haku;
     @FXML private ResourceBundle resources;
     @FXML private URL location;
+    
+    Stage stagel = new Stage();
 
     //private String joukkueennimi = "MahottomatMestarit";
     
@@ -62,26 +66,28 @@ public class JasenrekisteriGUIController implements Initializable {
     
     
     @FXML
-    private void handleToggle() {
-        Dialogs.showMessageDialog("Ei osata vielä vaihtaa tilaa");
-    }
-    
-    
-    @FXML
     private void handleAvaaPaaIkkuna() throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("JasenrekisteriGUIView.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("PaaOhjelmaHarjoitukset.fxml"));
         Scene skenes = new Scene(root);
-        
-        Stage stagel = new Stage();
+       
         stagel.setScene(skenes);
         stagel.show();
+        
     }
     
    @FXML
    private void handleLuoJoukkue() {
        Dialogs.showMessageDialog("Ei osata vielä luoda joukkuetta");
    }
+   
+   
+   @FXML 
+   private void handleTakaisin() {
+       //stagel.close();
+       Dialogs.showMessageDialog("Tästä pitäisi sulkeutua 'Jäsenet' -ikkuna");
+   }
     
+   
    @FXML
    private void handleComboBox() {
        //   

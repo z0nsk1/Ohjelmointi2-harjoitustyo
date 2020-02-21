@@ -17,13 +17,14 @@ import javafx.stage.Stage;
 //import javafx.scene.control.ComboBox;
 import fi.jyu.mit.fxgui.ComboBoxChooser;
 import fi.jyu.mit.fxgui.Dialogs;
+import fi.jyu.mit.fxgui.ModalControllerInterface;
 
 /**
  * @author z0nsk1
  * @version 13.2.2020
  *
  */
-public class JasenrekisteriGUIController implements Initializable {
+public class JasenrekisteriGUIController implements Initializable, ModalControllerInterface<String> {
       
     @FXML private ComboBoxChooser<String> haku;
     @FXML private ResourceBundle resources;
@@ -69,11 +70,10 @@ public class JasenrekisteriGUIController implements Initializable {
     private void handleAvaaPaaIkkuna() throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("PaaOhjelmaHarjoitukset.fxml"));
         Scene skenes = new Scene(root);
-       
         stagel.setScene(skenes);
         stagel.show();
-        
     }
+    
     
    @FXML
    private void handleLuoJoukkue() {
@@ -97,6 +97,27 @@ public class JasenrekisteriGUIController implements Initializable {
                "Vaihtoehto 2",
                "Vaihtoehto 3" 
                ); */
-   } 
+   }
+
+
+@Override
+public String getResult() {
+    // TODO Auto-generated method stub
+    return null;
+}
+
+
+@Override
+public void handleShown() {
+    // TODO Auto-generated method stub
+    
+}
+
+
+@Override
+public void setDefault(String arg0) {
+    // TODO Auto-generated method stub
+    
+} 
 
 }

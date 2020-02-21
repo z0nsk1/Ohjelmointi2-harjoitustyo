@@ -5,6 +5,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 import fi.jyu.mit.fxgui.Dialogs;
+import fi.jyu.mit.fxgui.ModalController;
 //import fi.jyu.mit.fxgui.ModalController;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
@@ -29,15 +30,14 @@ public class HarjoitusNakymaGUIController implements Initializable{
     
     
     @FXML
-    private void handleToggle() throws IOException {
-        //ModalController.showModal(JasenrekisteriGUIController.class.getResource("JasenrekisteriGUIView.fxml"), "Mahottomat Mestarit", null, "");
-        // Ei saatu toimimaan, joten tämä nyt väliaikainen ratkaisu.
-        Parent root = FXMLLoader.load(getClass().getResource("JasenrekisteriGUIView.fxml"));
+    private void handleToggle() {
+        ModalController.showModal(JasenrekisteriGUIController.class.getResource("JasenrekisteriGUIView.fxml"), "Mahottomat Mestarit", null, "");
+        /*Parent root = FXMLLoader.load(getClass().getResource("JasenrekisteriGUIView.fxml"));
         Scene skenes = new Scene(root);
         
         Stage stagel = new Stage();
         stagel.setScene(skenes);
-        stagel.show(); 
+        stagel.show(); */
         
     }
     

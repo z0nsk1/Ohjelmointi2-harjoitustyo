@@ -1,5 +1,7 @@
 package fxJasenrekisteri;
 
+
+//import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -9,6 +11,11 @@ import fi.jyu.mit.fxgui.ModalController;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+//import javafx.fxml.FXMLLoader;
+//import javafx.scene.Parent;
+//import javafx.scene.Scene;
+//import javafx.stage.Stage;
+
 
 /**
  * @author z0nsk1
@@ -39,7 +46,7 @@ public class HarjoitusNakymaGUIController implements Initializable{
     
     @FXML
     private void handleTallenna() {
-        Dialogs.showMessageDialog("Ei osata vielä tallentaa.");
+        Dialogs.showMessageDialog("Ei osata vielï¿½ tallentaa.");
     } 
     
     
@@ -58,6 +65,6 @@ public class HarjoitusNakymaGUIController implements Initializable{
     
     @FXML
     private void handleLisaaHarjoitus() {
-        Dialogs.showMessageDialog("Ei osata vielä lisätä harjoitusta");
+        Dialogs.showMessageDialog("Ei osata vielï¿½ lisï¿½tï¿½ harjoitusta");
     }
 }

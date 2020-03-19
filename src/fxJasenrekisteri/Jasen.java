@@ -60,17 +60,17 @@ public class Jasen {
      */
     public void tulosta(PrintStream out) {
         out.println(String.format("%03d", jasenId, 3) + ", " + nimi + ", " + pelinumero);
-        out.println("  puh: " + puh);
-        out.println("  " + jLisatietoja);
+        out.println("puh: " + puh);
+        out.println(jLisatietoja);
         out.println("Aktiivisuus: " + aktiivisuus);
         out.println("Cooper: " + cooper);
         out.println("Paikalla: " + jPaikalla + " | Poissa: " + jPoissa);
-        out.println("Syntymävuosi: " + svuosi);
+        out.println("Syntymï¿½vuosi: " + svuosi);
     }
     
     
     /**
-     * Tulostetaan henkilön tiedot
+     * Tulostetaan henkilï¿½n tiedot
      * @param os tietovirta johon tulostetaan
      */
     public void tulosta(OutputStream os) {
@@ -79,7 +79,7 @@ public class Jasen {
     
     
     /**
-     * @return Rekisteröidään jäsen ja annetaan sille id
+     * @return Rekisterï¿½idï¿½ï¿½n jï¿½sen ja annetaan sille id
      */
     public int rekisteroi() {
         jasenId = Jasen.seuraavaNro;
@@ -88,16 +88,26 @@ public class Jasen {
     }
     
     /**
-     * @return palauttaa jäsenen id:n
+     * @return palauttaa jï¿½senen id:n
      */
     public int getTunnusNro() {
         return jasenId;
     }
     
     /**
-     * @param args ei käytössä toistaiseksi
+     * @param args ei kï¿½ytï¿½ssï¿½ toistaiseksi
      */
     public static void main(String[] args) {
-        //
+        Jasen jasen1 = new Jasen();
+        Jasen jasen2 = new Jasen();
+        
+        jasen1.rekisteroi();
+        jasen2.rekisteroi();
+        
+        jasen1.tiedot();
+        jasen2.tiedot();
+        
+        jasen1.tulosta(System.out);
+        jasen2.tulosta(System.out);
     }
 }

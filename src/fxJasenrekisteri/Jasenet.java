@@ -21,21 +21,21 @@ public class Jasenet {
     
     
     /**
-     * Lisätään uusi jäsen, jos vanha taulukko täyttyy, luodaan uusi, 
+     * Lisï¿½tï¿½ï¿½n uusi jï¿½sen, jos vanha taulukko tï¿½yttyy, luodaan uusi, 
      * johon kopioidaan vanhan taulukon alkiot
-     * @param jasen lisättävä jasen
-     * @throws SailoException jos liikaa jäsenia
+     * @param jasen lisï¿½ttï¿½vï¿½ jasen
+     * @throws SailoException jos liikaa jï¿½senia
      */
     public void lisaa(Jasen jasen) throws SailoException {
-        if (lkm >= alkiot.length) throw new SailoException("Liikaa Jäseniä(:D)");
+        if (lkm >= alkiot.length) throw new SailoException("Liikaa Jï¿½seniï¿½(:D)");
         alkiot[lkm] = jasen;
         lkm++;
     }
     
     
     /**
-     * @param i jäsenen indeksi
-     * @return alkiot taulukon i:s jäsen
+     * @param i jï¿½senen indeksi
+     * @return alkiot taulukon i:s jï¿½sen
      * @throws IndexOutOfBoundsException jos indeksi on taulukon ulkopuolelta
      */
     public Jasen anna(int i) throws IndexOutOfBoundsException {
@@ -52,13 +52,13 @@ public class Jasenet {
      */
     public void lueTiedostosta(String hakemisto) throws SailoException {
         tiedostonNimi = hakemisto + "/MahottomatMestarit.dat";
-        throw new SailoException("Tiedoston " + tiedostonNimi + " luku ei vielä onnistu");
+        throw new SailoException("Tiedoston " + tiedostonNimi + " luku ei vielï¿½ onnistu");
     }
     
     
     /**
-     * Getteri palauttaa jäsenten lukumäärän kyseisessä joukkueessa
-     * @return jäsenten lukumäärän
+     * Getteri palauttaa jï¿½senten lukumï¿½ï¿½rï¿½n kyseisessï¿½ joukkueessa
+     * @return jï¿½senten lukumï¿½ï¿½rï¿½n
      */
     public int getLkm() {
         return lkm;
@@ -66,7 +66,7 @@ public class Jasenet {
     
     
     /**
-     * @param args ei käytössä
+     * @param args ei kï¿½ytï¿½ssï¿½
      */
     public static void main(String[] args) {
         Jasenet jasenet = new Jasenet();
@@ -76,6 +76,12 @@ public class Jasenet {
         
         jasen1.rekisteroi();
         jasen2.rekisteroi();
+        
+        jasen1.tiedot();
+        jasen2.tiedot();
+        
+        jasen1.tulosta(System.out);
+        jasen2.tulosta(System.out);        
         
         try {
             jasenet.lisaa(jasen1);

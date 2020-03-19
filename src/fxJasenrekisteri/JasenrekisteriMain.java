@@ -16,13 +16,18 @@ public class JasenrekisteriMain extends Application {
     @Override
     public void start(Stage primaryStage) {
         try {
-            FXMLLoader ldr = new FXMLLoader(getClass().getResource("Aloitusikkuna.fxml"));
-            final Pane root = ldr.load();
-            //final JasenrekisteriGUIController jasenrekisteriCtrl = (JasenrekisteriGUIController) ldr.getController();
-            Scene scene = new Scene(root);
+            final FXMLLoader ldr = new FXMLLoader(getClass().getResource("Aloitusikkuna.fxml"));
+            final Pane root = (Pane)ldr.load();
+            final JasenrekisteriGUIController jasenrekisteriCtrl = (JasenrekisteriGUIController)ldr.getController();
+            
+            final Scene scene = new Scene(root);
             scene.getStylesheets().add(getClass().getResource("jasenrekisteri.css").toExternalForm());
             primaryStage.setScene(scene);
             primaryStage.setTitle("Jasenrekisteri");
+            
+            Joukkue joukkue = new Joukkue();
+            jasenrekisteriCtrl.setJoukkue(joukkue);
+            
             primaryStage.show();
         } catch(Exception e) {
             e.printStackTrace();
@@ -30,7 +35,7 @@ public class JasenrekisteriMain extends Application {
     }
 
     /**
-     * @param args Ei käytössä
+     * @param args Ei kï¿½ytï¿½ssï¿½
      */
     public static void main(String[] args) {
         launch(args);

@@ -83,7 +83,7 @@
                         </Label>
                      </children>
                   </AnchorPane>
-                  <ListView layoutX="6.0" layoutY="87.0" maxHeight="1.7976931348623157E308" prefHeight="569.0" prefWidth="314.0" />
+                  <ListChooser fx:id="chooserJasenet" layoutX="6.0" layoutY="87.0" maxHeight="1.7976931348623157E308" prefHeight="569.0" prefWidth="314.0" />
                </children>
             </AnchorPane>
         </items>

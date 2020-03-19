@@ -17,6 +17,7 @@ import javafx.stage.Stage;
 //import javafx.scene.control.ComboBox;
 import fi.jyu.mit.fxgui.ComboBoxChooser;
 import fi.jyu.mit.fxgui.Dialogs;
+import fi.jyu.mit.fxgui.ListChooser;
 import fi.jyu.mit.fxgui.ModalControllerInterface;
 
 /**
@@ -29,6 +30,7 @@ public class JasenrekisteriGUIController implements Initializable, ModalControll
     @FXML private ComboBoxChooser<String> haku;
     @FXML private ResourceBundle resources;
     @FXML private URL location;
+    @FXML private ListChooser<Jasen> chooserJasenet;
     
     Stage stagel = new Stage();
 
@@ -37,19 +39,19 @@ public class JasenrekisteriGUIController implements Initializable, ModalControll
     
     @Override
     public void initialize(URL url, ResourceBundle bundle) {
-        //
+        alusta();
     }
     
     
     @FXML
     private void handleTallenna() {
-        Dialogs.showMessageDialog("Ei osata viel‰ tallentaa.");
+        Dialogs.showMessageDialog("Ei osata vielÔøΩ tallentaa.");
     } 
     
 
     @FXML
     private void handleLisaaJasen() {
-        Dialogs.showMessageDialog("Ei osata viel‰ lis‰t‰ j‰sent‰");
+        Dialogs.showMessageDialog("Ei osata vielÔøΩ lisÔøΩtÔøΩ jÔøΩsentÔøΩ");
     }
     
     
@@ -77,14 +79,14 @@ public class JasenrekisteriGUIController implements Initializable, ModalControll
     
    @FXML
    private void handleLuoJoukkue() {
-       Dialogs.showMessageDialog("Ei osata viel‰ luoda joukkuetta");
+       Dialogs.showMessageDialog("Ei osata vielÔøΩ luoda joukkuetta");
    }
    
    
    @FXML 
    private void handleTakaisin() {
        //stagel.close();
-       Dialogs.showMessageDialog("T‰st‰ pit‰isi sulkeutua 'J‰senet' -ikkuna");
+       Dialogs.showMessageDialog("TÔøΩstÔøΩ pitÔøΩisi sulkeutua 'JÔøΩsenet' -ikkuna");
    }
     
    
@@ -99,25 +101,52 @@ public class JasenrekisteriGUIController implements Initializable, ModalControll
                ); */
    }
 
-
-@Override
-public String getResult() {
-    // TODO Auto-generated method stub
-    return null;
-}
-
-
-@Override
-public void handleShown() {
-    // TODO Auto-generated method stub
-    
-}
-
-
-@Override
-public void setDefault(String arg0) {
-    // TODO Auto-generated method stub
-    
-} 
-
+   
+   // ==============================================================================================
+   Joukkue joukkue;
+   
+   
+   /**
+    * alustaa 
+    */
+   private void alusta() {
+       chooserJasenet.clear();
+       chooserJasenet.addSelectionListener(e -> naytaJasen());
+   }
+   
+    /**
+     * TODO t√§yt√§
+     */
+   private void naytaJasen() {
+       //
+   }
+   
+   
+   @Override
+   public String getResult() {
+       // TODO Auto-generated method stub
+       return null;
+   }
+   
+   
+   @Override
+   public void handleShown() {
+       // TODO Auto-generated method stub
+   }
+   
+   
+   @Override
+   public void setDefault(String arg0) {
+       // TODO Auto-generated method stub
+   }
+   
+   
+   /**
+    * Kontrollerin joukkueviite
+    * @param joukkue Viitattu joukkue
+    */
+   public void setJoukkue(Joukkue joukkue) {
+           this.joukkue = joukkue;
+   } 
+   
 }

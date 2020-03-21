@@ -17,7 +17,6 @@ import javafx.stage.Stage;
 //import javafx.scene.control.ComboBox;
 import fi.jyu.mit.fxgui.ComboBoxChooser;
 import fi.jyu.mit.fxgui.Dialogs;
-import fi.jyu.mit.fxgui.ListChooser;
 import fi.jyu.mit.fxgui.ModalControllerInterface;
 
 /**
@@ -30,7 +29,6 @@ public class JasenrekisteriGUIController implements Initializable, ModalControll
     @FXML private ComboBoxChooser<String> haku;
     @FXML private ResourceBundle resources;
     @FXML private URL location;
-    @FXML private ListChooser<Jasen> chooserJasenet;
     
     Stage stagel = new Stage();
 
@@ -103,23 +101,15 @@ public class JasenrekisteriGUIController implements Initializable, ModalControll
 
    
    // ==============================================================================================
-   Joukkue joukkue;
    
    
    /**
     * alustaa 
     */
    private void alusta() {
-       chooserJasenet.clear();
-       chooserJasenet.addSelectionListener(e -> naytaJasen());
-   }
-   
-    /**
-     * TODO täytä
-     */
-   private void naytaJasen() {
        //
    }
+   
    
    
    @Override
@@ -140,13 +130,5 @@ public class JasenrekisteriGUIController implements Initializable, ModalControll
        // TODO Auto-generated method stub
    }
    
-   
-   /**
-    * Kontrollerin joukkueviite
-    * @param joukkue Viitattu joukkue
-    */
-   public void setJoukkue(Joukkue joukkue) {
-           this.joukkue = joukkue;
-   } 
    
 }

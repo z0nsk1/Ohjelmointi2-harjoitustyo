@@ -18,16 +18,13 @@ public class JasenrekisteriMain extends Application {
         try {
             final FXMLLoader ldr = new FXMLLoader(getClass().getResource("Aloitusikkuna.fxml"));
             final Pane root = (Pane)ldr.load();
-            final JasenrekisteriGUIController jasenrekisteriCtrl = (JasenrekisteriGUIController)ldr.getController();
+            //final JasenrekisteriGUIController jasenrekisteriCtrl = (JasenrekisteriGUIController)ldr.getController();
             
             final Scene scene = new Scene(root);
             scene.getStylesheets().add(getClass().getResource("jasenrekisteri.css").toExternalForm());
             primaryStage.setScene(scene);
             primaryStage.setTitle("Jasenrekisteri");
-            
-            Joukkue joukkue = new Joukkue();
-            jasenrekisteriCtrl.setJoukkue(joukkue);
-            
+                        
             primaryStage.show();
         } catch(Exception e) {
             e.printStackTrace();

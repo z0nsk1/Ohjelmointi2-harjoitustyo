@@ -27,7 +27,7 @@ public class Jasenet {
      * @throws SailoException jos liikaa j�senia
      */
     public void lisaa(Jasen jasen) throws SailoException {
-        if (lkm >= alkiot.length) throw new SailoException("Liikaa J�seni�(:D)");
+        if (lkm >= alkiot.length) throw new SailoException("Liikaa Jasenia(:D)");
         alkiot[lkm] = jasen;
         lkm++;
     }
@@ -52,7 +52,7 @@ public class Jasenet {
      */
     public void lueTiedostosta(String hakemisto) throws SailoException {
         tiedostonNimi = hakemisto + "/MahottomatMestarit.dat";
-        throw new SailoException("Tiedoston " + tiedostonNimi + " luku ei viel� onnistu");
+        throw new SailoException("Tiedoston " + tiedostonNimi + " luku ei viela onnistu");
     }
     
     

@@ -24,13 +24,14 @@ import javafx.fxml.Initializable;
  */
 public class HarjoitusNakymaGUIController implements Initializable{
     
+    Joukkue joukkue;
+    
     @Override
     public void initialize(URL url, ResourceBundle bundle) {
         //
     }
-    
-    
-    
+
+
     @FXML
     private void handleToggle() {
         ModalController.showModal(JasenrekisteriGUIController.class.getResource("JasenrekisteriGUIView.fxml"), "Mahottomat Mestarit", null, "");
@@ -67,4 +68,31 @@ public class HarjoitusNakymaGUIController implements Initializable{
     private void handleLisaaHarjoitus() {
         Dialogs.showMessageDialog("Ei osata viel� lis�t� harjoitusta");
     }
+
+
+    /**
+     * @return s
+     */
+    public boolean voikoSulkea() {
+        // TODO Auto-generated method stub
+        return false;
+    }
+
+
+
+    /**
+     * @return s
+     */
+    public boolean avaa() {
+        return true;
+    }
+
+    /**
+     * dxfg
+     * @param joukkue johon viitataan
+     */
+    public void setJoukkue(Joukkue joukkue) {
+        this.joukkue = joukkue;
+    }
+
 }

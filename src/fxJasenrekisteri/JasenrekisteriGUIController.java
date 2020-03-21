@@ -1,23 +1,26 @@
 package fxJasenrekisteri;
 
 import java.io.IOException;
+import java.io.PrintStream;
 import java.net.URL;
 import java.util.ResourceBundle;
 
 import javafx.application.Platform;
-//import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-//import javafx.scene.layout.Pane;
+import javafx.scene.control.ScrollPane;
+import javafx.scene.control.TextArea;
+import javafx.scene.text.Font;
 import javafx.stage.Stage;
-//import javafx.scene.control.ComboBox;
 import fi.jyu.mit.fxgui.ComboBoxChooser;
 import fi.jyu.mit.fxgui.Dialogs;
+import fi.jyu.mit.fxgui.ListChooser;
 import fi.jyu.mit.fxgui.ModalControllerInterface;
+import fi.jyu.mit.fxgui.TextAreaOutputStream;
 
 /**
  * @author z0nsk1
@@ -29,6 +32,8 @@ public class JasenrekisteriGUIController implements Initializable, ModalControll
     @FXML private ComboBoxChooser<String> haku;
     @FXML private ResourceBundle resources;
     @FXML private URL location;
+    @FXML private ListChooser<Jasen> chooserJasenet;
+    @FXML private ScrollPane panelJasen;
     
     Stage stagel = new Stage();
 
@@ -49,10 +54,10 @@ public class JasenrekisteriGUIController implements Initializable, ModalControll
 
     @FXML
     private void handleLisaaJasen() {
-        Dialogs.showMessageDialog("Ei osata vielï¿½ lisï¿½tï¿½ jï¿½sentï¿½");
+        uusiJasen();
     }
-    
-    
+
+
     @FXML
     private void handlePeruuta() {
         Dialogs.showMessageDialog("Muutokset peruttiin...Vai peruttiinko?");
@@ -66,6 +71,7 @@ public class JasenrekisteriGUIController implements Initializable, ModalControll
     }
     
     
+    // Aloitusikkunan handleri
     @FXML
     private void handleAvaaPaaIkkuna() throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("PaaOhjelmaHarjoitukset.fxml"));
@@ -75,6 +81,7 @@ public class JasenrekisteriGUIController implements Initializable, ModalControll
     }
     
     
+    // Aloitusikkunan handleri
    @FXML
    private void handleLuoJoukkue() {
        Dialogs.showMessageDialog("Ei osata vielï¿½ luoda joukkuetta");
@@ -102,15 +109,73 @@ public class JasenrekisteriGUIController implements Initializable, ModalControll
    
    // ==============================================================================================
    
+   private Jasen jasenKohdalla;
+   private Joukkue joukkue;
+   private TextArea areaJasen = new TextArea();
    
    /**
-    * alustaa 
+    * dxfg
+    * @param joukkue johon viitataan
     */
-   private void alusta() {
-       //
+   public void setJoukkue(Joukkue joukkue) {
+       this.joukkue = joukkue;
+       naytaJasen();
    }
    
    
+   private void uusiJasen() {
+       Jasen uusi = new Jasen();
+       uusi.rekisteroi();
+       uusi.tiedot();
+       
+       try {
+           joukkue.lisaa(uusi);
+       } catch (SailoException e) {
+           Dialogs.showMessageDialog("Virhe jäsenen lisäyksessä! " + e.getMessage());
+           return;
+       }
+       hae(uusi.getTunnusNro());
+   }
+   
+   
+   
+   private void naytaJasen() {
+       jasenKohdalla = chooserJasenet.getSelectedObject();
+
+       if (jasenKohdalla == null) return;
+
+       areaJasen.setText("");
+       try (PrintStream os = TextAreaOutputStream.getTextPrintStream(areaJasen)) {
+           jasenKohdalla.tulosta(os);
+       }
+   }
+   
+   
+   /**
+    * 
+    */
+   protected void alusta() {
+       panelJasen.setContent(areaJasen);
+       areaJasen.setFont(new Font("Courier New", 12));
+       panelJasen.setFitToHeight(true);
+       
+       chooserJasenet.clear();
+       chooserJasenet.addSelectionListener(e -> naytaJasen());
+   }
+   
+   
+   private void hae(int jnro) {
+       chooserJasenet.clear();
+       
+       int index = 0;
+       for(int i = 0; i < joukkue.getJasenia(); i++) {
+           Jasen jasen = joukkue.annaJasen(i);
+           if (jasen.getTunnusNro() == jnro) index = i;
+           chooserJasenet.add(jasen.getNimi(), jasen);
+       }
+       chooserJasenet.setSelectedIndex(index);
+   }
+
    
    @Override
    public String getResult() {

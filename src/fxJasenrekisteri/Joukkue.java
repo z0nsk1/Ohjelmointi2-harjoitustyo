@@ -1,18 +1,18 @@
 package fxJasenrekisteri;
 /**
- * MahottomatMestari luokka, joka johtaa Jäsenet ja Harjoitukset luokkaan
+ * Joukkueluokka, joka johtaa Jasenet- ja Harjoitukset-luokkaan
  * @author mikko
  * @version 19 Mar 2020
  *
  */
 public class Joukkue {
-    private final Jasenet jasenet = new Jasenet();
-    //private final Harjoitukset harjoitukset = new Harjoitukset();
     
+    Jasenet jasenet = new Jasenet();
+    //Harjoitukset harjoitukset = new Harjoitukset();
     
     /**
-     * Lisää uuden jäsenen
-     * @param jasen Lisättävä jäsen
+     * Lisaa uuden jasenen
+     * @param jasen Lisattava jasen
      * @throws SailoException jos ei toimi
      */
     public void lisaa(Jasen jasen) throws SailoException {
@@ -21,8 +21,18 @@ public class Joukkue {
     
     
     /**
-     *  Antaa jäsenten lukumäärän
-     * @return Jäsenten lukumäärä
+     * @param i indeksi
+     * @return viite i j�seneen
+     * 
+     */
+    public Jasen annaJasen(int i) {
+        return jasenet.anna(i);
+    }
+    
+    
+    /**
+     *  Antaa jasenten lukumaaran
+     * @return Jasenten lukumaaran
      */
     public int getJasenia() {
         return jasenet.getLkm();
@@ -31,7 +41,7 @@ public class Joukkue {
     
     /**
      * Testiohjelma 
-     * @param args ei käytössä
+     * @param args ei kaytossa
      */
     public static void main (String args[]) {
         Joukkue joukkue = new Joukkue();
@@ -49,8 +59,9 @@ public class Joukkue {
             joukkue.lisaa(jasen1);
             joukkue.lisaa(jasen2);
             
-            jasen1.tulosta(System.out);
-            jasen2.tulosta(System.out);
+            /*jasen1.tulosta(System.out);
+            jasen2.tulosta(System.out); */
+            
         } catch (SailoException ex) {
             System.out.println(ex.getMessage());
         }

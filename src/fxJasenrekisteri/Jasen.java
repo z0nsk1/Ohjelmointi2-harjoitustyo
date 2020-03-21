@@ -24,14 +24,6 @@ public class Jasen {
     
     
     /**
-     * Jasenen muodostaja
-     */
-    public Jasen() {
-        //
-    }
-    
-    
-    /**
      * @return jasenen nimi
      */
     public String getNimi() {
@@ -59,13 +51,13 @@ public class Jasen {
      * @param out fghj
      */
     public void tulosta(PrintStream out) {
-        out.println(String.format("%03d", jasenId, 3) + ", " + nimi + ", " + pelinumero);
+        out.println(String.format("%02d", jasenId, 3) + ", " + nimi + ", " + pelinumero);
         out.println("puh: " + puh);
         out.println(jLisatietoja);
         out.println("Aktiivisuus: " + aktiivisuus);
         out.println("Cooper: " + cooper);
         out.println("Paikalla: " + jPaikalla + " | Poissa: " + jPoissa);
-        out.println("Syntym�vuosi: " + svuosi);
+        out.println("Syntymavuosi: " + svuosi);
     }
     
     
@@ -82,7 +74,7 @@ public class Jasen {
      * @return Rekister�id��n j�sen ja annetaan sille id
      */
     public int rekisteroi() {
-        jasenId = Jasen.seuraavaNro;
+        jasenId = seuraavaNro;
         seuraavaNro++;
         return jasenId;
     }

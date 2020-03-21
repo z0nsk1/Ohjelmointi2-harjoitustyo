@@ -16,16 +16,31 @@ public class JasenrekisteriMain extends Application {
     @Override
     public void start(Stage primaryStage) {
         try {
-            final FXMLLoader ldr = new FXMLLoader(getClass().getResource("Aloitusikkuna.fxml"));
+            /*Parent root0 = FXMLLoader.load(getClass().getResource("Aloitusikkuna.fxml"));
+            Scene skenes = new Scene(root0);
+            Stage stagel = new Stage();
+            stagel.setScene(skenes);
+            stagel.show(); */
+            
+            
+            final FXMLLoader ldr = new FXMLLoader(getClass().getResource("JasenrekisteriGUIView.fxml")); // Tahan kuuluu normaalisti PaaOhjelmaHarjoitukset.fxml
             final Pane root = (Pane)ldr.load();
-            //final JasenrekisteriGUIController jasenrekisteriCtrl = (JasenrekisteriGUIController)ldr.getController();
+            final JasenrekisteriGUIController harjoitusCtrl = (JasenrekisteriGUIController)ldr.getController(); //ja naihin HarjoitusNakymaGUIController
             
             final Scene scene = new Scene(root);
             scene.getStylesheets().add(getClass().getResource("jasenrekisteri.css").toExternalForm());
             primaryStage.setScene(scene);
             primaryStage.setTitle("Jasenrekisteri");
-                        
+            
+            /*primaryStage.setOnCloseRequest((event) -> {
+                if (!harjoitusCtrl.voikoSulkea()) event.consume();
+            }); */
+            
+            Joukkue joukkue = new Joukkue();
+            harjoitusCtrl.setJoukkue(joukkue);
+            
             primaryStage.show();
+            //if (!harjoitusCtrl.avaa()) Platform.exit();
         } catch(Exception e) {
             e.printStackTrace();
         }

@@ -6,7 +6,7 @@ package fxJasenrekisteri;
  *
  */
 public class Jasenet {
-    private static final int    MAX_JASENIA     = 20;
+    private static final int    MAX_JASENIA     = 5;
     private int                 lkm             =  0;
     private String              tiedostonNimi   = "";
     private Jasen               alkiot[]        = new Jasen[MAX_JASENIA];
@@ -80,12 +80,18 @@ public class Jasenet {
         jasen1.tiedot();
         jasen2.tiedot();
         
-        jasen1.tulosta(System.out);
-        jasen2.tulosta(System.out);        
+        /*jasen1.tulosta(System.out);
+        jasen2.tulosta(System.out);*/        
         
         try {
             jasenet.lisaa(jasen1);
             jasenet.lisaa(jasen2);
+            
+            for (int i = 0; i < jasenet.getLkm(); i++) {
+                Jasen jasen = jasenet.anna(i);
+                System.out.println("Jäsen nro: " + i);
+                jasen.tulosta(System.out);
+            }   
         } catch (SailoException ex) {
             System.out.println(ex.getMessage());
         }

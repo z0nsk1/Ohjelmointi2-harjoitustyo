@@ -2,8 +2,8 @@ package fxJasenrekisteri;
 
 import java.io.OutputStream;
 import java.io.PrintStream;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
+//import java.time.LocalDateTime;
+//import java.time.format.DateTimeFormatter;
 
 /**
  * @author z0nsk1
@@ -11,17 +11,25 @@ import java.time.format.DateTimeFormatter;
  *
  */
 public class Harjoitus {
-    private String  harjoitusId = "202003201700";;
+    private int     harjoitusId;
+    private int     paivaMaara;
+    private int     kloAloitus;
+    private int     kloLopetus;
     private int     paikalla      = 0;   //paikalla olleen jasenen id
     private int     poissa;              
     private String  hLisatietoja  = "";
     
+    private static int seuraavaNro  = 1;
     
     /**
      * Asetetaan harjoituksen tiedot
+     * @param jNro jasenen id
      */
-    public void hTiedot() {
-        paikalla = 1; //jatkossa kutsuu kyseista jasenta jolla on tama id
+    public void hTiedot(int jNro) {
+        paivaMaara = 20200324;
+        kloAloitus = 1600;
+        kloLopetus = 1730;
+        paikalla = jNro; //jatkossa kutsuu kyseista jasenta jolla on tama id
         poissa = -1; //poissa olleen jasenen id, -1 jos kukaan ei poissa/paikalla
         hLisatietoja = "Hyvin porukkaa paikalla";
     }
@@ -31,10 +39,13 @@ public class Harjoitus {
      * @param out tietovirta johon tulostetaan
      */
     public void tulosta(PrintStream out) {
-        out.println(harjoitusId);
-        out.println(paikalla); 
-        out.println(poissa);
-        out.println(hLisatietoja);
+        out.println("ID: " + harjoitusId);
+        out.println("Paivamaara: " + paivaMaara); 
+        out.println("Aloitus: " + kloAloitus); 
+        out.println("Lopetus: " + kloLopetus); 
+        out.println("Jasen paikalla: " + paikalla); 
+        out.println("Jasen poissa: " + poissa);
+        out.println("Harjoituksen lisatietoja: " + hLisatietoja);
     }
     
     
@@ -49,21 +60,35 @@ public class Harjoitus {
     
     /**
      * Otetaan id tamanhetkisesta ajasta (oletus kun luodaan harjoitus)
+     * @param eri Jos viitataan samaan harjoitukseen kuin edellinen
+     * @return harjoituksen ID
      */
-    public void pvm() {
-        DateTimeFormatter muoto = DateTimeFormatter.ofPattern("yyyyMMddHHmm");
+    public int asetaHarjoitusId(boolean eri) {
+        harjoitusId = seuraavaNro;
+        if (eri) seuraavaNro++;
+        return harjoitusId;
+        /*DateTimeFormatter muoto = DateTimeFormatter.ofPattern("yyyyMMddHHmm");
         LocalDateTime aika = LocalDateTime.now();
-        harjoitusId = muoto.format(aika);
+        harjoitusId = muoto.format(aika);*/
     }
     
     
     /**
-     * @param args ei käytössä
+     * Palauttaa paikalla olleen jasenen id
+     * @return jasenen id
+     */
+    public int getJasenNro() {
+        return paikalla;
+    }
+    
+    
+    /**
+     * @param args ei kï¿½ytï¿½ssï¿½
      */
     public static void main(String[] args) {
         Harjoitus harj = new Harjoitus();
-        harj.pvm();
-        harj.hTiedot();
+        harj.asetaHarjoitusId(false);
+        harj.hTiedot(1);
         harj.tulosta(System.out);
     }
 }

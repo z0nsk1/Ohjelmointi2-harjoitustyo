@@ -19,6 +19,7 @@ import javafx.stage.Stage;
 import fi.jyu.mit.fxgui.ComboBoxChooser;
 import fi.jyu.mit.fxgui.Dialogs;
 import fi.jyu.mit.fxgui.ListChooser;
+import fi.jyu.mit.fxgui.ModalController;
 import fi.jyu.mit.fxgui.ModalControllerInterface;
 import fi.jyu.mit.fxgui.TextAreaOutputStream;
 
@@ -33,7 +34,9 @@ public class JasenrekisteriGUIController implements Initializable, ModalControll
     @FXML private ResourceBundle resources;
     @FXML private URL location;
     @FXML private ListChooser<Jasen> chooserJasenet;
+    @FXML private ListChooser<Harjoitus> chooserHarjoitus;
     @FXML private ScrollPane panelJasen;
+    @FXML private ScrollPane panelHarjoitus;
     
     Stage stagel = new Stage();
 
@@ -56,8 +59,26 @@ public class JasenrekisteriGUIController implements Initializable, ModalControll
     private void handleLisaaJasen() {
         uusiJasen();
     }
+    
+    
+    @FXML
+    private void handleLisaaHarjoitus() {
+        Dialogs.showMessageDialog("Ei osata vielï¿½ lisï¿½tï¿½ harjoitusta");
+    }
+    
+    
+    @FXML
+    private void handleToggle() {
+        ModalController.showModal(JasenrekisteriGUIController.class.getResource("JasenrekisteriGUIView.fxml"), "Mahottomat Mestarit", null, "");
+        /*Parent root = FXMLLoader.load(getClass().getResource("JasenrekisteriGUIView.fxml"));
+        Scene skenes = new Scene(root);
+        
+        Stage stagel = new Stage();
+        stagel.setScene(skenes);
+        stagel.show(); */
+    }
 
-
+    
     @FXML
     private void handlePeruuta() {
         Dialogs.showMessageDialog("Muutokset peruttiin...Vai peruttiinko?");
@@ -131,7 +152,7 @@ public class JasenrekisteriGUIController implements Initializable, ModalControll
        try {
            joukkue.lisaa(uusi);
        } catch (SailoException e) {
-           Dialogs.showMessageDialog("Virhe jäsenen lisäyksessä! " + e.getMessage());
+           Dialogs.showMessageDialog("Virhe jï¿½senen lisï¿½yksessï¿½! " + e.getMessage());
            return;
        }
        hae(uusi.getTunnusNro());

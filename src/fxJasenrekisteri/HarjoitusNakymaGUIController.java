@@ -41,7 +41,6 @@ public class HarjoitusNakymaGUIController implements Initializable{
         Stage stagel = new Stage();
         stagel.setScene(skenes);
         stagel.show(); */
-        
     }
     
     
@@ -77,7 +76,6 @@ public class HarjoitusNakymaGUIController implements Initializable{
         // TODO Auto-generated method stub
         return false;
     }
-
 
 
     /**

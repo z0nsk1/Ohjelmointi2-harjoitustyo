@@ -23,7 +23,7 @@ public class JasenrekisteriMain extends Application {
             stagel.show(); */
             
             
-            final FXMLLoader ldr = new FXMLLoader(getClass().getResource("JasenrekisteriGUIView.fxml")); // Tahan kuuluu normaalisti PaaOhjelmaHarjoitukset.fxml
+            final FXMLLoader ldr = new FXMLLoader(getClass().getResource("PaaOhjelmaHarjoitukset.fxml")); // Tahan kuuluu normaalisti PaaOhjelmaHarjoitukset.fxml
             final Pane root = (Pane)ldr.load();
             final JasenrekisteriGUIController harjoitusCtrl = (JasenrekisteriGUIController)ldr.getController(); //ja naihin HarjoitusNakymaGUIController
             

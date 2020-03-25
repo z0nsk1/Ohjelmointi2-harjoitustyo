@@ -3,6 +3,7 @@ package fxJasenrekisteri;
 import java.io.IOException;
 import java.io.PrintStream;
 import java.net.URL;
+import java.util.List;
 import java.util.ResourceBundle;
 
 import javafx.application.Platform;
@@ -63,7 +64,7 @@ public class JasenrekisteriGUIController implements Initializable, ModalControll
     
     @FXML
     private void handleLisaaHarjoitus() {
-        Dialogs.showMessageDialog("Ei osata viel� lis�t� harjoitusta");
+        uusiHarjoitus();
     }
     
     
@@ -144,6 +145,9 @@ public class JasenrekisteriGUIController implements Initializable, ModalControll
    }
    
    
+   /**
+    * Luo uuden jasenen
+    */
    private void uusiJasen() {
        Jasen uusi = new Jasen();
        uusi.rekisteroi();
@@ -159,6 +163,19 @@ public class JasenrekisteriGUIController implements Initializable, ModalControll
    }
    
    
+   /**
+    * Luo uuden harjoituksen
+    */
+   public void uusiHarjoitus() {       
+       if (jasenKohdalla == null) return;
+       Harjoitus har = new Harjoitus();
+       har.hTiedot(jasenKohdalla.getTunnusNro());
+       joukkue.lisaa(har);
+       har.asetaHarjoitusId(false);
+       
+       hae(jasenKohdalla.getTunnusNro());
+   }
+   
    
    private void naytaJasen() {
        jasenKohdalla = chooserJasenet.getSelectedObject();
@@ -167,7 +184,16 @@ public class JasenrekisteriGUIController implements Initializable, ModalControll
 
        areaJasen.setText("");
        try (PrintStream os = TextAreaOutputStream.getTextPrintStream(areaJasen)) {
-           jasenKohdalla.tulosta(os);
+           tulosta(os, jasenKohdalla);
+       }
+   }
+   
+   
+   private void tulosta(PrintStream os, Jasen jasen) {
+       jasen.tulosta(os);
+       List<Harjoitus> loytyneet = joukkue.annaHarjoitukset(jasen);
+       for (Harjoitus harjoitus : loytyneet) {
+           harjoitus.tulosta(os);
        }
    }
    

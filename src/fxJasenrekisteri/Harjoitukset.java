@@ -72,7 +72,9 @@ public class Harjoitukset implements Iterable<Harjoitus> {
             for (int i = 1; i < 1+getLkm(); i++) {
                 Collection<Harjoitus> har = annaHarjoitukset(i);
                 if (har.size() == 0) continue;
-                fo.println(har.toString());
+                for (int j = 0; j < har.size(); j++ ) {
+                    fo.println(har.toArray()[j]);
+                }
             }
         } catch ( FileNotFoundException ex ) {
             throw new SailoException("Tiedosto " + ftied.getName() + " ei aukea");

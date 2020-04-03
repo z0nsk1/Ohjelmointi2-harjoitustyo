@@ -52,7 +52,7 @@ public class JasenrekisteriGUIController implements Initializable, ModalControll
     
     @FXML
     private void handleTallenna() {
-        Dialogs.showMessageDialog("Ei osata viel� tallentaa.");
+        tallenna();
     } 
     
 
@@ -208,6 +208,21 @@ public class JasenrekisteriGUIController implements Initializable, ModalControll
        
        chooserJasenet.clear();
        chooserJasenet.addSelectionListener(e -> naytaJasen());
+   }
+   
+   
+   /**
+    * 
+    * @return
+    */
+   private String tallenna() {
+       try {
+           joukkue.tallenna();
+           return null;
+       } catch (SailoException ex) {
+           Dialogs.showMessageDialog("Tallennus epaonnistui: " + ex.getMessage());
+           return ex.getMessage();
+       }
    }
    
    

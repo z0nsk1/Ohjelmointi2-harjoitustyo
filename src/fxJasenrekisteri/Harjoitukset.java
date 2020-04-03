@@ -1,7 +1,13 @@
 package fxJasenrekisteri;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Iterator;
 import java.util.List;
 
 
@@ -10,7 +16,7 @@ import java.util.List;
  * @version 19.3.2020
  *
  */
-public class Harjoitukset {
+public class Harjoitukset implements Iterable<Harjoitus> {
     
     private String tiedostonNimi = "";
     
@@ -60,7 +66,19 @@ public class Harjoitukset {
      * @throws SailoException jos ei onnistu
      */
     public void tallenna() throws SailoException {
-        throw new SailoException("Ei osata viel� tallentaa tiedostoa " + tiedostonNimi);
+        File ftied = new File("MahottomatMestarit/harjoitukset.dat");
+
+        try ( PrintWriter fo = new PrintWriter(new FileWriter(ftied.getCanonicalPath())) ) {
+            for (int i = 1; i < 1+getLkm(); i++) {
+                Collection<Harjoitus> har = annaHarjoitukset(i);
+                if (har.size() == 0) continue;
+                fo.println(har.toString());
+            }
+        } catch ( FileNotFoundException ex ) {
+            throw new SailoException("Tiedosto " + ftied.getName() + " ei aukea");
+        } catch ( IOException ex ) {
+            throw new SailoException("Tiedoston " + ftied.getName() + " kirjoittamisessa ongelmia");
+        }
     }
     
     
@@ -96,5 +114,12 @@ public class Harjoitukset {
         
         testi1.tulosta(System.out);
         testi2.tulosta(System.out);
+    }
+
+
+    @Override
+    public Iterator<Harjoitus> iterator() {
+        // TODO Auto-generated method stub
+        return null;
     }
 }

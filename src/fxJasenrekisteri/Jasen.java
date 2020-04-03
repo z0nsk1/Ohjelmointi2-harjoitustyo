@@ -62,6 +62,25 @@ public class Jasen {
     
     
     /**
+     * Jasenen tiedot merkkijonona
+     */
+    @Override
+    public String toString() {
+        return "" +
+                getTunnusNro() + "|" +
+                nimi + "|" +
+                svuosi + "|" +
+                pelinumero + "|" +
+                puh + "|" +
+                jPaikalla + "|" +
+                jPoissa + "|" +
+                aktiivisuus + "|" +
+                cooper + "|" +
+                jLisatietoja + "|";
+    }
+    
+    
+    /**
      * Tulostetaan henkil�n tiedot
      * @param os tietovirta johon tulostetaan
      */

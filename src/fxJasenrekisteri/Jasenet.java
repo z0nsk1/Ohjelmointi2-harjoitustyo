@@ -1,5 +1,11 @@
 package fxJasenrekisteri;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
+
 /**
  * @author z0nsk1
  * @version 19.3.2020
@@ -47,11 +53,34 @@ public class Jasenet {
     
     
     /**
+     * Tallentaa jasen tiedot
+     * @throws SailoException jos ei toimi
+     */
+    public void tallenna() throws SailoException {
+        File ftied = new File("MahottomatMestarit/nimet.dat");
+
+        try ( PrintWriter fo = new PrintWriter(new FileWriter(ftied.getCanonicalPath())) ) {
+            fo.println("Mahottomat Mestarit");
+            for (int i = 0; i < getLkm(); i++) {
+                Jasen jasen = anna(i);
+                fo.println(jasen.toString());
+            }
+            //} catch ( IOException e ) { // ei heitÃ¤ poikkeusta
+            //  throw new SailoException("Tallettamisessa ongelmia: " + e.getMessage());
+        } catch ( FileNotFoundException ex ) {
+            throw new SailoException("Tiedosto " + ftied.getName() + " ei aukea");
+        } catch ( IOException ex ) {
+            throw new SailoException("Tiedoston " + ftied.getName() + " kirjoittamisessa ongelmia");
+        }   
+    }
+    
+    
+    /**
      * @param hakemisto tiedoston sijainti
      * @throws SailoException jos tiedoston luku ei onnistu
      */
     public void lueTiedostosta(String hakemisto) throws SailoException {
-        tiedostonNimi = hakemisto + "/MahottomatMestarit.dat";
+        tiedostonNimi = hakemisto + "/nimet.dat";
         throw new SailoException("Tiedoston " + tiedostonNimi + " luku ei viela onnistu");
     }
     
@@ -89,7 +118,7 @@ public class Jasenet {
             
             for (int i = 0; i < jasenet.getLkm(); i++) {
                 Jasen jasen = jasenet.anna(i);
-                System.out.println("Jäsen nro: " + i);
+                System.out.println("Jï¿½sen nro: " + i);
                 jasen.tulosta(System.out);
             }   
         } catch (SailoException ex) {

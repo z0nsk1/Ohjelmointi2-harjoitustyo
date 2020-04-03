@@ -33,6 +33,27 @@ public class Joukkue {
     
     
     /**
+     * 
+     * @throws SailoException jos ei toimi
+     */
+    public void tallenna() throws SailoException {
+        String virhe = "";
+        try {
+            jasenet.tallenna();
+        } catch ( SailoException ex ) {
+            virhe = "Jasenet: " + ex.getMessage();
+        }
+        
+        try {
+            harjoitukset.tallenna();
+        } catch ( SailoException ex ) {
+            virhe += "Harjoitukset: " + ex.getMessage();
+        }
+        if ( !"".equals(virhe) ) throw new SailoException(virhe);
+    }
+    
+    
+    /**
      * @param i indeksi
      * @return viite i j�seneen
      * 

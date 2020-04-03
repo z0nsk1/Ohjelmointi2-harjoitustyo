@@ -59,6 +59,22 @@ public class Harjoitus {
     
     
     /**
+     * Harjoituksen tiedot merkkijonona
+     */
+    @Override
+    public String toString() {
+        return "" +
+                harjoitusId + "|" +
+                paivaMaara + "|" +
+                kloAloitus + "|" +
+                kloLopetus + "|" +
+                getJasenNro() + "|" +
+                poissa + "|" +
+                hLisatietoja + "|";
+    }
+    
+    
+    /**
      * Otetaan id tamanhetkisesta ajasta (oletus kun luodaan harjoitus)
      * @param eri Jos viitataan samaan harjoitukseen kuin edellinen
      * @return harjoituksen ID

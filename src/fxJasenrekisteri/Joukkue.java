@@ -1,5 +1,6 @@
 package fxJasenrekisteri;
 
+import java.io.File;
 import java.util.List;
 
 /**
@@ -83,6 +84,35 @@ public class Joukkue {
     
     
     /**
+     * @param nimi tiedoston nimi
+     * @throws SailoException ...
+     */
+    public void lueTiedostosta(String nimi) throws SailoException {
+        jasenet = new Jasenet(); 
+        harjoitukset = new Harjoitukset();
+
+        setTiedosto(nimi);
+        jasenet.lueTiedostosta();
+        harjoitukset.lueTiedostosta();
+    }
+    
+    
+    /**
+     * Asettaa tiedostojen perusnimet
+     * @param nimi uusi nimi
+     */
+    public void setTiedosto(String nimi) {
+        File dir = new File(nimi);
+        dir.mkdirs();
+        String hakemistonNimi = "";
+        if ( !nimi.isEmpty() ) hakemistonNimi = nimi +"/";
+        jasenet.setTiedostonNimi(hakemistonNimi + "nimet");
+        harjoitukset.setTiedostonNimi(hakemistonNimi + "harrastukset");
+    }
+
+    
+    
+    /**
      * Testiohjelma 
      * @param args ei kaytossa
      */
@@ -103,23 +133,22 @@ public class Joukkue {
             
             int id1 = jasen1.getTunnusNro();
             int id2 = jasen2.getTunnusNro();
-            
-            Harjoitus harj11 = new Harjoitus(); harj11.hTiedot(id1); joukkue.lisaa(harj11); harj11.asetaHarjoitusId(false);
-            Harjoitus harj12 = new Harjoitus(); harj12.hTiedot(id2); joukkue.lisaa(harj12); harj12.asetaHarjoitusId(true);
-            Harjoitus harj21 = new Harjoitus(); harj21.hTiedot(id1); joukkue.lisaa(harj21); harj21.asetaHarjoitusId(false);
-            Harjoitus harj22 = new Harjoitus(); harj22.hTiedot(id2); joukkue.lisaa(harj22); harj22.asetaHarjoitusId(true);
-            
-            jasen1.tulosta(System.out);
-            System.out.println();
-            jasen2.tulosta(System.out);
-            System.out.println();
-            harj11.tulosta(System.out);
-            System.out.println();
-            harj12.tulosta(System.out);
-            System.out.println();
-            harj21.tulosta(System.out);
-            System.out.println();
-            harj22.tulosta(System.out);
+            Harjoitus harj1 = new Harjoitus(id1);
+            harj1.hTiedot(id1);
+            joukkue.lisaa(harj1);
+            Harjoitus harj2 = new Harjoitus(id1);
+            harj2.hTiedot(id1);
+            joukkue.lisaa(harj2);
+            Harjoitus harj3 = new Harjoitus(id2);
+            harj3.hTiedot(id2);
+            joukkue.lisaa(harj3);
+            Harjoitus harj4 = new Harjoitus(id2);
+            harj4.hTiedot(id2);
+            joukkue.lisaa(harj4);
+            Harjoitus harj5 = new Harjoitus(id2);
+            harj5.hTiedot(id2);
+            joukkue.lisaa(harj5);
+
             
         } catch (SailoException ex) {
             System.out.println(ex.getMessage());

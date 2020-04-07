@@ -3,6 +3,8 @@ package fxJasenrekisteri;
 import java.io.OutputStream;
 import java.io.PrintStream;
 
+import fi.jyu.mit.ohj2.Mjonot;
+
 /**
  * @author z0nsk1
  * @version 19.3.2020
@@ -103,6 +105,31 @@ public class Jasen {
      */
     public int getTunnusNro() {
         return jasenId;
+    }
+    
+    
+    private void setTunnusNro(int nr) {
+        jasenId = nr;
+        if (jasenId >= seuraavaNro) seuraavaNro = jasenId + 1;
+    }
+
+
+    /**
+     * Erottaa tiedostosta tiedot
+     * @param rivi tiedostossa luettava rivi
+     */
+    public void parse(String rivi) {
+        StringBuffer sb = new StringBuffer(rivi);
+        setTunnusNro(Mjonot.erota(sb, '|', getTunnusNro()));
+        nimi = Mjonot.erota(sb, '|', nimi);
+        svuosi = Mjonot.erota(sb, '|', svuosi);
+        pelinumero = Mjonot.erota(sb, '|', pelinumero);
+        puh = Mjonot.erota(sb, '|', puh);
+        jPaikalla = Mjonot.erota(sb, '|', jPaikalla);
+        jPoissa = Mjonot.erota(sb, '|', jPoissa);
+        aktiivisuus = Mjonot.erota(sb, '|', aktiivisuus);
+        cooper = Mjonot.erota(sb, '|', cooper);
+        jLisatietoja = Mjonot.erota(sb, '|', jLisatietoja);
     }
     
     /**

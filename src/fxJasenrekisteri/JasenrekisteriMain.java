@@ -39,6 +39,13 @@ public class JasenrekisteriMain extends Application {
             Joukkue joukkue = new Joukkue();
             harjoitusCtrl.setJoukkue(joukkue);
             
+            Application.Parameters params = getParameters(); 
+            if ( params.getRaw().size() > 0 ) 
+                harjoitusCtrl.lueTiedosto(params.getRaw().get(0));  
+            //else
+               // if ( !harjoitusCtrl.avaa() ) Platform.exit();
+
+            
             primaryStage.show();
             //if (!harjoitusCtrl.avaa()) Platform.exit();
         } catch(Exception e) {

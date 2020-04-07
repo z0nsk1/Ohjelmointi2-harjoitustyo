@@ -1,7 +1,9 @@
 package fxJasenrekisteri;
 
+import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -18,7 +20,9 @@ import java.util.List;
  */
 public class Harjoitukset implements Iterable<Harjoitus> {
     
-    private String tiedostonNimi = "";
+    private String      tiedostonNimi   = "";
+    @SuppressWarnings("unused")
+    private boolean     muutettu        = false;
     
     /** 
      * Taulukko harjoituksista (kokoelma)
@@ -31,16 +35,6 @@ public class Harjoitukset implements Iterable<Harjoitus> {
      */
     public Harjoitukset() {
         // 
-    }
-    
-    
-    /**
-     * @param hakemisto jossa tiedosto sijaitsee
-     * @throws SailoException jos ei onnistu
-     */
-    public void lueTiedostosta(String hakemisto) throws SailoException {
-        tiedostonNimi = hakemisto + ".harj";
-        throw new SailoException("Ei osata vielï¿½ lukea tiedostoa " + tiedostonNimi);
     }
     
     
@@ -85,6 +79,57 @@ public class Harjoitukset implements Iterable<Harjoitus> {
     
     
     /**
+     * @param tiedosto tiedoston nimi
+     * @throws SailoException jos tiedoston luku ei onnistu
+     */
+    public void lueTiedostosta(String tiedosto) throws SailoException {
+        setTiedostonNimi(tiedosto);
+        try ( BufferedReader fi = new BufferedReader(new FileReader(getTiedostonNimi())) ) {
+            tiedostonNimi = fi.readLine();
+            if ( tiedostonNimi == null ) throw new SailoException("Kerhon nimi puuttuu");
+            String rivi = fi.readLine();
+            if ( rivi == null ) throw new SailoException("Maksimikoko puuttuu");
+
+            while ( (rivi = fi.readLine()) != null ) {
+                rivi = rivi.trim();
+                if ( "".equals(rivi) || rivi.charAt(0) == ';' ) continue;
+                Harjoitus harj = new Harjoitus();
+                harj.parse(rivi);
+                lisaa(harj);
+            }
+            muutettu = false;
+        } catch ( FileNotFoundException e ) {
+            throw new SailoException("Tiedosto " + getTiedostonNimi() + " ei aukea");
+        } catch ( IOException e ) {
+            throw new SailoException("Ongelmia tiedoston kanssa: " + e.getMessage());
+        }
+
+    }
+    
+    
+    /**
+     * @param tiedosto tiedoston nimi
+     */
+    public void setTiedostonNimi(String tiedosto) {
+        tiedostonNimi = tiedosto; 
+    }
+
+
+    private String getTiedostonNimi() {
+        return tiedostonNimi + ".dat";
+    }
+    
+    
+    /**
+     * Luetaan aikaisemmin annetun nimisestä tiedostosta
+     * @throws SailoException jos tulee poikkeus
+     */
+    public void lueTiedostosta() throws SailoException {
+        lueTiedostosta(getTiedostonNimi());
+    }
+    
+    
+    /**
      * Hakee kaikki harjoitukset, joissa jasen on ollut paikalla
      * @param tunnusNroJ jasenen tunnusnumero
      * @return lista harjoituksista, joissa jasen on ollut paikalla
@@ -105,10 +150,8 @@ public class Harjoitukset implements Iterable<Harjoitus> {
     public static void main(String[] args) {
         Harjoitukset harjoitukset1 = new Harjoitukset();
         Harjoitus testi1 = new Harjoitus();
-        testi1.asetaHarjoitusId(false);
         testi1.hTiedot(1);
         Harjoitus testi2 = new Harjoitus();
-        testi2.asetaHarjoitusId(true);
         testi2.hTiedot(2);
         
         harjoitukset1.lisaa(testi1);

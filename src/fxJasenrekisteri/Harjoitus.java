@@ -2,6 +2,8 @@ package fxJasenrekisteri;
 
 import java.io.OutputStream;
 import java.io.PrintStream;
+
+import fi.jyu.mit.ohj2.Mjonot;
 //import java.time.LocalDateTime;
 //import java.time.format.DateTimeFormatter;
 
@@ -12,7 +14,7 @@ import java.io.PrintStream;
  */
 public class Harjoitus {
     private int     harjoitusId;
-    private int     paivaMaara;
+    private int  paivaMaara;
     private int     kloAloitus;
     private int     kloLopetus;
     private int     paikalla      = 0;   //paikalla olleen jasenen id
@@ -20,6 +22,24 @@ public class Harjoitus {
     private String  hLisatietoja  = "";
     
     private static int seuraavaNro  = 1;
+    
+    
+    /**
+     * oletusmuodostaja
+     */
+    public Harjoitus() {
+        //
+    }
+    
+    
+    /**
+     * @param harjoitusId harjoituksen id
+     */
+    public Harjoitus(int harjoitusId) {
+        this.harjoitusId = harjoitusId;
+    }
+
+    
     
     /**
      * Asetetaan harjoituksen tiedot
@@ -76,16 +96,48 @@ public class Harjoitus {
     
     /**
      * Otetaan id tamanhetkisesta ajasta (oletus kun luodaan harjoitus)
-     * @param eri Jos viitataan samaan harjoitukseen kuin edellinen
+     * @param i ghf
+     * @param s fgh
      * @return harjoituksen ID
      */
-    public int asetaHarjoitusId(boolean eri) {
-        harjoitusId = seuraavaNro;
-        if (eri) seuraavaNro++;
-        return harjoitusId;
-        /*DateTimeFormatter muoto = DateTimeFormatter.ofPattern("yyyyMMddHHmm");
-        LocalDateTime aika = LocalDateTime.now();
-        harjoitusId = muoto.format(aika);*/
+    public String asetaTiedot(int i, String s) {
+        String st = s.trim();
+        StringBuffer sb = new StringBuffer(st);
+
+        switch (i) {
+            case 0:
+                setTunnusNro(Mjonot.erota(sb, '|', getTunnusNro()));
+                return null;
+            case 1:
+                paivaMaara = Integer.parseInt(st);
+                return null;
+            case 2:
+                kloAloitus = Integer.parseInt(st);
+                return null;
+            case 3: 
+                kloLopetus = Integer.parseInt(st);
+                return null;
+            case 4:
+                paikalla = Integer.parseInt(st);
+                return null;
+            case 5:
+                poissa = Integer.parseInt(st);
+                return null;
+            case 6:
+                hLisatietoja = st;
+                return null;
+            default:
+                return "virhe";
+        }
+        
+        
+        
+        /*paivaMaara = Mjonot.erota(sb, '|', paivaMaara);
+        kloAloitus = Mjonot.erota(sb, '|', kloAloitus);
+        kloLopetus = Mjonot.erota(sb, '|', kloLopetus);
+        paikalla = Mjonot.erota(sb, '|', getJasenNro());
+        poissa = Mjonot.erota(sb, '|', poissa);
+        hLisatietoja = Mjonot.erota(sb, '|', hLisatietoja);*/
     }
     
     
@@ -98,12 +150,38 @@ public class Harjoitus {
     }
     
     
+    private void setTunnusNro(int nr) {
+        harjoitusId = nr;
+        if ( harjoitusId >= seuraavaNro ) seuraavaNro = harjoitusId + 1;
+    }
+
+
+    /**
+     * @return harjoituksen id
+     */
+    public int getTunnusNro() {
+        return harjoitusId;
+    }
+
+
+    /**
+     * 
+     * @param rivi tiedoston rivi jota ollaan lukemassa
+     */
+    public void parse(String rivi) {
+        StringBuffer sb = new StringBuffer(rivi);
+        for (int i = 0; i < 7; i++) {
+            asetaTiedot(i, Mjonot.erota(sb, '|'));
+        }
+    }
+    
+    
     /**
      * @param args ei k�yt�ss�
      */
     public static void main(String[] args) {
         Harjoitus harj = new Harjoitus();
-        harj.asetaHarjoitusId(false);
+        //harj.asetaTiedot();
         harj.hTiedot(1);
         harj.tulosta(System.out);
     }

@@ -41,7 +41,8 @@ public class JasenrekisteriGUIController implements Initializable, ModalControll
     
     Stage stagel = new Stage();
 
-    //private String joukkueennimi = "MahottomatMestarit";
+    @SuppressWarnings("unused")
+    private String joukkueenNimi = "";
     
     
     @Override
@@ -171,7 +172,6 @@ public class JasenrekisteriGUIController implements Initializable, ModalControll
        Harjoitus har = new Harjoitus();
        har.hTiedot(jasenKohdalla.getTunnusNro());
        joukkue.lisaa(har);
-       har.asetaHarjoitusId(false);
        
        hae(jasenKohdalla.getTunnusNro());
    }
@@ -236,6 +236,26 @@ public class JasenrekisteriGUIController implements Initializable, ModalControll
            chooserJasenet.add(jasen.getNimi(), jasen);
        }
        chooserJasenet.setSelectedIndex(index);
+   }
+   
+   
+  /**
+   * @param nimi tiedoston nimi
+   * @return null tai virhe jos luku epäonnistuu
+   */
+   protected String lueTiedosto(String nimi) {
+       joukkueenNimi = nimi;
+       try {
+           joukkue.lueTiedostosta(nimi);
+           hae(0);
+           return null;
+       } catch (SailoException e) {
+           hae(0);
+           String virhe = e.getMessage(); 
+           if ( virhe != null ) Dialogs.showMessageDialog(virhe);
+           return virhe;
+       }
+
    }
 
    

@@ -1,7 +1,9 @@
 package fxJasenrekisteri;
 
+import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -16,6 +18,8 @@ public class Jasenet {
     private int                 lkm             =  0;
     private String              tiedostonNimi   = "";
     private Jasen               alkiot[]        = new Jasen[MAX_JASENIA];
+    @SuppressWarnings("unused")
+    private boolean             muutettu        = false;
     
     
     /**
@@ -76,15 +80,57 @@ public class Jasenet {
     
     
     /**
-     * @param hakemisto tiedoston sijainti
+     * @param tiedosto tiedoston nimi
      * @throws SailoException jos tiedoston luku ei onnistu
      */
-    public void lueTiedostosta(String hakemisto) throws SailoException {
-        tiedostonNimi = hakemisto + "/nimet.dat";
-        throw new SailoException("Tiedoston " + tiedostonNimi + " luku ei viela onnistu");
+    public void lueTiedostosta(String tiedosto) throws SailoException {
+        setTiedostonNimi(tiedosto);
+        try ( BufferedReader fi = new BufferedReader(new FileReader(getTiedostonNimi())) ) {
+            tiedostonNimi = fi.readLine();
+            if ( tiedostonNimi == null ) throw new SailoException("Kerhon nimi puuttuu");
+            String rivi = fi.readLine();
+            if ( rivi == null ) throw new SailoException("Maksimikoko puuttuu");
+
+            while ( (rivi = fi.readLine()) != null ) {
+                rivi = rivi.trim();
+                if ( "".equals(rivi) || rivi.charAt(0) == ';' ) continue;
+                Jasen jasen = new Jasen();
+                jasen.parse(rivi);
+                lisaa(jasen);
+            }
+            muutettu = false;
+        } catch ( FileNotFoundException e ) {
+            throw new SailoException("Tiedosto " + getTiedostonNimi() + " ei aukea");
+        } catch ( IOException e ) {
+            throw new SailoException("Ongelmia tiedoston kanssa: " + e.getMessage());
+        }
+
     }
     
     
+    /**
+     * @param tiedosto tiedoston nimi
+     */
+    public void setTiedostonNimi(String tiedosto) {
+        tiedostonNimi = tiedosto; 
+    }
+
+
+    private String getTiedostonNimi() {
+        return tiedostonNimi + ".dat";
+    }
+    
+    
+    /**
+     * Luetaan aikaisemmin annetun nimisestä tiedostosta
+     * @throws SailoException jos tulee poikkeus
+     */
+    public void lueTiedostosta() throws SailoException {
+        lueTiedostosta(getTiedostonNimi());
+    }
+
+
+
     /**
      * Getteri palauttaa jï¿½senten lukumï¿½ï¿½rï¿½n kyseisessï¿½ joukkueessa
      * @return jï¿½senten lukumï¿½ï¿½rï¿½n

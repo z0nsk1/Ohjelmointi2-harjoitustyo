@@ -78,7 +78,7 @@ public class Jasen {
                 jPoissa + "|" +
                 aktiivisuus + "|" +
                 cooper + "|" +
-                jLisatietoja + "|";
+                jLisatietoja;
     }
     
     

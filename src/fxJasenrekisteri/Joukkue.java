@@ -106,8 +106,8 @@ public class Joukkue {
         dir.mkdirs();
         String hakemistonNimi = "";
         if ( !nimi.isEmpty() ) hakemistonNimi = nimi +"/";
-        jasenet.setTiedostonNimi(hakemistonNimi + "nimet");
-        harjoitukset.setTiedostonNimi(hakemistonNimi + "harrastukset");
+        jasenet.setTiedostonNimi(hakemistonNimi + "nimet.dat");
+        harjoitukset.setTiedostonNimi(hakemistonNimi + "harjoitukset.dat");
     }
 
     

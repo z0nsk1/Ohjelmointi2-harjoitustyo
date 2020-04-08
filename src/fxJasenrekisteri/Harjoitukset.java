@@ -85,10 +85,7 @@ public class Harjoitukset implements Iterable<Harjoitus> {
     public void lueTiedostosta(String tiedosto) throws SailoException {
         setTiedostonNimi(tiedosto);
         try ( BufferedReader fi = new BufferedReader(new FileReader(getTiedostonNimi())) ) {
-            tiedostonNimi = fi.readLine();
-            if ( tiedostonNimi == null ) throw new SailoException("Kerhon nimi puuttuu");
-            String rivi = fi.readLine();
-            if ( rivi == null ) throw new SailoException("Maksimikoko puuttuu");
+            String rivi = "";
 
             while ( (rivi = fi.readLine()) != null ) {
                 rivi = rivi.trim();
@@ -116,12 +113,12 @@ public class Harjoitukset implements Iterable<Harjoitus> {
 
 
     private String getTiedostonNimi() {
-        return tiedostonNimi + ".dat";
+        return tiedostonNimi;
     }
     
     
     /**
-     * Luetaan aikaisemmin annetun nimisestä tiedostosta
+     * Luetaan aikaisemmin annetun nimisestï¿½ tiedostosta
      * @throws SailoException jos tulee poikkeus
      */
     public void lueTiedostosta() throws SailoException {

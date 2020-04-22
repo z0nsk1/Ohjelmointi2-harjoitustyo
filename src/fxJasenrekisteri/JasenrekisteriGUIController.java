@@ -75,13 +75,8 @@ public class JasenrekisteriGUIController implements Initializable, ModalControll
     
     @FXML
     private void handleToggle() {
-        ModalController.showModal(JasenrekisteriGUIController.class.getResource("JasenrekisteriGUIView.fxml"), "Mahottomat Mestarit", null, "");
-        /*Parent root = FXMLLoader.load(getClass().getResource("JasenrekisteriGUIView.fxml"));
-        Scene skenes = new Scene(root);
-        
-        Stage stagel = new Stage();
-        stagel.setScene(skenes);
-        stagel.show(); */
+        ModalController.<String, JasenrekisteriGUIController>showModal(JasenrekisteriGUIController.class.getResource("JasenrekisteriGUIView.fxml"), "Mahottomat Mestarit", null, "",
+               ctrl->ctrl.setJoukkue(joukkue));
     }
 
     
@@ -161,7 +156,7 @@ public class JasenrekisteriGUIController implements Initializable, ModalControll
        try {
            joukkue.lisaa(uusi);
        } catch (SailoException e) {
-           Dialogs.showMessageDialog("Virhe j�senen lis�yksess�! " + e.getMessage());
+           Dialogs.showMessageDialog("Virhe jasenen lisayksessa! " + e.getMessage());
            return;
        }
        hae(uusi.getTunnusNro());

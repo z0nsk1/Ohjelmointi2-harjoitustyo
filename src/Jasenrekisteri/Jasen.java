@@ -8,7 +8,7 @@ import fi.jyu.mit.ohj2.Mjonot;
 /**
  * @author z0nsk1
  * @version 19.3.2020
- *
+ * 
  */
 public class Jasen {
     private int     jasenId;
@@ -27,6 +27,10 @@ public class Jasen {
     
     /**
      * @return jasenen nimi
+     * @example
+     * <pre name="test">
+     * 
+     * </pre>
      */
     public String getNimi() {
         return nimi;

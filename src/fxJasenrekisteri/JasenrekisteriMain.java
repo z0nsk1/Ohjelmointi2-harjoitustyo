@@ -17,16 +17,10 @@ public class JasenrekisteriMain extends Application {
     @Override
     public void start(Stage primaryStage) {
         try {
-            /*Parent root0 = FXMLLoader.load(getClass().getResource("Aloitusikkuna.fxml"));
-            Scene skenes = new Scene(root0);
-            Stage stagel = new Stage();
-            stagel.setScene(skenes);
-            stagel.show(); */
             
-            
-            final FXMLLoader ldr = new FXMLLoader(getClass().getResource("PaaOhjelmaHarjoitukset.fxml")); // Tahan kuuluu normaalisti PaaOhjelmaHarjoitukset.fxml
+            final FXMLLoader ldr = new FXMLLoader(getClass().getResource("PaaOhjelmaHarjoitukset.fxml"));
             final Pane root = (Pane)ldr.load();
-            final JasenrekisteriGUIController harjoitusCtrl = (JasenrekisteriGUIController)ldr.getController(); //ja naihin HarjoitusNakymaGUIController
+            final JasenrekisteriGUIController harjoitusCtrl = (JasenrekisteriGUIController)ldr.getController();
             
             final Scene scene = new Scene(root);
             scene.getStylesheets().add(getClass().getResource("jasenrekisteri.css").toExternalForm());

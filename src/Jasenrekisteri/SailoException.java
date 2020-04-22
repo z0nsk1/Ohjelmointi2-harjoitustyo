@@ -1,4 +1,4 @@
-package fxJasenrekisteri;
+package Jasenrekisteri;
 
 /**
  * @author z0nsk1
@@ -10,7 +10,7 @@ public class SailoException extends Exception {
 
 
     /**
-     * Korvaa virheilmoituksen parametrina tuodulla käyttäjäystävällisemmällä viestillä
+     * Korvaa virheilmoituksen parametrina tuodulla kï¿½yttï¿½jï¿½ystï¿½vï¿½llisemmï¿½llï¿½ viestillï¿½
      * @param viesti Poikkeuksen viesti
      */
     public SailoException(String viesti) {

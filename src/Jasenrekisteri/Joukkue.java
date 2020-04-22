@@ -1,4 +1,4 @@
-package fxJasenrekisteri;
+package Jasenrekisteri;
 
 import java.io.File;
 import java.util.List;

@@ -5,6 +5,7 @@ package fxJasenrekisteri;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import Jasenrekisteri.Joukkue;
 import fi.jyu.mit.fxgui.Dialogs;
 import fi.jyu.mit.fxgui.ModalController;
 //import fi.jyu.mit.fxgui.ModalController;

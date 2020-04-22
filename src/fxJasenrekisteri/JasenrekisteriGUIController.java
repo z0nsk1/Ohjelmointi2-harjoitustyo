@@ -6,6 +6,10 @@ import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
 
+import Jasenrekisteri.Harjoitus;
+import Jasenrekisteri.Jasen;
+import Jasenrekisteri.Joukkue;
+import Jasenrekisteri.SailoException;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -241,7 +245,7 @@ public class JasenrekisteriGUIController implements Initializable, ModalControll
    
   /**
    * @param nimi tiedoston nimi
-   * @return null tai virhe jos luku epäonnistuu
+   * @return null tai virhe jos luku epï¿½onnistuu
    */
    protected String lueTiedosto(String nimi) {
        joukkueenNimi = nimi;

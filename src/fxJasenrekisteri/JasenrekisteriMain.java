@@ -34,14 +34,11 @@ public class JasenrekisteriMain extends Application {
             Joukkue joukkue = new Joukkue();
             harjoitusCtrl.setJoukkue(joukkue);
             
-            primaryStage.show();
-            
             //Application.Parameters params = getParameters(); 
             //if ( params.getRaw().size() > 0 ) 
             harjoitusCtrl.lueTiedosto("MahottomatMestarit");  
             //else
                // if ( !harjoitusCtrl.avaa() ) Platform.exit();
-
             
             primaryStage.show();
             //if (!harjoitusCtrl.avaa()) Platform.exit();

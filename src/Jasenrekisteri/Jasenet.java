@@ -14,7 +14,7 @@ import java.io.PrintWriter;
  *
  */
 public class Jasenet {
-    private static final int    MAX_JASENIA     = 5;
+    private static final int    MAX_JASENIA     = 20;
     private int                 lkm             =  0;
     private String              tiedostonNimi   = "";
     private Jasen               alkiot[]        = new Jasen[MAX_JASENIA];

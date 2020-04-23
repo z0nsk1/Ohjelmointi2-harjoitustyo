@@ -37,21 +37,18 @@
             </AnchorPane>
           <AnchorPane prefHeight="26.0" prefWidth="1278.0">
                <children>
-                  <MenuBar layoutY="2.0" maxWidth="1.7976931348623157E308" prefHeight="25.0" prefWidth="192.0">
+                  <MenuBar layoutY="2.0" maxWidth="1.7976931348623157E308" prefHeight="25.0" prefWidth="126.0">
                      <menus>
                         <Menu mnemonicParsing="false" text="Tiedosto">
                            <items>
-                              <MenuItem mnemonicParsing="false" text="Ei vielä toimintoja" />
-                           </items>
-                        </Menu>
-                        <Menu mnemonicParsing="false" text="Muokkaa">
-                           <items>
-                              <MenuItem mnemonicParsing="false" text="Ehkä ensi versiossa..." />
+                              <MenuItem mnemonicParsing="false" text="Tallenna" onAction="#handleTallenna"/>
+                              <MenuItem mnemonicParsing="false" text="Tallenna ja poistu" onAction="#handleTallennaJaPoistu"/>
                            </items>
                         </Menu>
                         <Menu mnemonicParsing="false" text="Apua">
                            <items>
-                              <MenuItem mnemonicParsing="false" text="Apua on tulossa" />
+                              <MenuItem mnemonicParsing="false" text="Ohjeet" onAction="#handleOhjeet"/>
+                              <MenuItem mnemonicParsing="false" text="Tietoja"/>
                            </items>
                         </Menu>
                      </menus>
@@ -99,7 +96,6 @@
       <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0" BorderPane.alignment="CENTER">
          <children>
             <Button mnemonicParsing="false" onAction="#handleLisaaHarjoitus" prefHeight="30.0" prefWidth="156.0" text="Lisaa harjoitus" />
-            <Button layoutY="33.0" mnemonicParsing="false" onAction="#handleLisaaJasen" prefHeight="30.0" prefWidth="156.0" text="Lisää jäsen (väliaikainen)" />
             <Button layoutX="2.0" layoutY="583.0" mnemonicParsing="false" onAction="#handleTallenna" prefHeight="25.0" prefWidth="156.0" text="Tallenna" />
             <Button layoutX="2.0" layoutY="608.0" mnemonicParsing="false" onAction="#handlePeruuta" prefHeight="25.0" prefWidth="156.0" text="Eiku (peruuta)" />
             <Button layoutX="2.0" layoutY="633.0" mnemonicParsing="false" onAction="#handlePoistu" prefHeight="25.0" prefWidth="156.0" text="Poistu" />
@@ -123,29 +119,26 @@
 					<ColumnConstraints hgrow="ALWAYS" minWidth="10.0"/>
 				  </columnConstraints>
 				  <rowConstraints>
-					<RowConstraints minHeight="10.0" vgrow="SOMETIMES"/>
-					<RowConstraints minHeight="10.0" vgrow="SOMETIMES"/>
-					<RowConstraints minHeight="10.0" vgrow="SOMETIMES"/>
-					<RowConstraints minHeight="10.0" vgrow="SOMETIMES"/>
-					<RowConstraints minHeight="10.0" vgrow="SOMETIMES"/>
-					<RowConstraints minHeight="10.0" vgrow="SOMETIMES"/>
-					<RowConstraints minHeight="10.0" vgrow="SOMETIMES"/>
+					<RowConstraints minHeight="10.0" vgrow="NEVER"/>
+					<RowConstraints minHeight="10.0" vgrow="NEVER"/>
+					<RowConstraints minHeight="10.0" vgrow="NEVER"/>
+					<RowConstraints minHeight="10.0" vgrow="NEVER"/>
+					<RowConstraints minHeight="10.0" vgrow="NEVER"/>
+					<RowConstraints minHeight="10.0" vgrow="NEVER"/>
 				  </rowConstraints>
 				  <children>
-					<Label text="Nimi"/>
-					<Label text="Syntymapaiva" GridPane.rowIndex="1"/>
-					<Label text="Pelinumero" GridPane.rowIndex="2"/>
-					<Label text="Puhelinnumero" GridPane.rowIndex="3"/>
-					<Label text="Aktiivisuus (paikalla/poissa)" GridPane.rowIndex="4"/>
-					<Label text="Cooper" GridPane.rowIndex="5"/>
-					<Label text="Lisatiedot ja muuta" GridPane.rowIndex="6"/>
-					<TextField text="Mikko Mallikas" GridPane.columnIndex="1" GridPane.hgrow="ALWAYS"/>
-					<TextField text="30.05.2007" GridPane.columnIndex="1" GridPane.hgrow="ALWAYS" GridPane.rowIndex="1"/>
-					<TextField text="4" GridPane.columnIndex="1" GridPane.hgrow="ALWAYS" GridPane.rowIndex="2"/>
-					<TextField text="9444445444" GridPane.columnIndex="1" GridPane.hgrow="ALWAYS" GridPane.rowIndex="3"/>
-					<TextField text="77% (170/50)" GridPane.columnIndex="1" GridPane.hgrow="ALWAYS" GridPane.rowIndex="4"/>
-					<TextField text="2200" GridPane.columnIndex="1" GridPane.hgrow="ALWAYS" GridPane.rowIndex="5"/>
-					<TextField text="Haluaa vain kuntoilla ja pelailla." GridPane.columnIndex="1" GridPane.hgrow="ALWAYS" GridPane.rowIndex="6"/>
+					<Label text="Paivamaara"/>
+					<Label text="ALoitusaika" GridPane.rowIndex="1"/>
+					<Label text="Lopetusaika" GridPane.rowIndex="2"/>
+					<Label text="Paikalla" GridPane.rowIndex="3"/>
+					<Label text="Poissa" GridPane.rowIndex="4"/>
+					<Label text="Lisatiedot ja muuta" GridPane.rowIndex="5"/>
+					<TextField text="24.03.2020" GridPane.columnIndex="1" GridPane.hgrow="ALWAYS"/>
+					<TextField text="16:00" GridPane.columnIndex="1" GridPane.hgrow="ALWAYS" GridPane.rowIndex="1"/>
+					<TextField text="17:30" GridPane.columnIndex="1" GridPane.hgrow="ALWAYS" GridPane.rowIndex="2"/>
+					<TextField text="1" GridPane.columnIndex="1" GridPane.hgrow="ALWAYS" GridPane.rowIndex="3"/>
+					<TextField text="-1" GridPane.columnIndex="1" GridPane.hgrow="ALWAYS" GridPane.rowIndex="4"/>
+					<TextField text="Hyvin porukkaa paikalla" GridPane.columnIndex="1" GridPane.hgrow="ALWAYS" GridPane.rowIndex="5"/>
 				  </children>
 				  <opaqueInsets>
 					<Insets left="10.0" top="10.0"/>

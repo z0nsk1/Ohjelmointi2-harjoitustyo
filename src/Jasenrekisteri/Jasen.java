@@ -41,15 +41,15 @@ public class Jasen {
      * Asetetaan jasenelle tiedot
      */
     public void tiedot() {
-        nimi = "Mallikas Mikko";
-        svuosi = 1984;
+        nimi = "Erkki Esimerkki";
+        svuosi = 2020;
         puh = "0123456789";
-        cooper = 3350;
-        jPaikalla = 10;
+        cooper = 3000;
+        jPaikalla = 0;
         jPoissa = 0;
         aktiivisuus = 100;
-        jLisatietoja = "Motivaatio korkea";
-        pelinumero = 5;
+        jLisatietoja = "Esimerkki teksti";
+        pelinumero = 1;
     }
     
     
@@ -134,6 +134,94 @@ public class Jasen {
         aktiivisuus = Mjonot.erota(sb, '|', aktiivisuus);
         cooper = Mjonot.erota(sb, '|', cooper);
         jLisatietoja = Mjonot.erota(sb, '|', jLisatietoja);
+    }
+    
+    /**
+     * @return Syntymavuosi
+     */
+    public int getSVuosi() {
+        return svuosi;
+    }
+    
+    
+    /**
+     * @return pelinumero
+     */
+    public int getPelinumero() {
+        return pelinumero;
+    }
+    
+    
+    /**
+     * @return puhelinnumero
+     */
+    public String getPuh() {
+        return puh;
+    }
+    
+    
+    /**
+     * @return paikallaolot lkm
+     */
+    public int getPaikalla() {
+        return jPaikalla;
+    }
+    
+    
+    /**
+     * @return poissaolot lkm
+     */
+    public int getPoissa() {
+        return jPoissa;
+    }
+    
+    
+    /**
+     * @return aktiivisuus prosenttina
+     */
+    public double getAktiivisuus() {
+        if(jPaikalla+jPoissa == 0) return 0.0;
+        return jPaikalla/(jPaikalla+jPoissa)*100;
+    }
+    
+    
+    /**
+     * @return cooper
+     */
+    public int getCooper() {
+        return cooper;
+    }
+    
+    
+    /**
+     * @return lisatiedot
+     */
+    public String getLisatietoja() {
+        return jLisatietoja;
+    }
+    
+    
+    public String setNimi(String s) {
+        nimi = s;
+        return null;
+    }
+    
+    
+    public String setSVuosi(String s) {
+        svuosi = Integer.valueOf(s);
+        return null;
+    }
+    
+    
+    public String setPuh(String s) {
+        puh = s;
+        return null;
+    }
+    
+    
+    public String setCooper(String s) {
+        cooper = Integer.valueOf(s);
+        return null;
     }
     
     /**

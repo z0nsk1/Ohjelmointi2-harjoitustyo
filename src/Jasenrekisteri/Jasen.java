@@ -181,7 +181,8 @@ public class Jasen {
      */
     public double getAktiivisuus() {
         if(jPaikalla+jPoissa == 0) return 0.0;
-        return jPaikalla/(jPaikalla+jPoissa)*100;
+        double palautus = jPaikalla*100/(jPaikalla+jPoissa);
+        return palautus;
     }
     
     
@@ -201,24 +202,44 @@ public class Jasen {
     }
     
     
+    /**
+     * 
+     * @param s nimi
+     * @return null
+     */
     public String setNimi(String s) {
         nimi = s;
         return null;
     }
     
     
+    /**
+     * 
+     * @param s vuosi
+     * @return null
+     */
     public String setSVuosi(String s) {
         svuosi = Integer.valueOf(s);
         return null;
     }
     
     
+    /**
+     * 
+     * @param s puhelin
+     * @return null
+     */
     public String setPuh(String s) {
         puh = s;
         return null;
     }
     
     
+    /**
+     * 
+     * @param s cooper
+     * @return null
+     */
     public String setCooper(String s) {
         cooper = Integer.valueOf(s);
         return null;

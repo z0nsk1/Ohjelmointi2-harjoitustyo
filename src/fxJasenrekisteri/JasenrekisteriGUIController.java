@@ -90,9 +90,9 @@ public class JasenrekisteriGUIController implements Initializable, ModalControll
     
     @FXML
     private void handleToggle() {
-        ModalController.<String, JasenrekisteriGUIController>showModal(JasenrekisteriGUIController.class.getResource("JasenrekisteriGUIView.fxml"), "Mahottomat Mestarit", null, "",
-              ctrl->ctrl.setJoukkue(joukkue));
-        //TODO: Miten saa paivittymaan automaattisesti jasenlistan?
+        ModalController.<String, JasenrekisteriGUIController>showModal(JasenrekisteriGUIController.class.getResource("JasenrekisteriGUIView.fxml"), "Mahottomat Mestarit", null, "", 
+               ctrl->ctrl.setJoukkue(joukkue));
+        lueTiedosto("MahottomatMestarit");
     }
 
     
@@ -169,6 +169,7 @@ public class JasenrekisteriGUIController implements Initializable, ModalControll
    public void setJoukkue(Joukkue joukkue) {
        this.joukkue = joukkue;
        naytaJasen();
+       hae(0);
    }
    
    
@@ -289,7 +290,7 @@ public class JasenrekisteriGUIController implements Initializable, ModalControll
        editAktiivisuus.setText(String.valueOf(jasenKohdalla.getAktiivisuus()));
        editLisatietoja.setText(jasenKohdalla.getLisatietoja());
        editPelinumero.setText(String.valueOf(jasenKohdalla.getPelinumero()));
-       editId.setText(String.valueOf(jasenKohdalla.getTunnusNro())); //TODO: poista id näkyvistä ohjelmassa
+       editId.setText(String.valueOf(jasenKohdalla.getTunnusNro())); //TODO: poista id nï¿½kyvistï¿½ ohjelmassa
    }
    
    

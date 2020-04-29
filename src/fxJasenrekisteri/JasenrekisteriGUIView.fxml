@@ -89,7 +89,7 @@
                         </Label>
                      </children>
                   </AnchorPane>
-                  <ListChooser fx:id="chooserJasenet" layoutX="6.0" layoutY="87.0" maxHeight="1.7976931348623157E308" prefHeight="569.0" prefWidth="314.0" rivit="Mikko Mallikas Pertti Eräreikä"/>
+                  <ListChooser fx:id="chooserJasenet" layoutX="6.0" layoutY="87.0" maxHeight="1.7976931348623157E308" prefHeight="569.0" prefWidth="314.0" rivit="Mikko Mallikas"/>
                </children>
             </AnchorPane>
         </items>

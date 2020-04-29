@@ -11,7 +11,92 @@ import java.io.PrintWriter;
 /**
  * @author z0nsk1
  * @version 19.3.2020
- *
+ * @example
+ * <pre name="test_lisaa_poista">
+ * // lisaa(harj), poista(Jasenet)
+ * #import java.io.File;
+ * #import fxJasenrekisteri.SailoException;
+ *  Jasenet jasenet = new Jasenet();
+ *  Jasen jasen1 = new Jasen(); jasen1.parse("1|Marko Esimerkki|1999|1|0320324789|23|7|0.0|2500|Tosi rehti");
+ *  Jasen jasen2 = new Jasen(); jasen2.parse("2|Marko Esimerkki|2002|1|0923423789|30|0|0.0|2200|Juu");
+ *  Jasen jasen3 = new Jasen(); jasen3.parse("5|Marko Esimerkki|1990|1|0825464489|15|15|0.0|2700|Ala laita tallasta"); 
+ *  Jasen jasen4 = new Jasen(); jasen4.parse("3|Marko Esimerkki|1994|1|0522243789|13|17|0.0|2800|Lisatietoja"); 
+ *  Jasen jasen5 = new Jasen(); jasen5.parse("4|Marko Esimerkki|1997|1|0328768789|10|20|0.0|2100|Hyvat kengat"); 
+ *  jasenet.lisaa(jasen1);
+ *  jasenet.lisaa(jasen2);
+ *  jasenet.lisaa(jasen3);
+ *  jasenet.lisaa(jasen4);
+ *  // List<Jasenet> h = jasenet.annaJasenet(1);
+ *  // h.size() === 1; 
+ *  // h.get(0) === jasenet4;
+ * </pre>
+ * 
+ * @example
+ * <pre name="test_tiedosto">
+ * #THROWS SailoException 
+ * #import java.io.File;
+ *  Jasenet jasenet = new Jasenet();
+ *  Jasen jasen1 = new Jasen(); jasen1.parse("1|Marko Esimerkki|1999|1|0320324789|23|7|0.0|2500|Tosi rehti");
+ *  Jasen jasen2 = new Jasen(); jasen2.parse("2|Marko Esimerkki|2002|1|0923423789|30|0|0.0|2200|Juu");
+ *  Jasen jasen3 = new Jasen(); jasen3.parse("5|Marko Esimerkki|1990|1|0825464489|15|15|0.0|2700|Ala laita tallasta"); 
+ *  Jasen jasen4 = new Jasen(); jasen4.parse("3|Marko Esimerkki|1994|1|0522243789|13|17|0.0|2800|Lisatietoja"); 
+ *  Jasen jasen5 = new Jasen(); jasen5.parse("4|Marko Esimerkki|1997|1|0328768789|10|20|0.0|2100|Hyvat kengat"); 
+ *  String tiedNimi = "testiJoukkue";
+ *  File ftied = new File(tiedNimi+".dat");
+ *  jasenet.lueTiedostosta(tiedNimi); #THROWS SailoException
+ *  jasenet.lisaa(jasen1);
+ *  jasenet.lisaa(jasen2);
+ *  jasenet.lisaa(jasen3);
+ *  jasenet.lisaa(jasen4);
+ *  jasenet.lisaa(jasen5);
+ *  jasenet.tallenna();
+ *  jasenet = new Jasenet();
+ *  jasenet.lueTiedostosta(tiedNimi);
+ *  Iterator<Jasenet> i = jasenet.iterator();
+ *  i.next().toString() === jasen1.toString();
+ *  i.next().toString() === jasen2.toString();
+ *  i.next().toString() === jasen3.toString();
+ *  i.next().toString() === jasen4.toString();
+ *  i.next().toString() === jasen5.toString();
+ *  i.hasNext() === false;
+ *  jasenet.lisaa(jasen5);
+ *  jasenet.tallenna();
+ *  ftied.delete();
+ *  ftied.delete() === true;
+ *  File fbak = new File(tiedNimi+".bak");
+ *  fbak.delete() === true;
+ * </pre>
+ * 
+ * @example
+ * <pre name="test_iterator">
+ * // iterator()
+ * #PACKAGEIMPORT
+ * #import java.util.*;
+ * 
+ *  Jasenet jasenet = new Jasenet();
+ *  Jasen jasen1 = new Jasen(); jasenet.lisaa(jasen1);
+ *  Jasen jasen2 = new Jasen(); jasenet.lisaa(jasen2);
+ *  Jasen jasen3 = new Jasen(); jasenet.lisaa(jasen3);
+ *  Jasen jasen4 = new Jasen(); jasenet.lisaa(jasen4);
+ *  Jasen jasen5 = new Jasen(); jasenet.lisaa(jasen5);
+ * 
+ *  Iterator<Jasenet> i2=jasenet.iterator();
+ *  i2.next() === jasen1;
+ *  i2.next() === jasen2;
+ *  i2.next() === jasen3;
+ *  i2.next() === jasen4;
+ *  i2.next() === jasen5;
+ *  i2.next() === jasen4;  #THROWS NoSuchElementException  
+ *  
+ *  int n = 0;
+ *  int jnrot[] = {2,1,2,1,2};
+ *  
+ *  for ( Jasenet jasen : jasenet ) { 
+ *    jasen.getTunnusNro() === jnrot[n]; n++;  
+ *  }
+ *  
+ *  n === 5;
+ * </pre>
  */
 public class Jasenet {
     private static final int    MAX_JASENIA     = 20;

@@ -10,11 +10,52 @@ import fi.jyu.mit.ohj2.Mjonot;
 /**
  * @author z0nsk1
  * @version 19.3.2020
+ * <pre name="test_rekisteroi">
+ * // rekisteroi()
+ *   Harjoitus harjoitus1 = new Harjoitus();
+ *   harjoitus1.getTunnusNro() === 0;
+ *   harjoitus1.rekisteroi();
+ *   Harjoitus harjoitus2 = new Harjoitus();
+ *   harjoitus2.rekisteroi();
+ *   int n1 = harjoitus1.getTunnusNro();
+ *   int n2 = harjoitus2.getTunnusNro();
+ *   n1 === n2-1;
+ * </pre>
+ * 
+ * @example
+ * <pre name="test_parse">
+ * // parse(String)
+ *   Harjoitus harjoitus = new Harjoitus();
+ *   harjoitus.parse("5|20200324|1600|1730|1|-1|Hyvin porukkaa paikalla|");
+ *   harjoitus.getTunnusNro() === 5;
+ *   harjoitus.toString().startsWith("5|20200324|1600|1730") === true;
  *
+ *   harjoitus.rekisteroi();
+ *   int n = harjoitus.getTunnusNro();
+ *   harjoitus.rekisteroi();
+ *   harjoitus.getTunnusNro() === n+1;
+ * </pre>
+ * 
+ * @example
+ * <pre name="test_equals">
+ * // equals(harjoitus)
+ *   Harjoitus harjoitus1 = new Harjoitus();
+ *   harjoitus1.parse("0|20200324|1600|1730|1|-1|Hyvin porukkaa paikalla|");
+ *   Harjoitus harjoitus2 = new Harjoitus();
+ *   harjoitus2.parse("0|20200324|1600|1730|1|-1|Hyvin porukkaa paikalla|");
+ *   Harjoitus harjoitus3 = new Harjoitus();
+ *   harjoitus3.parse("2|20191215|1500|1700|2|4|Hyva treeni");
+ *   
+ *   harjoitus1.toString().equals(harjoitus2.toString()) === true;
+ *   harjoitus2.toString().equals(harjoitus1.toString()) === true;
+ *   harjoitus1.toString().equals(harjoitus3.toString()) === false;
+ *   harjoitus3.toString().equals(harjoitus2.toString()) === false;
+ *   harjoitus3.toString().equals(null)   === false;
+ * </pre>
  */
 public class Harjoitus {
     private int     harjoitusId;
-    private int  paivaMaara;
+    private int     paivaMaara;
     private int     kloAloitus;
     private int     kloLopetus;
     private int     paikalla      = 0;   //paikalla olleen jasenen id
@@ -96,8 +137,8 @@ public class Harjoitus {
     
     /**
      * Otetaan id tamanhetkisesta ajasta (oletus kun luodaan harjoitus)
-     * @param i ghf
-     * @param s fgh
+     * @param i indeksi
+     * @param s merkkijono
      * @return harjoituksen ID
      */
     public String asetaTiedot(int i, String s) {
@@ -153,6 +194,16 @@ public class Harjoitus {
     private void setTunnusNro(int nr) {
         harjoitusId = nr;
         if ( harjoitusId >= seuraavaNro ) seuraavaNro = harjoitusId + 1;
+    }
+    
+    
+    /**
+     * @return Rekister�id��n j�sen ja annetaan sille id
+     */
+    public int rekisteroi() {
+        harjoitusId = seuraavaNro;
+        seuraavaNro++;
+        return harjoitusId;
     }
 
 

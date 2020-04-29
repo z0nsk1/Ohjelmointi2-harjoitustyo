@@ -7,7 +7,45 @@ import java.util.List;
  * Joukkueluokka, joka johtaa Jasenet- ja Harjoitukset-luokkaan
  * @author mikko
  * @version 19 Mar 2020
- *
+ * @example
+ * <pre name="testJAVA">
+ * #import Jasenrekisteri.SailoException;
+ *  private Joukkue joukkue;
+ *  private Jasen jasen1;
+ *  private Jasen jasen2;
+ *  private int jasenId1;
+ *  private int jasenId2;
+ *  private Harrastus pitsi21;
+ *  private Harrastus pitsi11;
+ *  private Harrastus pitsi22; 
+ *  private Harrastus pitsi12; 
+ *  private Harrastus pitsi23;
+ *  
+ *  // @SuppressWarnings("javadoc")
+ *  public void alustaKerho() {
+ *    joukkue = new Joukkue();
+ *    jasen1 = new Jasen(); jasen1.tiedot(); jasen1.rekisteroi();
+ *    jasen2 = new Jasen(); jasen2.tiedot(); jasen2.rekisteroi();
+ *    jasenId1 = jasen1.getTunnusNro();
+ *    jasenId2 = jasen2.getTunnusNro();
+ *    pitsi21 = new Harrastus(jid2); pitsi21.vastaaPitsinNyplays(jid2);
+ *    pitsi11 = new Harrastus(jid1); pitsi11.vastaaPitsinNyplays(jid1);
+ *    pitsi22 = new Harrastus(jid2); pitsi22.vastaaPitsinNyplays(jid2); 
+ *    pitsi12 = new Harrastus(jid1); pitsi12.vastaaPitsinNyplays(jid1); 
+ *    pitsi23 = new Harrastus(jid2); pitsi23.vastaaPitsinNyplays(jid2);
+ *    try {
+ *    kerho.lisaa(aku1);
+ *    kerho.lisaa(aku2);
+ *    kerho.lisaa(pitsi21);
+ *    kerho.lisaa(pitsi11);
+ *    kerho.lisaa(pitsi22);
+ *    kerho.lisaa(pitsi12);
+ *    kerho.lisaa(pitsi23);
+ *    } catch ( Exception e) {
+ *       System.err.println(e.getMessage());
+ *    }
+ *  }
+ * </pre>
  */
 public class Joukkue {
     
@@ -18,6 +56,7 @@ public class Joukkue {
      * Lisaa uuden jasenen
      * @param jasen Lisattava jasen
      * @throws SailoException jos ei toimi
+     * 
      */
     public void lisaa(Jasen jasen) throws SailoException {
         jasenet.lisaa(jasen);

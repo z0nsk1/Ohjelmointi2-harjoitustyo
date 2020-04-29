@@ -20,7 +20,7 @@ import java.util.List;
  * <pre name="test_lisaa_poista">
  * // lisaa(harj), poista(harjoitus)
  * #import java.io.File;
- * //#import fxJasenrekisteri.SailoException;
+ * // #import fxJasenrekisteri.SailoException;
  *  Harjoitukset harjoitukset = new Harjoitukset();
  *  Harjoitus harj1 = new Harjoitus(); harj1.parse("1|20191215|1500|1700|2|4|Hyva treeni");
  *  Harjoitus harj2 = new Harjoitus(); harj2.parse("2|20191220|1800|2000|5|1|Hyva treeni");
@@ -48,6 +48,7 @@ import java.util.List;
  *  Harjoitus harj5 = new Harjoitus(); harj5.parse("5|20180316|1800|1930|5|4|Hyva treeni"); 
  *  String tiedNimi = "testiJoukkue";
  *  File ftied = new File(tiedNimi+".dat");
+ *  ftied.delete();
  *  harjoitukset.lueTiedostosta(tiedNimi); #THROWS SailoException
  *  harjoitukset.lisaa(harj1);
  *  harjoitukset.lisaa(harj2);
@@ -66,7 +67,6 @@ import java.util.List;
  *  i.hasNext() === false;
  *  harjoitukset.lisaa(harj5);
  *  harjoitukset.tallenna();
- *  ftied.delete();
  *  ftied.delete() === true;
  *  File fbak = new File(tiedNimi+".bak");
  *  fbak.delete() === true;
@@ -91,7 +91,7 @@ import java.util.List;
  *  i2.next() === harj3;
  *  i2.next() === harj4;
  *  i2.next() === harj5;
- *  i2.next() === harj4;  #THROWS NoSuchElementException  
+ *  i2.next() === harj6;  #THROWS NoSuchElementException  
  *  
  *  int n = 0;
  *  int jnrot[] = {2,1,2,1,2};

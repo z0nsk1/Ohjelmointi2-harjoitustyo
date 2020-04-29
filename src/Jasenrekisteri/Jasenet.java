@@ -13,9 +13,8 @@ import java.io.PrintWriter;
  * @version 19.3.2020
  * @example
  * <pre name="test_lisaa_poista">
- * // lisaa(harj), poista(Jasenet)
+ * #THROWS SailoException
  * #import java.io.File;
- * #import fxJasenrekisteri.SailoException;
  *  Jasenet jasenet = new Jasenet();
  *  Jasen jasen1 = new Jasen(); jasen1.parse("1|Marko Esimerkki|1999|1|0320324789|23|7|0.0|2500|Tosi rehti");
  *  Jasen jasen2 = new Jasen(); jasen2.parse("2|Marko Esimerkki|2002|1|0923423789|30|0|0.0|2200|Juu");
@@ -52,13 +51,13 @@ import java.io.PrintWriter;
  *  jasenet.tallenna();
  *  jasenet = new Jasenet();
  *  jasenet.lueTiedostosta(tiedNimi);
- *  Iterator<Jasenet> i = jasenet.iterator();
- *  i.next().toString() === jasen1.toString();
- *  i.next().toString() === jasen2.toString();
- *  i.next().toString() === jasen3.toString();
- *  i.next().toString() === jasen4.toString();
- *  i.next().toString() === jasen5.toString();
- *  i.hasNext() === false;
+ *  Jasenet i[] = new Jasenet[10];
+ *  i[0].toString() === jasen1.toString();
+ *  i[1].toString() === jasen2.toString();
+ *  i[2].toString() === jasen3.toString();
+ *  i[3].toString() === jasen4.toString();
+ *  i[4].toString() === jasen5.toString();
+ *  i[5].toString() === "";
  *  jasenet.lisaa(jasen5);
  *  jasenet.tallenna();
  *  ftied.delete();
@@ -66,37 +65,7 @@ import java.io.PrintWriter;
  *  File fbak = new File(tiedNimi+".bak");
  *  fbak.delete() === true;
  * </pre>
- * 
- * @example
- * <pre name="test_iterator">
- * // iterator()
- * #PACKAGEIMPORT
- * #import java.util.*;
- * 
- *  Jasenet jasenet = new Jasenet();
- *  Jasen jasen1 = new Jasen(); jasenet.lisaa(jasen1);
- *  Jasen jasen2 = new Jasen(); jasenet.lisaa(jasen2);
- *  Jasen jasen3 = new Jasen(); jasenet.lisaa(jasen3);
- *  Jasen jasen4 = new Jasen(); jasenet.lisaa(jasen4);
- *  Jasen jasen5 = new Jasen(); jasenet.lisaa(jasen5);
- * 
- *  Iterator<Jasenet> i2=jasenet.iterator();
- *  i2.next() === jasen1;
- *  i2.next() === jasen2;
- *  i2.next() === jasen3;
- *  i2.next() === jasen4;
- *  i2.next() === jasen5;
- *  i2.next() === jasen4;  #THROWS NoSuchElementException  
- *  
- *  int n = 0;
- *  int jnrot[] = {2,1,2,1,2};
- *  
- *  for ( Jasenet jasen : jasenet ) { 
- *    jasen.getTunnusNro() === jnrot[n]; n++;  
- *  }
- *  
- *  n === 5;
- * </pre>
+
  */
 public class Jasenet {
     private static final int    MAX_JASENIA     = 20;

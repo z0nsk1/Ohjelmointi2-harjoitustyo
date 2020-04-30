@@ -6,6 +6,7 @@ import java.util.Collection;
 import java.util.ResourceBundle;
 
 import Jasenrekisteri.Harjoitus;
+import Jasenrekisteri.Jasen;
 import Jasenrekisteri.Joukkue;
 import Jasenrekisteri.SailoException;
 import javafx.application.Platform;
@@ -44,14 +45,14 @@ public class HarjoitusController implements Initializable, ModalControllerInterf
     @FXML private URL location;
     //Harjoitukset
     @FXML private ListChooser<Harjoitus> chooserHarjoitukset;
+    @FXML private ListChooser<Harjoitus> chooserPaikalla;
+    @FXML private ListChooser<Harjoitus> chooserPoissa;
     @FXML private ScrollPane panelHarjoitus;
     @FXML private GridPane gridHarjoitus;
     @FXML private TextField editPvm;
     @FXML private TextField editAloitus;
     @FXML private TextField editLopetus;
     @FXML private TextField edit;
-    @FXML private TextField editJPaikalla;
-    @FXML private TextField editJPoissa;
     @FXML private TextField editHLisatietoja;
     @FXML private TextField editHId;
     
@@ -182,12 +183,14 @@ public class HarjoitusController implements Initializable, ModalControllerInterf
 
        chooserHarjoitukset.clear();
        chooserHarjoitukset.addSelectionListener(e -> naytaHarjoitus());
+       chooserPaikalla.addSelectionListener(e -> jasenSiirto(chooserPaikalla));
+       chooserPoissa.addSelectionListener(e -> jasenSiirto(chooserPoissa));
        /*haku.clear(); 
        for (int k = apujasen.ekaKentta(); k < apujasen.getKenttia(); k++) 
            haku.add(apujasen.getKysymys(k), null); 
        haku.getSelectionModel().select(0); 
        */
-       TextField edits[] = new TextField[]{editPvm, editAloitus, editLopetus, editJPaikalla, editJPoissa, editHLisatietoja, editHId};
+       TextField edits[] = new TextField[]{editPvm, editAloitus, editLopetus, editHLisatietoja, editHId};
        for(@SuppressWarnings("hiding") TextField edit : edits) {
            if(edit == null) break;
            edit.setOnMouseClicked(new EventHandler<MouseEvent>() {
@@ -232,6 +235,9 @@ public class HarjoitusController implements Initializable, ModalControllerInterf
       }
 
    
+   /**
+    * nayttaa harjoituksen tiedot kayttajalle
+    */
    private void naytaHarjoitus() {
        harjoitusKohdalla = chooserHarjoitukset.getSelectedObject();
 
@@ -240,10 +246,64 @@ public class HarjoitusController implements Initializable, ModalControllerInterf
        editPvm.setText(String.valueOf(harjoitusKohdalla.getPvm()));
        editAloitus.setText(String.valueOf(harjoitusKohdalla.getAloitus()));
        editLopetus.setText(String.valueOf(harjoitusKohdalla.getLopetus()));
-       editJPaikalla.setText(String.valueOf(harjoitusKohdalla.getJPaikalla()));
-       editJPoissa.setText(String.valueOf(harjoitusKohdalla.getJPoissa()));
+       //editJPaikalla.setText(String.valueOf(harjoitusKohdalla.getJPaikalla()));
+       //editJPoissa.setText(String.valueOf(harjoitusKohdalla.getJPoissa()));
        editHLisatietoja.setText(harjoitusKohdalla.getHLisatietoja());
        editHId.setText(String.valueOf(harjoitusKohdalla.getTunnusNro()));
+       naytaPaikalla();
+       naytaPoissa();
+   }
+   
+   
+   private void naytaPoissa() {
+       chooserPoissa.clear();
+       harjoitusKohdalla = chooserHarjoitukset.getSelectedObject();
+       
+       if (harjoitusKohdalla == null) return;
+
+       int harjoId = harjoitusKohdalla.getTunnusNro();
+       Collection<Harjoitus> har = joukkue.annaHarjoitukset(harjoId);
+       for(Harjoitus h : har) {
+           int i = h.getJPoissa();
+           if (i<0) continue;
+           Jasen jasen = joukkue.annaJasen(i-1);
+           chooserPoissa.add(jasen.getNimi(), h);
+       }
+   }
+   
+   
+   private void jasenSiirto(ListChooser<Harjoitus> cho) {
+       harjoitusKohdalla = cho.getSelectedObject();
+       
+       if (harjoitusKohdalla == null) return;
+       
+       int jasenPai = harjoitusKohdalla.getJasenNro();
+       int jasenPoi = harjoitusKohdalla.getJPoissa();
+       harjoitusKohdalla.setPaikalla(jasenPoi);
+       harjoitusKohdalla.setPoissa(jasenPai);
+       
+       naytaPaikalla();
+       naytaPoissa();
+   }
+   
+   
+   /**
+    * nayttaa listassa jasenet, jotka on paikalla
+    */
+   private void naytaPaikalla() {
+       chooserPaikalla.clear();
+       harjoitusKohdalla = chooserHarjoitukset.getSelectedObject();
+       
+       if (harjoitusKohdalla == null) return;
+       
+       int harjoId = harjoitusKohdalla.getTunnusNro();
+       Collection<Harjoitus> har = joukkue.annaHarjoitukset(harjoId);
+       for(Harjoitus h : har) {
+           int i = h.getJasenNro();
+           if (i<0) continue;
+           Jasen jasen = joukkue.annaJasen(i-1);
+           chooserPaikalla.add(jasen.getNimi(), h);
+       }
    }
    
    
@@ -290,7 +350,7 @@ public class HarjoitusController implements Initializable, ModalControllerInterf
        chooserHarjoitukset.clear();
        
        int index = 0;
-       for(int i = 0; i < joukkue.getHarjoituksia(); i++) {
+       for(int i = 1; i < 1+joukkue.getHarjoituksia(); i++) {
            Collection<Harjoitus> har = joukkue.annaHarjoitukset(i);
            boolean lisattyH = false;
            for(Harjoitus h : har) {

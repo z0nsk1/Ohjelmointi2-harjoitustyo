@@ -138,8 +138,8 @@
 			                  <TextField fx:id="editHId" editable="false" GridPane.columnIndex="1" GridPane.hgrow="ALWAYS" GridPane.rowIndex="5" />
                               <Label text="Paikalla" GridPane.columnIndex="2" />
                               <Label text="Poissa" GridPane.columnIndex="3" />
-                        <ListChooser prefHeight="122.0" prefWidth="318.0" GridPane.columnIndex="3" GridPane.rowIndex="1" GridPane.rowSpan="5" />
-                        <ListChooser prefHeight="477.0" prefWidth="254.0" GridPane.columnIndex="2" GridPane.rowIndex="1" GridPane.rowSpan="5" />
+                        <ListChooser fx:id="chooserPoissa" prefHeight="122.0" prefWidth="318.0" GridPane.columnIndex="3" GridPane.rowIndex="1" GridPane.rowSpan="5" />
+                        <ListChooser fx:id="chooserPaikalla" prefHeight="477.0" prefWidth="254.0" GridPane.columnIndex="2" GridPane.rowIndex="1" GridPane.rowSpan="5" />
                            </children>
 				  <opaqueInsets>
 					<Insets left="10.0" top="10.0" />

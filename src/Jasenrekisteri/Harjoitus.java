@@ -198,6 +198,22 @@ public class Harjoitus {
     
     
     /**
+     * @param nr asettaa jasenen paikalla olevaksi
+     */
+    public void setPaikalla(int nr) {
+        paikalla = nr;
+    }
+    
+    
+    /**
+     * @param nr asettaa jasenen poissa olevaksi
+     */
+    public void setPoissa(int nr) {
+        poissa = nr;
+    }
+    
+    
+    /**
      * @param viimeinen jos viimeinen, niin kasvatetaan harjoitusId
      * @return Rekister�id��n j�sen ja annetaan sille id
      */

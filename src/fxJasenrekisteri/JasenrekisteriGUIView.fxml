@@ -41,17 +41,14 @@
                      <menus>
                         <Menu mnemonicParsing="false" text="Tiedosto">
                            <items>
-                              <MenuItem mnemonicParsing="false" text="Ei vielä toimintoja" />
-                           </items>
-                        </Menu>
-                        <Menu mnemonicParsing="false" text="Muokkaa">
-                           <items>
-                              <MenuItem mnemonicParsing="false" text="Ehkä ensi versiossa..." />
+                              <MenuItem mnemonicParsing="false" text="Tallenna" onAction="#handleTallenna"/>
+                              <MenuItem mnemonicParsing="false" text="Tallenna ja poistu" onAction="#handleTallennaJaPoistu"/>
                            </items>
                         </Menu>
                         <Menu mnemonicParsing="false" text="Apua">
                            <items>
-                              <MenuItem mnemonicParsing="false" text="Apua on tulossa" />
+                              <MenuItem mnemonicParsing="false" text="Ohjeet" onAction="#handleOhjeet"/>
+                              <MenuItem mnemonicParsing="false" text="Tietoja"/>
                            </items>
                         </Menu>
                      </menus>

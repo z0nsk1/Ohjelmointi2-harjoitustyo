@@ -145,7 +145,7 @@ public class Harjoitukset implements Iterable<Harjoitus> {
      * @throws SailoException jos ei onnistu
      */
     public void tallenna() throws SailoException {
-        File ftied = new File("MahottomatMestarit/harjoitukset.dat");
+        File ftied = new File(tiedostonNimi);
 
         try ( PrintWriter fo = new PrintWriter(new FileWriter(ftied.getCanonicalPath())) ) {
             for (int i = 1; i < 1+getLkm(); i++) {
@@ -247,6 +247,6 @@ public class Harjoitukset implements Iterable<Harjoitus> {
     @Override
     public Iterator<Harjoitus> iterator() {
         // TODO Auto-generated method stub
-        return null;
+        return harjoitukset.iterator();
     }
 }

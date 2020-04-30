@@ -2,10 +2,10 @@ package fxJasenrekisteri;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.Collection;
 import java.util.ResourceBundle;
 
 import Jasenrekisteri.Harjoitus;
-import Jasenrekisteri.Jasen;
 import Jasenrekisteri.Joukkue;
 import Jasenrekisteri.SailoException;
 import javafx.application.Platform;
@@ -37,25 +37,11 @@ import fi.jyu.mit.ohj2.Mjonot;
  * @version 13.2.2020
  *
  */
-public class JasenrekisteriGUIController implements Initializable, ModalControllerInterface<Joukkue> {
+public class HarjoitusController implements Initializable, ModalControllerInterface<Joukkue> {
       
     @FXML private ComboBox<String> haku;
     @FXML private ResourceBundle resources;
     @FXML private URL location;
-    //Jasenet
-    @FXML private ListChooser<Jasen> chooserJasenet;
-    @FXML private ScrollPane panelJasen;
-    @FXML private GridPane gridJasen;
-    @FXML private TextField editNimi;
-    @FXML private TextField editSvuosi;
-    @FXML private TextField editPuh;
-    @FXML private TextField editCooper;
-    @FXML private TextField editPaikalla;
-    @FXML private TextField editPoissa;
-    @FXML private TextField editAktiivisuus;
-    @FXML private TextField editLisatietoja;
-    @FXML private TextField editPelinumero;
-    @FXML private TextField editId;
     //Harjoitukset
     @FXML private ListChooser<Harjoitus> chooserHarjoitukset;
     @FXML private ScrollPane panelHarjoitus;
@@ -86,13 +72,21 @@ public class JasenrekisteriGUIController implements Initializable, ModalControll
         tallenna();
     } 
     
-
+    
     @FXML
-    private void handleLisaaJasen() {
-        uusiJasen();
+    private void handleLisaaHarjoitus() {
+        uusiHarjoitus();
     }
     
+    
+    @FXML
+    private void handleToggle() {
+        ModalController.<Joukkue, JasenrekisteriGUIController>showModal(JasenrekisteriGUIController.class.getResource("JasenrekisteriGUIView.fxml"), "Mahottomat Mestarit", null, joukkue, 
+               ctrl->ctrl.setJoukkue(joukkue));
+        lueTiedosto("MahottomatMestarit");
+    }
 
+    
     @FXML
     private void handlePeruuta() {
         Dialogs.showMessageDialog("Muutokset peruttiin...Vai peruttiinko?");
@@ -133,12 +127,6 @@ public class JasenrekisteriGUIController implements Initializable, ModalControll
    private void handleLuoJoukkue() {
        Dialogs.showMessageDialog("Ei osata viel� luoda joukkuetta");
    }
-   
-   
-   @FXML 
-   private void handleTakaisin() {
-       ModalController.closeStage(gridJasen);
-   }
     
    
    @FXML
@@ -153,9 +141,9 @@ public class JasenrekisteriGUIController implements Initializable, ModalControll
    
    // ===================================================================================================================================================================
    
-   private Jasen jasenKohdalla;
+   private Harjoitus harjoitusKohdalla;
    private Joukkue joukkue;
-   private TextArea areaJasen = new TextArea();
+   private TextArea areaHarjoitus = new TextArea();
    //private static Jasen apujasen = new Jasen(); 
    
    
@@ -164,57 +152,42 @@ public class JasenrekisteriGUIController implements Initializable, ModalControll
     */
    public void setJoukkue(Joukkue joukkue) {
        this.joukkue = joukkue;
-       naytaJasen();
-       hae(0);
+       naytaHarjoitus();
+       haeHarjoitus(0);
    }
    
    
    /**
-    * Luo uuden jasenen
+    * Luo uuden harjoituksen
     */
-   private void uusiJasen() {
-       Jasen uusi = new Jasen();
-       uusi.rekisteroi();
-       uusi.tiedot();
-       
-       try {
-           joukkue.lisaa(uusi);
-       } catch (SailoException e) {
-           Dialogs.showMessageDialog("Virhe jasenen lisayksessa! " + e.getMessage());
-           return;
+   public void uusiHarjoitus() {
+       boolean viimeinenJ = false;
+       for (int i = 1; i < 1+joukkue.getJasenia(); i++) {
+           if (i == joukkue.getJasenia()) viimeinenJ = true;
+           Harjoitus har = new Harjoitus();
+           har.rekisteroi(viimeinenJ);
+           har.hTiedot(i);
+           joukkue.lisaa(har);    
+           haeHarjoitus(har.getTunnusNro());
        }
-       hae(uusi.getTunnusNro());
    }
    
    
    /**
- * 
- */
-/*private void tulosta(PrintStream os, Jasen jasen) {
-       jasen.tulosta(os);
-       List<Harjoitus> loytyneet = joukkue.annaHarjoitukset(jasen); //TODO:
-       for (Harjoitus harjoitus : loytyneet) {
-           harjoitus.tulosta(os);
-       }
-   } 
-   
-   
-   /**
-    * 
-     */
+    * vfhgbjnfvg
+    */
    protected void alusta() {
-       //panelJasen.setContent(areaJasen);
-       areaJasen.setFont(new Font("Courier New", 12));
-       panelJasen.setFitToHeight(true);
+       areaHarjoitus.setFont(new Font("Courier New", 12));
+       panelHarjoitus.setFitToHeight(true);
 
-       chooserJasenet.clear();
-       chooserJasenet.addSelectionListener(e -> naytaJasen());
+       chooserHarjoitukset.clear();
+       chooserHarjoitukset.addSelectionListener(e -> naytaHarjoitus());
        /*haku.clear(); 
        for (int k = apujasen.ekaKentta(); k < apujasen.getKenttia(); k++) 
            haku.add(apujasen.getKysymys(k), null); 
        haku.getSelectionModel().select(0); 
        */
-       TextField edits[] = new TextField[]{editNimi, editSvuosi, editPuh, editCooper, editPaikalla, editPoissa, editAktiivisuus, editLisatietoja, editPelinumero, editId};
+       TextField edits[] = new TextField[]{editPvm, editAloitus, editLopetus, editJPaikalla, editJPoissa, editHLisatietoja, editHId};
        for(@SuppressWarnings("hiding") TextField edit : edits) {
            if(edit == null) break;
            edit.setOnMouseClicked(new EventHandler<MouseEvent>() {
@@ -228,10 +201,26 @@ public class JasenrekisteriGUIController implements Initializable, ModalControll
                }
            });
        } 
+       /*edits = luoKentat(gridJasen, apujasen);  
+       for (TextField edit: edits)  
+           if ( edit != null ) {  
+               edit.setEditable(false);  
+               edit.setOnMouseClicked(e -> { if ( e.getClickCount() > 1 ) muokkaa(getFieldId(e.getSource(),0)); });  
+               edit.focusedProperty().addListener((a,o,n) -> kentta = getFieldId(edit,kentta));
+               edit.setOnKeyPressed( e -> {if ( e.getCode() == KeyCode.F2 ) muokkaa(kentta);}); 
+           }    
+       */
+       
+       
+       /*int i = 0;
+       for (TextField edit : edits) {
+           final int k = ++i;
+           edit.setOnKeyReleased( e -> kasitteleMuutosJaseneen(k, (TextField)(e.getSource())));
+       }  */
    }
        
    
-      /**
+   /**
     * @param obj asd
     * @param oletus asd
     * @return asd
@@ -241,23 +230,20 @@ public class JasenrekisteriGUIController implements Initializable, ModalControll
           Node node = (Node)obj;
           return Mjonot.erotaInt(node.getId().substring(1),oletus);
       }
-      
-     
-   private void naytaJasen() {
-       jasenKohdalla = chooserJasenet.getSelectedObject();
 
-       if (jasenKohdalla == null) return;
+   
+   private void naytaHarjoitus() {
+       harjoitusKohdalla = chooserHarjoitukset.getSelectedObject();
+
+       if (harjoitusKohdalla == null) return;
       
-       editNimi.setText(String.valueOf(jasenKohdalla.getNimi())); //TODO: nullpointer, mutta silti toimii?
-       editSvuosi.setText(String.valueOf(jasenKohdalla.getSVuosi()));
-       editPuh.setText(jasenKohdalla.getPuh());
-       editCooper.setText(String.valueOf(jasenKohdalla.getCooper()));
-       editPaikalla.setText(String.valueOf(jasenKohdalla.getPaikalla()));
-       editPoissa.setText(String.valueOf(jasenKohdalla.getPoissa()));
-       editAktiivisuus.setText(String.valueOf(jasenKohdalla.getAktiivisuus()));
-       editLisatietoja.setText(jasenKohdalla.getLisatietoja());
-       editPelinumero.setText(String.valueOf(jasenKohdalla.getPelinumero()));
-       editId.setText(String.valueOf(jasenKohdalla.getTunnusNro())); //TODO: poista id n�kyvist� ohjelmassa
+       editPvm.setText(String.valueOf(harjoitusKohdalla.getPvm()));
+       editAloitus.setText(String.valueOf(harjoitusKohdalla.getAloitus()));
+       editLopetus.setText(String.valueOf(harjoitusKohdalla.getLopetus()));
+       editJPaikalla.setText(String.valueOf(harjoitusKohdalla.getJPaikalla()));
+       editJPoissa.setText(String.valueOf(harjoitusKohdalla.getJPoissa()));
+       editHLisatietoja.setText(harjoitusKohdalla.getHLisatietoja());
+       editHId.setText(String.valueOf(harjoitusKohdalla.getTunnusNro()));
    }
    
    
@@ -295,19 +281,29 @@ public class JasenrekisteriGUIController implements Initializable, ModalControll
            return ex.getMessage();
        }
    }
+
    
-   
-   private void hae(int jnro) {
-       chooserJasenet.clear();
+   /**
+    * @param hnro valittu harjoitus
+    */
+   private void haeHarjoitus(int hnro) {
+       chooserHarjoitukset.clear();
        
        int index = 0;
-       for(int i = 0; i < joukkue.getJasenia(); i++) {
-           Jasen jasen = joukkue.annaJasen(i);
-           if (jasen.getTunnusNro() == jnro) index = i;
-           chooserJasenet.add(jasen.getNimi(), jasen);
+       for(int i = 0; i < joukkue.getHarjoituksia(); i++) {
+           Collection<Harjoitus> har = joukkue.annaHarjoitukset(i);
+           boolean lisattyH = false;
+           for(Harjoitus h : har) {
+               if (h.getTunnusNro() == hnro) index = i;
+               if (!lisattyH) {
+                   chooserHarjoitukset.add(Integer.toString(h.getPv()), h);
+                   lisattyH = true;
+               }
+           }
        }
-       chooserJasenet.setSelectedIndex(index);
+       chooserHarjoitukset.setSelectedIndex(index);
    }
+
    
    
   /**
@@ -318,10 +314,10 @@ public class JasenrekisteriGUIController implements Initializable, ModalControll
        joukkueenNimi = nimi;
        try {
            joukkue.lueTiedostosta(nimi);
-           hae(0);
+           haeHarjoitus(0);
            return null;
        } catch (SailoException e) {
-           hae(0);
+           haeHarjoitus(0);
            String virhe = e.getMessage(); 
            if ( virhe != null ) Dialogs.showMessageDialog(virhe);
            return virhe;

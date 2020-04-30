@@ -19,7 +19,7 @@ public class JasenrekisteriMain extends Application {
         try {
             final FXMLLoader ldr = new FXMLLoader(getClass().getResource("PaaOhjelmaHarjoitukset.fxml"));
             final Pane root = (Pane)ldr.load();
-            final JasenrekisteriGUIController harjoitusCtrl = (JasenrekisteriGUIController)ldr.getController();
+            final HarjoitusController harjoitusCtrl = (HarjoitusController)ldr.getController();
             
             final Scene scene = new Scene(root);
             scene.getStylesheets().add(getClass().getResource("jasenrekisteri.css").toExternalForm());

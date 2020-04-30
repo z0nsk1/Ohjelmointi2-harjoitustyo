@@ -148,8 +148,8 @@
 			                  <TextField fx:id="editPaikalla" editable="false" GridPane.columnIndex="1" GridPane.hgrow="ALWAYS" GridPane.rowIndex="4"/>
 			                  <TextField fx:id="editPoissa" editable="false" GridPane.columnIndex="1" GridPane.hgrow="ALWAYS" GridPane.rowIndex="5"/>
 			                  <TextField fx:id="editAktiivisuus" editable="false" GridPane.columnIndex="1" GridPane.hgrow="ALWAYS" GridPane.rowIndex="6"/>
-			                  <TextField fx:id="editLisatietoja" editable="false" GridPane.columnIndex="1" GridPane.hgrow="ALWAYS" GridPane.rowIndex="7"/>
-			                  <TextField fx:id="editPelinumero" editable="false" GridPane.columnIndex="1" GridPane.hgrow="ALWAYS" GridPane.rowIndex="8"/>
+			                  <TextField fx:id="editPelinumero" editable="false" GridPane.columnIndex="1" GridPane.hgrow="ALWAYS" GridPane.rowIndex="7"/>
+			                  <TextField fx:id="editLisatietoja" editable="false" GridPane.columnIndex="1" GridPane.hgrow="ALWAYS" GridPane.rowIndex="8"/>
 			                  <TextField fx:id="editId" editable="false" GridPane.columnIndex="1" GridPane.hgrow="ALWAYS" GridPane.rowIndex="9"/>
                            </children>
 				  <opaqueInsets>

@@ -295,11 +295,17 @@ public class Harjoitus {
     }
 
 
+    /**
+     * @return poissa
+     */
     public int getJPoissa() {
         return poissa;
     }
 
 
+    /**
+     * @return lisatietoja harjoituksesta
+     */
     public String getHLisatietoja() {
         return hLisatietoja;
     }

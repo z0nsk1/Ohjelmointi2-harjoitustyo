@@ -27,11 +27,11 @@ import fi.jyu.mit.ohj2.Mjonot;
  *   Jasen jasen = new Jasen();
  *   jasen.parse("2|Erkki Esimerkki|2020|10|0123456789|0|0|100.0|3000|Esimerkki teksti");
  *   jasen.getTunnusNro() === 2;
- *   jasen.toString().startsWith("2|Erkki Esimerkki|2020|") === true; // on enemmäkin kuin 3 kenttää, siksi loppu |
+ *   jasen.toString().startsWith("2|Erkki Esimerkki|2020|") === true; // on enemmï¿½kin kuin 3 kenttï¿½ï¿½, siksi loppu |
  *
  *   jasen.rekisteroi();
  *   int n = jasen.getTunnusNro();     // Otetaan merkkijonosta vain tunnusnumero
- *   jasen.rekisteroi();           // ja tarkistetaan että seuraavalla kertaa tulee yhtä isompi
+ *   jasen.rekisteroi();           // ja tarkistetaan ettï¿½ seuraavalla kertaa tulee yhtï¿½ isompi
  *   jasen.getTunnusNro() === n+1;
  * </pre>
  * 
@@ -228,7 +228,7 @@ public class Jasen {
         double pa = jPaikalla;
         double po = jPoissa;
         if (pa + po == 0)
-            return null;
+            return "Ei tilastoja";
         return String.format("%.1f", pa * 100 / (pa + po));
     }
 

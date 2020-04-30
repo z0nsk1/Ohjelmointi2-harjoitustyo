@@ -2,6 +2,7 @@ package fxJasenrekisteri;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.Collection;
 import java.util.ResourceBundle;
 
 import Jasenrekisteri.Harjoitus;
@@ -252,9 +253,35 @@ public class JasenrekisteriGUIController implements Initializable, ModalControll
        editSvuosi.setText(String.valueOf(jasenKohdalla.getSVuosi()));
        editPuh.setText(jasenKohdalla.getPuh());
        editCooper.setText(String.valueOf(jasenKohdalla.getCooper()));
-       editPaikalla.setText(String.valueOf(jasenKohdalla.getPaikalla()));
-       editPoissa.setText(String.valueOf(jasenKohdalla.getPoissa()));
-       editAktiivisuus.setText(String.valueOf(jasenKohdalla.getAktiivisuus()));
+       
+       int jPaik = 0;
+       for(int i = 1; i < 1+joukkue.getHarjoituksia(); i++) {
+           Collection<Harjoitus> har = joukkue.annaHarjoitukset(i);
+           for(Harjoitus h : har) {
+               if (h.getJPaikalla() != jasenKohdalla.getTunnusNro()) continue;
+               jPaik++;
+           }
+       }
+       editPaikalla.setText(String.valueOf(jPaik));
+       
+       int jPois = 0;
+       for(int i = 1; i < 1+joukkue.getHarjoituksia(); i++) {
+           Collection<Harjoitus> har = joukkue.annaHarjoitukset(i);
+           for(Harjoitus h : har) {
+               if (h.getJPoissa() != jasenKohdalla.getTunnusNro()) continue;
+               jPois++;
+           }
+       }
+       editPoissa.setText(String.valueOf(jPois));
+       
+       double jAkt = 0.0;
+       if (jPaik + jPois > 0) {
+           double jPai = jPaik;
+           double jPoi = jPois;
+           jAkt = 100 * jPai / (jPai+jPoi);
+       }
+       editAktiivisuus.setText(String.valueOf(jAkt) + "%");
+       
        editLisatietoja.setText(jasenKohdalla.getLisatietoja());
        editPelinumero.setText(String.valueOf(jasenKohdalla.getPelinumero()));
        editId.setText(String.valueOf(jasenKohdalla.getTunnusNro())); //TODO: poista id n�kyvist� ohjelmassa

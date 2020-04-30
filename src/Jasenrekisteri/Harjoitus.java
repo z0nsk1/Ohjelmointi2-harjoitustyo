@@ -14,9 +14,9 @@ import fi.jyu.mit.ohj2.Mjonot;
  * // rekisteroi()
  *   Harjoitus harjoitus1 = new Harjoitus();
  *   harjoitus1.getTunnusNro() === 0;
- *   harjoitus1.rekisteroi();
+ *   harjoitus1.rekisteroi(true);
  *   Harjoitus harjoitus2 = new Harjoitus();
- *   harjoitus2.rekisteroi();
+ *   harjoitus2.rekisteroi(true);
  *   int n1 = harjoitus1.getTunnusNro();
  *   int n2 = harjoitus2.getTunnusNro();
  *   n1 === n2-1;
@@ -30,9 +30,9 @@ import fi.jyu.mit.ohj2.Mjonot;
  *   harjoitus.getTunnusNro() === 5;
  *   harjoitus.toString().startsWith("5|20200324|1600|1730") === true;
  *
- *   harjoitus.rekisteroi();
+ *   harjoitus.rekisteroi(true);
  *   int n = harjoitus.getTunnusNro();
- *   harjoitus.rekisteroi();
+ *   harjoitus.rekisteroi(true);
  *   harjoitus.getTunnusNro() === n+1;
  * </pre>
  * 

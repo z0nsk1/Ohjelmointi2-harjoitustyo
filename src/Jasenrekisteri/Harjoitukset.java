@@ -91,7 +91,7 @@ import java.util.List;
  *  i2.next() === harj3;
  *  i2.next() === harj4;
  *  i2.next() === harj5;
- *  i2.next() === harj6;  #THROWS NoSuchElementException  
+ *  i2.next() === harj4;  #THROWS NoSuchElementException  
  *  
  *  int n = 0;
  *  int jnrot[] = {2,1,2,1,2};

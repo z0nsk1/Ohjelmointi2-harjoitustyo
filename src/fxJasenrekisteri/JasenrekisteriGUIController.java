@@ -162,7 +162,7 @@ public class JasenrekisteriGUIController implements Initializable, ModalControll
    private Jasen jasenKohdalla;
    private Harjoitus harjoitusKohdalla;
    private Joukkue joukkue;
-   private TextArea areaJasen = new TextArea();
+   //private TextArea areaJasen = new TextArea();
    private TextArea areaHarjoitus = new TextArea();
    //private static Jasen apujasen = new Jasen(); 
    
@@ -184,11 +184,11 @@ public class JasenrekisteriGUIController implements Initializable, ModalControll
     */
    public void setJoukkueJasenet(Joukkue joukkue) {
        this.joukkue = joukkue;
-       areaJasen.setFont(new Font("Courier New", 12));
-       panelJasen.setFitToHeight(true);
+       //areaJasen.setFont(new Font("Courier New", 12));
+       //panelJasen.setFitToHeight(true);
        
-       chooserJasenet.clear();
-       chooserJasenet.addSelectionListener(e -> naytaJasen());
+       //chooserJasenet.clear();
+       //chooserJasenet.addSelectionListener(e -> naytaJasen());
 
        naytaJasen();
        hae(0);

@@ -135,21 +135,21 @@
                               <Label text="Syntymavuosi" GridPane.rowIndex="1" />
                               <Label text="Puhelinnumero" GridPane.rowIndex="2" />
                               <Label text="Cooper" GridPane.rowIndex="3" />
-                              <Label text="Paikalla" GridPane.rowIndex="4" />
-                              <Label text="Poissa" GridPane.rowIndex="5" />
-                              <Label text="Aktiivisuus" GridPane.rowIndex="6" />
-                              <Label text="Pelinumero" GridPane.rowIndex="7" />
-                              <Label text="Lisätietoja" GridPane.rowIndex="8" />
+                              <Label text="Paikalla" GridPane.rowIndex="6" />
+                              <Label text="Poissa" GridPane.rowIndex="7" />
+                              <Label text="Aktiivisuus" GridPane.rowIndex="8" />
+                              <Label text="Pelinumero" GridPane.rowIndex="4" />
+                              <Label text="Lisätietoja" GridPane.rowIndex="5" />
                               <Label text="id" GridPane.rowIndex="9" />
 			                  <TextField fx:id="editNimi" editable="false" GridPane.columnIndex="1" GridPane.hgrow="ALWAYS"/>
 			                  <TextField fx:id="editSvuosi" editable="false" GridPane.columnIndex="1" GridPane.hgrow="ALWAYS" GridPane.rowIndex="1"/>
 			                  <TextField fx:id="editPuh" editable="false" GridPane.columnIndex="1" GridPane.hgrow="ALWAYS" GridPane.rowIndex="2"/>
 			                  <TextField fx:id="editCooper" editable="false" GridPane.columnIndex="1" GridPane.hgrow="ALWAYS" GridPane.rowIndex="3"/>
-			                  <TextField fx:id="editPaikalla" editable="false" GridPane.columnIndex="1" GridPane.hgrow="ALWAYS" GridPane.rowIndex="4"/>
-			                  <TextField fx:id="editPoissa" editable="false" GridPane.columnIndex="1" GridPane.hgrow="ALWAYS" GridPane.rowIndex="5"/>
-			                  <TextField fx:id="editAktiivisuus" editable="false" GridPane.columnIndex="1" GridPane.hgrow="ALWAYS" GridPane.rowIndex="6"/>
-			                  <TextField fx:id="editPelinumero" editable="false" GridPane.columnIndex="1" GridPane.hgrow="ALWAYS" GridPane.rowIndex="7"/>
-			                  <TextField fx:id="editLisatietoja" editable="false" GridPane.columnIndex="1" GridPane.hgrow="ALWAYS" GridPane.rowIndex="8"/>
+			                  <TextField fx:id="editPaikalla" editable="false" GridPane.columnIndex="1" GridPane.hgrow="ALWAYS" GridPane.rowIndex="6"/>
+			                  <TextField fx:id="editPoissa" editable="false" GridPane.columnIndex="1" GridPane.hgrow="ALWAYS" GridPane.rowIndex="7"/>
+			                  <TextField fx:id="editAktiivisuus" editable="false" GridPane.columnIndex="1" GridPane.hgrow="ALWAYS" GridPane.rowIndex="8"/>
+			                  <TextField fx:id="editPelinumero" editable="false" GridPane.columnIndex="1" GridPane.hgrow="ALWAYS" GridPane.rowIndex="4"/>
+			                  <TextField fx:id="editLisatietoja" editable="false" GridPane.columnIndex="1" GridPane.hgrow="ALWAYS" GridPane.rowIndex="5"/>
 			                  <TextField fx:id="editId" editable="false" GridPane.columnIndex="1" GridPane.hgrow="ALWAYS" GridPane.rowIndex="9"/>
                            </children>
 				  <opaqueInsets>

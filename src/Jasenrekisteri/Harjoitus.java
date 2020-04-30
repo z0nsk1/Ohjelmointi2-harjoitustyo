@@ -198,11 +198,12 @@ public class Harjoitus {
     
     
     /**
+     * @param viimeinen jos viimeinen, niin kasvatetaan harjoitusId
      * @return Rekister�id��n j�sen ja annetaan sille id
      */
-    public int rekisteroi() {
+    public int rekisteroi(boolean viimeinen) {
         harjoitusId = seuraavaNro;
-        seuraavaNro++;
+        if (viimeinen)seuraavaNro++;
         return harjoitusId;
     }
 
@@ -212,6 +213,14 @@ public class Harjoitus {
      */
     public int getTunnusNro() {
         return harjoitusId;
+    }
+    
+    
+    /**
+     * @return harjoituksen paivamaaran
+     */
+    public int getPv() {
+        return paivaMaara;
     }
 
 

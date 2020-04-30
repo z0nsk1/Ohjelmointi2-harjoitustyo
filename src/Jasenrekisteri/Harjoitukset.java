@@ -213,13 +213,13 @@ public class Harjoitukset implements Iterable<Harjoitus> {
     
     /**
      * Hakee kaikki harjoitukset, joissa jasen on ollut paikalla
-     * @param tunnusNroJ jasenen tunnusnumero
+     * @param tunnusNroH harjoituksen tunnusnumero
      * @return lista harjoituksista, joissa jasen on ollut paikalla
      */
-    public List<Harjoitus> annaHarjoitukset(int tunnusNroJ) {
+    public List<Harjoitus> annaHarjoitukset(int tunnusNroH) {
         List<Harjoitus> palautus = new ArrayList<Harjoitus>();
         for (Harjoitus har : harjoitukset) {
-            if (har.getJasenNro() == tunnusNroJ) palautus.add(har);
+            if (har.getTunnusNro() == tunnusNroH) palautus.add(har);
         }
         return palautus;
     }

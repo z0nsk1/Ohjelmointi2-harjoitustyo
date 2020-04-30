@@ -103,11 +103,11 @@ public class Joukkue {
     
     /**
      * Antaa harjoitukset, joissa jasen on ollut paikalla
-     * @param jasen tutkittava jasen
+     * @param harjo tutkittava harjoitus
      * @return lista harjoituksista, joissa paikalla
      */
-    public List<Harjoitus> annaHarjoitukset(Jasen jasen) {
-        return harjoitukset.annaHarjoitukset(jasen.getTunnusNro());
+    public List<Harjoitus> annaHarjoitukset(int harjo) {
+        return harjoitukset.annaHarjoitukset(harjo);
     }
     
     
@@ -117,6 +117,15 @@ public class Joukkue {
      */
     public int getJasenia() {
         return jasenet.getLkm();
+    }
+    
+    
+    /**
+     * Antaa harjoitusten lukumaaran
+     * @return harjoitusten lukumaara
+     */
+    public int getHarjoituksia() {
+        return harjoitukset.getLkm();
     }
     
     

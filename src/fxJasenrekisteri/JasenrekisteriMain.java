@@ -17,7 +17,6 @@ public class JasenrekisteriMain extends Application {
     @Override
     public void start(Stage primaryStage) {
         try {
-            
             final FXMLLoader ldr = new FXMLLoader(getClass().getResource("PaaOhjelmaHarjoitukset.fxml"));
             final Pane root = (Pane)ldr.load();
             final JasenrekisteriGUIController harjoitusCtrl = (JasenrekisteriGUIController)ldr.getController();

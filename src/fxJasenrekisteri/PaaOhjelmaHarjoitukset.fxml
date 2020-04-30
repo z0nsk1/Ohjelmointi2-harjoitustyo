@@ -86,7 +86,7 @@
                         </Label>
                      </children>
                   </AnchorPane>
-                  <ListChooser fx:id="chooserJasenet" layoutX="6.0" layoutY="87.0" maxHeight="1.7976931348623157E308" prefHeight="569.0" prefWidth="314.0" rivit="2020.02.02 16:00-17:30 Su"/>
+                  <ListChooser fx:id="chooserHarjoitukset" layoutX="6.0" layoutY="87.0" maxHeight="1.7976931348623157E308" prefHeight="569.0" prefWidth="314.0" rivit="2020.02.02 16:00-17:30 Su"/>
                </children>
             </AnchorPane>
         </items>
@@ -111,7 +111,7 @@
                   <Font size="20.0" />
                </font>
             </Label>
-            <ScrollPane fx:id="panelJasen" layoutY="88.0" fitToWidth="true" pannable="true" BorderPane.alignment="CENTER" prefHeight="568.0" prefWidth="791.0">
+            <ScrollPane fx:id="panelHarjoitus" layoutY="88.0" fitToWidth="true" pannable="true" BorderPane.alignment="CENTER" prefHeight="568.0" prefWidth="791.0">
 			  <content>
 				<GridPane hgap="10.0">
 				  <columnConstraints>
@@ -132,7 +132,7 @@
 					<Label text="Lopetusaika" GridPane.rowIndex="2"/>
 					<Label text="Paikalla" GridPane.rowIndex="3"/>
 					<Label text="Poissa" GridPane.rowIndex="4"/>
-					<Label text="Lisatiedot ja muuta" GridPane.rowIndex="5"/>
+					<Label text="Lisatiedot" GridPane.rowIndex="5"/>
 					<TextField text="24.03.2020" GridPane.columnIndex="1" GridPane.hgrow="ALWAYS"/>
 					<TextField text="16:00" GridPane.columnIndex="1" GridPane.hgrow="ALWAYS" GridPane.rowIndex="1"/>
 					<TextField text="17:30" GridPane.columnIndex="1" GridPane.hgrow="ALWAYS" GridPane.rowIndex="2"/>

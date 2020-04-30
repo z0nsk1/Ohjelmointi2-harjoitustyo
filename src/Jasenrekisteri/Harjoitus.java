@@ -245,4 +245,46 @@ public class Harjoitus {
         harj.hTiedot(1);
         harj.tulosta(System.out);
     }
+
+
+    /**
+     * @return paivamaara
+     */
+    public int getPvm() {
+        return paivaMaara;
+    }
+
+
+    /**
+     * @return aloitus kellonaika
+     */
+    public int getAloitus() {
+        return kloAloitus;
+    }
+
+
+    /**
+     * @return lopetus kellonaika
+     */
+    public int getLopetus() {
+        return kloLopetus;
+    }
+
+
+    /**
+     * @return paikalla
+     */
+    public int getJPaikalla() {
+        return paikalla;
+    }
+
+
+    public int getJPoissa() {
+        return poissa;
+    }
+
+
+    public String getHLisatietoja() {
+        return hLisatietoja;
+    }
 }

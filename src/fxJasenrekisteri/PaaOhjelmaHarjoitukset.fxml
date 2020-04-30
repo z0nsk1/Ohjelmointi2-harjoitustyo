@@ -111,9 +111,9 @@
                   <Font size="20.0" />
                </font>
             </Label>
-            <ScrollPane fx:id="panelHarjoitus" layoutY="88.0" fitToWidth="true" pannable="true" BorderPane.alignment="CENTER" prefHeight="568.0" prefWidth="791.0">
+             <ScrollPane fx:id="panelHarjoitus" layoutY="88.0" fitToWidth="true" pannable="true" BorderPane.alignment="CENTER" prefHeight="568.0" prefWidth="791.0">
 			  <content>
-				<GridPane hgap="10.0">
+				<GridPane fx:id="gridHarjoitus" hgap="5.0" vgap="0.0">
 				  <columnConstraints>
 					<ColumnConstraints fillWidth="false" halignment="RIGHT" hgrow="NEVER" minWidth="10.0"/>
 					<ColumnConstraints hgrow="ALWAYS" minWidth="10.0"/>
@@ -125,21 +125,24 @@
 					<RowConstraints minHeight="10.0" vgrow="NEVER"/>
 					<RowConstraints minHeight="10.0" vgrow="NEVER"/>
 					<RowConstraints minHeight="10.0" vgrow="NEVER"/>
+					<RowConstraints minHeight="10.0" vgrow="NEVER"/>
 				  </rowConstraints>
-				  <children>
-					<Label text="Paivamaara"/>
-					<Label text="ALoitusaika" GridPane.rowIndex="1"/>
-					<Label text="Lopetusaika" GridPane.rowIndex="2"/>
-					<Label text="Paikalla" GridPane.rowIndex="3"/>
-					<Label text="Poissa" GridPane.rowIndex="4"/>
-					<Label text="Lisatiedot" GridPane.rowIndex="5"/>
-					<TextField text="24.03.2020" GridPane.columnIndex="1" GridPane.hgrow="ALWAYS"/>
-					<TextField text="16:00" GridPane.columnIndex="1" GridPane.hgrow="ALWAYS" GridPane.rowIndex="1"/>
-					<TextField text="17:30" GridPane.columnIndex="1" GridPane.hgrow="ALWAYS" GridPane.rowIndex="2"/>
-					<TextField text="1" GridPane.columnIndex="1" GridPane.hgrow="ALWAYS" GridPane.rowIndex="3"/>
-					<TextField text="-1" GridPane.columnIndex="1" GridPane.hgrow="ALWAYS" GridPane.rowIndex="4"/>
-					<TextField text="Hyvin porukkaa paikalla" GridPane.columnIndex="1" GridPane.hgrow="ALWAYS" GridPane.rowIndex="5"/>
-				  </children>
+                           <children>
+                              <Label text="Paivamaara" />
+                              <Label text="Aloitus" GridPane.rowIndex="1" />
+                              <Label text="Lopetus" GridPane.rowIndex="2" />
+                              <Label text="Paikalla" GridPane.rowIndex="3" />
+                              <Label text="Poissa" GridPane.rowIndex="4" />
+                              <Label text="Lisatietoja" GridPane.rowIndex="5" />
+                              <Label text="id" GridPane.rowIndex="6" />
+			                  <TextField fx:id="editPvm" editable="false" GridPane.columnIndex="1" GridPane.hgrow="ALWAYS"/>
+			                  <TextField fx:id="editAloitus" editable="false" GridPane.columnIndex="1" GridPane.hgrow="ALWAYS" GridPane.rowIndex="1"/>
+			                  <TextField fx:id="editLopetus" editable="false" GridPane.columnIndex="1" GridPane.hgrow="ALWAYS" GridPane.rowIndex="2"/>
+			                  <TextField fx:id="editJPaikalla" editable="false" GridPane.columnIndex="1" GridPane.hgrow="ALWAYS" GridPane.rowIndex="3"/>
+			                  <TextField fx:id="editJPoissa" editable="false" GridPane.columnIndex="1" GridPane.hgrow="ALWAYS" GridPane.rowIndex="4"/>
+			                  <TextField fx:id="editHLisatietoja" editable="false" GridPane.columnIndex="1" GridPane.hgrow="ALWAYS" GridPane.rowIndex="5"/>
+			                  <TextField fx:id="editHId" editable="false" GridPane.columnIndex="1" GridPane.hgrow="ALWAYS" GridPane.rowIndex="6"/>
+                           </children>
 				  <opaqueInsets>
 					<Insets left="10.0" top="10.0"/>
 				  </opaqueInsets>

@@ -1,7 +1,6 @@
 package fxJasenrekisteri;
 
 import java.io.IOException;
-import java.io.PrintStream;
 import java.net.URL;
 import java.util.Collection;
 import java.util.ResourceBundle;
@@ -32,7 +31,6 @@ import fi.jyu.mit.fxgui.Dialogs;
 import fi.jyu.mit.fxgui.ListChooser;
 import fi.jyu.mit.fxgui.ModalController;
 import fi.jyu.mit.fxgui.ModalControllerInterface;
-import fi.jyu.mit.fxgui.TextAreaOutputStream;
 import fi.jyu.mit.ohj2.Mjonot;
 
 /**
@@ -45,10 +43,9 @@ public class JasenrekisteriGUIController implements Initializable, ModalControll
     @FXML private ComboBox<String> haku;
     @FXML private ResourceBundle resources;
     @FXML private URL location;
+    //Jasenet
     @FXML private ListChooser<Jasen> chooserJasenet;
-    @FXML private ListChooser<Harjoitus> chooserHarjoitukset;
     @FXML private ScrollPane panelJasen;
-    @FXML private ScrollPane panelHarjoitus;
     @FXML private GridPane gridJasen;
     @FXML private TextField editNimi;
     @FXML private TextField editSvuosi;
@@ -60,6 +57,18 @@ public class JasenrekisteriGUIController implements Initializable, ModalControll
     @FXML private TextField editLisatietoja;
     @FXML private TextField editPelinumero;
     @FXML private TextField editId;
+    //Harjoitukset
+    @FXML private ListChooser<Harjoitus> chooserHarjoitukset;
+    @FXML private ScrollPane panelHarjoitus;
+    @FXML private GridPane gridHarjoitus;
+    @FXML private TextField editPvm;
+    @FXML private TextField editAloitus;
+    @FXML private TextField editLopetus;
+    @FXML private TextField edit;
+    @FXML private TextField editJPaikalla;
+    @FXML private TextField editJPoissa;
+    @FXML private TextField editHLisatietoja;
+    @FXML private TextField editHId;
     
     Stage stagel = new Stage();
 
@@ -162,7 +171,7 @@ public class JasenrekisteriGUIController implements Initializable, ModalControll
    private Jasen jasenKohdalla;
    private Harjoitus harjoitusKohdalla;
    private Joukkue joukkue;
-   //private TextArea areaJasen = new TextArea();
+   private TextArea areaJasen = new TextArea();
    private TextArea areaHarjoitus = new TextArea();
    //private static Jasen apujasen = new Jasen(); 
    
@@ -189,7 +198,7 @@ public class JasenrekisteriGUIController implements Initializable, ModalControll
        
        //chooserJasenet.clear();
        //chooserJasenet.addSelectionListener(e -> naytaJasen());
-
+       alustaJasenet();
        naytaJasen();
        hae(0);
    }
@@ -245,13 +254,6 @@ public class JasenrekisteriGUIController implements Initializable, ModalControll
     * vfhgbjnfvg
     */
    protected void alusta() {
-       //areaJasen.setFont(new Font("Courier New", 12));
-       //panelJasen.setFitToHeight(true);
-       
-       //chooserJasenet.clear();
-       //chooserJasenet.addSelectionListener(e -> naytaJasen());
-       
-       panelHarjoitus.setContent(areaHarjoitus);
        areaHarjoitus.setFont(new Font("Courier New", 12));
        panelHarjoitus.setFitToHeight(true);
 
@@ -262,8 +264,8 @@ public class JasenrekisteriGUIController implements Initializable, ModalControll
            haku.add(apujasen.getKysymys(k), null); 
        haku.getSelectionModel().select(0); 
        */
-       TextField edits[] = new TextField[]{editNimi, editSvuosi, editPuh, editCooper, editPaikalla, editPoissa, editAktiivisuus, editLisatietoja, editPelinumero, editId};
-       for(TextField edit : edits) {
+       TextField edits[] = new TextField[]{editPvm, editAloitus, editLopetus, editJPaikalla, editJPoissa, editHLisatietoja, editHId};
+       for(@SuppressWarnings("hiding") TextField edit : edits) {
            if(edit == null) break;
            edit.setOnMouseClicked(new EventHandler<MouseEvent>() {
                @Override
@@ -275,7 +277,7 @@ public class JasenrekisteriGUIController implements Initializable, ModalControll
                    }
                }
            });
-       }
+       } 
        /*edits = luoKentat(gridJasen, apujasen);  
        for (TextField edit: edits)  
            if ( edit != null ) {  
@@ -294,6 +296,38 @@ public class JasenrekisteriGUIController implements Initializable, ModalControll
        }  */
    }
    
+   
+   /**
+    * 
+     */
+   protected void alustaJasenet() {
+       //panelJasen.setContent(areaJasen);
+       areaJasen.setFont(new Font("Courier New", 12));
+       panelJasen.setFitToHeight(true);
+
+       chooserJasenet.clear();
+       chooserJasenet.addSelectionListener(e -> naytaHarjoitus());
+       /*haku.clear(); 
+       for (int k = apujasen.ekaKentta(); k < apujasen.getKenttia(); k++) 
+           haku.add(apujasen.getKysymys(k), null); 
+       haku.getSelectionModel().select(0); 
+       */
+       /*TextField edits[] = new TextField[]{editNimi, editSvuosi, editPuh, editCooper, editPaikalla, editPoissa, editAktiivisuus, editLisatietoja, editPelinumero, editId};
+       for(@SuppressWarnings("hiding") TextField edit : edits) {
+           if(edit == null) break;
+           edit.setOnMouseClicked(new EventHandler<MouseEvent>() {
+               @Override
+               public void handle(MouseEvent mouseEvent) {
+                   if(mouseEvent.getButton().equals(MouseButton.PRIMARY)){
+                       if(mouseEvent.getClickCount() > 1){
+                           edit.setEditable(true);
+                       }
+                   }
+               }
+           });
+       } */
+   }
+       
    
       /**
     * @param obj asd
@@ -327,13 +361,16 @@ public class JasenrekisteriGUIController implements Initializable, ModalControll
    
    private void naytaHarjoitus() {
        harjoitusKohdalla = chooserHarjoitukset.getSelectedObject();
-       
+
        if (harjoitusKohdalla == null) return;
-       
-       areaHarjoitus.setText("");
-       try (PrintStream os = TextAreaOutputStream.getTextPrintStream(areaHarjoitus)) {
-           harjoitusKohdalla.tulosta(os);
-       }
+      
+       editPvm.setText(String.valueOf(harjoitusKohdalla.getPvm()));
+       editAloitus.setText(String.valueOf(harjoitusKohdalla.getAloitus()));
+       editLopetus.setText(String.valueOf(harjoitusKohdalla.getLopetus()));
+       editJPaikalla.setText(String.valueOf(harjoitusKohdalla.getJPaikalla()));
+       editJPoissa.setText(String.valueOf(harjoitusKohdalla.getJPoissa()));
+       editHLisatietoja.setText(harjoitusKohdalla.getHLisatietoja());
+       editHId.setText(String.valueOf(harjoitusKohdalla.getTunnusNro()));
    }
    
    

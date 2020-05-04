@@ -22,7 +22,7 @@
 <?import fi.jyu.mit.fxgui.ListChooser?>
 
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fxJasenrekisteri.JasenrekisteriGUIController">
+<BorderPane stylesheets="@jasenrekisteri.css" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fxJasenrekisteri.JasenrekisteriGUIController">
    <top>
       <SplitPane dividerPositions="0.45161290322580644" orientation="VERTICAL" prefHeight="61.0" prefWidth="1280.0" BorderPane.alignment="CENTER">
         <items>

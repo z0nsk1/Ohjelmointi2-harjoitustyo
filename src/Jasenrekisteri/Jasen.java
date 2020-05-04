@@ -90,15 +90,15 @@ public class Jasen {
      * Asetetaan jasenelle tiedot
      */
     public void tiedot() {
-        nimi = "Erkki Esimerkki";
-        svuosi = 2020;
-        puh = "0123456789";
-        cooper = 3000;
+        nimi = "Uusi jasen";
+        svuosi = 0000;
+        puh = "0000000000";
+        cooper = 2000;
         jPaikalla = 0;
         jPoissa = 0;
         aktiivisuus = 100;
-        jLisatietoja = "Esimerkki teksti";
-        pelinumero = 1;
+        jLisatietoja = "";
+        pelinumero = 0;
     }
 
 
@@ -266,6 +266,9 @@ public class Jasen {
      * @return null
      */
     public String setSVuosi(String s) {
+        if (!s.matches("[0-9]*")) return "Syntymavuodessa saa olla pelkkia numeroita";
+        if (s.length() > 4) return "Liikaa merkkeja";
+        if (s.length() < 4) return "Liian vahan merkkeja";
         svuosi = Integer.valueOf(s);
         return null;
     }
@@ -277,6 +280,9 @@ public class Jasen {
      * @return null
      */
     public String setPuh(String s) {
+        if (!s.matches("[0-9]*")) return "Puhelinnumerossa saa olla pelkkia numeroita";
+        if (s.length() > 10) return "Liikaa merkkeja";
+        if (s.length() < 10) return "Liian vahan merkkeja";
         puh = s;
         return null;
     }
@@ -288,11 +294,35 @@ public class Jasen {
      * @return null
      */
     public String setCooper(String s) {
+        if (!s.matches("[0-9]*")) return "Cooperissa saa olla pelkkia numeroita";
+        if (s.length() > 4) return "Liikaa merkkeja";
         cooper = Integer.valueOf(s);
         return null;
     }
 
 
+    /**
+     * @param s teksti
+     * @return mahdolinen virge
+     */
+    public String setLisat(String s) {
+        jLisatietoja = s;
+        return null;
+    }
+
+
+    /**
+     * @param s teksti
+     * @return mahdolinen virge
+     */
+    public String setPeliNro(String s) {
+        if (!s.matches("[0-9]*")) return "Cooperissa saa olla pelkkia numeroita";
+        if (s.length() > 2) return "Liikaa merkkeja";
+        pelinumero = Integer.valueOf(s);
+        return null;
+    }
+    
+    
     /**
      * @param args ei k�yt�ss� toistaiseksi
      */
@@ -309,4 +339,5 @@ public class Jasen {
         jasen1.tulosta(System.out);
         jasen2.tulosta(System.out);
     }
+
 }

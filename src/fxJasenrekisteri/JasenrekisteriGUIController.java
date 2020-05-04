@@ -215,7 +215,7 @@ public class JasenrekisteriGUIController implements Initializable, ModalControll
            haku.add(apujasen.getKysymys(k), null); 
        haku.getSelectionModel().select(0); 
        */
-       TextField edits[] = new TextField[]{editNimi, editSvuosi, editPuh, editCooper, editPaikalla, editPoissa, editAktiivisuus, editLisatietoja, editPelinumero, editId};
+       TextField edits[] = new TextField[]{editNimi, editSvuosi, editPuh, editCooper, editLisatietoja, editPelinumero, editId};
        for(@SuppressWarnings("hiding") TextField edit : edits) {
            if(edit == null) break;
            edit.setOnMouseClicked(new EventHandler<MouseEvent>() {
@@ -229,6 +229,13 @@ public class JasenrekisteriGUIController implements Initializable, ModalControll
                }
            });
        } 
+       
+       
+       int i = 0;
+       for (TextField muok : edits) {
+           final int k = ++i;
+           muok.setOnKeyReleased( e -> kasitteleMuutosJ(k, (TextField)(e.getSource())));
+       }  
    }
        
    
@@ -288,25 +295,27 @@ public class JasenrekisteriGUIController implements Initializable, ModalControll
    }
    
    
-   /*private void kasitteleMuutosJaseneen(int k, TextField edit) {
+   private void kasitteleMuutosJ(int k, TextField muok) {
        if (jasenKohdalla == null) return;
-       String s = edit.getText();
+       String s = muok.getText();
        String virhe = null;
        switch (k) {
           case 1 : virhe = jasenKohdalla.setNimi(s); break;
           case 2 : virhe = jasenKohdalla.setSVuosi(s); break;
           case 3 : virhe = jasenKohdalla.setPuh(s); break;
           case 4 : virhe = jasenKohdalla.setCooper(s); break;
+          case 5 : virhe = jasenKohdalla.setLisat(s); break;
+          case 6 : virhe = jasenKohdalla.setPeliNro(s); break;
           default:
        }
        if (virhe == null) {
-           Dialogs.setToolTipText(edit,"");
-           edit.getStyleClass().removeAll("virhe");
+           Dialogs.setToolTipText(muok,"");
+           muok.getStyleClass().removeAll("virhe");
        } else {
-           Dialogs.setToolTipText(edit,virhe);
-           edit.getStyleClass().add("virhe");
+           Dialogs.setToolTipText(muok,virhe);
+           muok.getStyleClass().add("virhe");
        } 
-   } */
+   } 
    
    
    /**
@@ -316,6 +325,7 @@ public class JasenrekisteriGUIController implements Initializable, ModalControll
    private String tallenna() {
        try {
            joukkue.tallenna();
+           hae(0);
            return null;
        } catch (SailoException ex) {
            Dialogs.showMessageDialog("Tallennus epaonnistui: " + ex.getMessage());

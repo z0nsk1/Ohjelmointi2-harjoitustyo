@@ -87,12 +87,12 @@ public class Harjoitus {
      * @param jNro jasenen id
      */
     public void hTiedot(int jNro) {
-        paivaMaara = 20200324;
-        kloAloitus = 1600;
-        kloLopetus = 1730;
+        paivaMaara = 00000000;
+        kloAloitus = 1700;
+        kloLopetus = 1800;
         paikalla = jNro; //jatkossa kutsuu kyseista jasenta jolla on tama id
         poissa = -1; //poissa olleen jasenen id, -1 jos kukaan ei poissa/paikalla
-        hLisatietoja = "Hyvin porukkaa paikalla";
+        hLisatietoja = "";
     }
     
     
@@ -250,17 +250,6 @@ public class Harjoitus {
             asetaTiedot(i, Mjonot.erota(sb, '|'));
         }
     }
-    
-    
-    /**
-     * @param args ei k�yt�ss�
-     */
-    public static void main(String[] args) {
-        Harjoitus harj = new Harjoitus();
-        //harj.asetaTiedot();
-        harj.hTiedot(1);
-        harj.tulosta(System.out);
-    }
 
 
     /**
@@ -302,11 +291,71 @@ public class Harjoitus {
         return poissa;
     }
 
-
+    
     /**
      * @return lisatietoja harjoituksesta
      */
     public String getHLisatietoja() {
         return hLisatietoja;
+    }
+    
+    
+    /**
+     * @param s teksti
+     * @return mahdollisen virheen
+     */
+    public String setPvm(String s) {
+        if (!s.matches("[0-9]*")) return "Paivamaarassa saa olla pelkkia numeroita muodossa 'vvvvkkpp'(ei siis pisteitä ja pilkkuja)";
+        if (s.length() > 8) return "Liikaa merkkeja";
+        if (s.length() < 8) return "Liian vahan merkkeja";
+        paivaMaara = Integer.parseInt(s);
+        return null;
+    }
+
+
+    /**
+     * @param s teksti
+     * @return mahdollisen virheen
+     */
+    public String setAloitus(String s) {
+        if (!s.matches("[0-9]*")) return "Aloitusajassa saa olla pelkkia numeroita muodossa 'hhmm' (ei siis pisteitä ja pilkkuja)";
+        if (s.length() > 4) return "Liikaa merkkeja";
+        if (s.length() < 4) return "Liian vahan merkkeja";
+        kloAloitus = Integer.parseInt(s);
+        return null;
+    }
+
+
+    /**
+     * @param s teksti
+     * @return mahdollisen virheen
+     */
+    public String setLopetus(String s) {
+        if (!s.matches("[0-9]*")) return "Lopetusajassa saa olla pelkkia numeroita muodossa 'hhmm' (ei siis pisteitä ja pilkkuja)";
+        if (s.length() > 4) return "Liikaa merkkeja";
+        if (s.length() < 4) return "Liian vahan merkkeja";
+        kloLopetus = Integer.parseInt(s);
+        return null;
+    }
+
+
+    /**
+     * @param s teskti
+     * @return mahdollisen virheen
+     */
+    public String setLisat(String s) {
+        hLisatietoja = s;
+        return null;
+    }
+    
+    
+    /**
+     * @param args ei k�yt�ss�
+     */
+    public static void main(String[] args) {
+        Harjoitus harj = new Harjoitus();
+        //harj.asetaTiedot();
+        harj.hTiedot(1);
+        harj.tulosta(System.out);
     }
 }

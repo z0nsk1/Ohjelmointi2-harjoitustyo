@@ -204,22 +204,13 @@ public class HarjoitusController implements Initializable, ModalControllerInterf
                }
            });
        } 
-       /*edits = luoKentat(gridJasen, apujasen);  
-       for (TextField edit: edits)  
-           if ( edit != null ) {  
-               edit.setEditable(false);  
-               edit.setOnMouseClicked(e -> { if ( e.getClickCount() > 1 ) muokkaa(getFieldId(e.getSource(),0)); });  
-               edit.focusedProperty().addListener((a,o,n) -> kentta = getFieldId(edit,kentta));
-               edit.setOnKeyPressed( e -> {if ( e.getCode() == KeyCode.F2 ) muokkaa(kentta);}); 
-           }    
-       */
+
        
-       
-       /*int i = 0;
-       for (TextField edit : edits) {
+       int i = 0;
+       for (TextField muok : edits) {
            final int k = ++i;
-           edit.setOnKeyReleased( e -> kasitteleMuutosJaseneen(k, (TextField)(e.getSource())));
-       }  */
+           muok.setOnKeyReleased( e -> kasitteleMuutosH(k, (TextField)(e.getSource())));
+       }  
    }
        
    
@@ -246,8 +237,6 @@ public class HarjoitusController implements Initializable, ModalControllerInterf
        editPvm.setText(String.valueOf(harjoitusKohdalla.getPvm()));
        editAloitus.setText(String.valueOf(harjoitusKohdalla.getAloitus()));
        editLopetus.setText(String.valueOf(harjoitusKohdalla.getLopetus()));
-       //editJPaikalla.setText(String.valueOf(harjoitusKohdalla.getJPaikalla()));
-       //editJPoissa.setText(String.valueOf(harjoitusKohdalla.getJPoissa()));
        editHLisatietoja.setText(harjoitusKohdalla.getHLisatietoja());
        editHId.setText(String.valueOf(harjoitusKohdalla.getTunnusNro()));
        naytaPaikalla();
@@ -307,25 +296,25 @@ public class HarjoitusController implements Initializable, ModalControllerInterf
    }
    
    
-   /*private void kasitteleMuutosJaseneen(int k, TextField edit) {
-       if (jasenKohdalla == null) return;
-       String s = edit.getText();
+   private void kasitteleMuutosH(int k, TextField muok) {
+       if (harjoitusKohdalla == null) return;
+       String s = muok.getText();
        String virhe = null;
        switch (k) {
-          case 1 : virhe = jasenKohdalla.setNimi(s); break;
-          case 2 : virhe = jasenKohdalla.setSVuosi(s); break;
-          case 3 : virhe = jasenKohdalla.setPuh(s); break;
-          case 4 : virhe = jasenKohdalla.setCooper(s); break;
+          case 1 : virhe = harjoitusKohdalla.setPvm(s); break;
+          case 2 : virhe = harjoitusKohdalla.setAloitus(s); break;
+          case 3 : virhe = harjoitusKohdalla.setLopetus(s); break;
+          case 4 : virhe = harjoitusKohdalla.setLisat(s); break;
           default:
        }
        if (virhe == null) {
-           Dialogs.setToolTipText(edit,"");
-           edit.getStyleClass().removeAll("virhe");
+           Dialogs.setToolTipText(muok,"");
+           muok.getStyleClass().removeAll("virhe");
        } else {
-           Dialogs.setToolTipText(edit,virhe);
-           edit.getStyleClass().add("virhe");
+           Dialogs.setToolTipText(muok,virhe);
+           muok.getStyleClass().add("virhe");
        } 
-   } */
+   } 
    
    
    /**
@@ -335,6 +324,7 @@ public class HarjoitusController implements Initializable, ModalControllerInterf
    private String tallenna() {
        try {
            joukkue.tallenna();
+           haeHarjoitus(0);
            return null;
        } catch (SailoException ex) {
            Dialogs.showMessageDialog("Tallennus epaonnistui: " + ex.getMessage());

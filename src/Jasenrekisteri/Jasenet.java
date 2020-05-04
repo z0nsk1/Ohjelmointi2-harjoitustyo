@@ -42,7 +42,7 @@ import java.io.PrintWriter;
  *  Jasen jasen5 = new Jasen(); jasen5.parse("4|Marko Esimerkki|1997|1|0328768789|10|20|0.0|2100|Hyvat kengat"); 
  *  String tiedNimi = "testiJoukkue";
  *  File ftied = new File(tiedNimi+".dat");
- *  jasenet.lueTiedostosta(tiedNimi); #THROWS SailoException
+ *  jasenet.lueTiedostosta(tiedNimi);
  *  jasenet.lisaa(jasen1);
  *  jasenet.lisaa(jasen2);
  *  jasenet.lisaa(jasen3);

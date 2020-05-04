@@ -18,7 +18,6 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.ComboBox;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
@@ -27,6 +26,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
+import fi.jyu.mit.fxgui.ComboBoxChooser;
 import fi.jyu.mit.fxgui.Dialogs;
 import fi.jyu.mit.fxgui.ListChooser;
 import fi.jyu.mit.fxgui.ModalController;
@@ -39,10 +39,11 @@ import fi.jyu.mit.ohj2.Mjonot;
  *
  */
 public class HarjoitusController implements Initializable, ModalControllerInterface<Joukkue> {
-      
-    @FXML private ComboBox<String> haku;
+    
     @FXML private ResourceBundle resources;
     @FXML private URL location;
+    @FXML private ComboBoxChooser<String> cbKentat;
+    @FXML private TextField hakuehto;
     //Harjoitukset
     @FXML private ListChooser<Harjoitus> chooserHarjoitukset;
     @FXML private ListChooser<Harjoitus> chooserPaikalla;
@@ -131,12 +132,8 @@ public class HarjoitusController implements Initializable, ModalControllerInterf
     
    
    @FXML
-   private void handleComboBox() {
-       /*haku.getItems().addAll(
-               "Vaihtoehto 1",
-               "Vaihtoehto 2",
-               "Vaihtoehto 3" 
-               ); */
+   private void handleHakuehto() {
+       haeHarjoitus(0);
    }
 
    
@@ -145,7 +142,7 @@ public class HarjoitusController implements Initializable, ModalControllerInterf
    private Harjoitus harjoitusKohdalla;
    private Joukkue joukkue;
    private TextArea areaHarjoitus = new TextArea();
-   //private static Jasen apujasen = new Jasen(); 
+   //private static Harjoitus apuHarjoitus = new Harjoitus(); 
    
    
    /**
@@ -178,6 +175,12 @@ public class HarjoitusController implements Initializable, ModalControllerInterf
     * vfhgbjnfvg
     */
    protected void alusta() {
+       cbKentat.clear(); //TODO:
+       cbKentat.add("Paivamaara", null);
+       cbKentat.add("Aloitus kellonaika", null);
+       cbKentat.add("Lopetus kellonaika", null);
+       cbKentat.getSelectionModel().select(0);
+       
        areaHarjoitus.setFont(new Font("Courier New", 12));
        panelHarjoitus.setFitToHeight(true);
 
@@ -334,14 +337,25 @@ public class HarjoitusController implements Initializable, ModalControllerInterf
 
    
    /**
-    * @param hnro valittu harjoitus
+    * @param hnr valittu harjoitus
     */
-   private void haeHarjoitus(int hnro) {
+   private void haeHarjoitus(int hnr) {
+       int hnro = hnr;
+       if (hnro <= 0) {
+           Harjoitus kohdalla = harjoitusKohdalla;
+           if(kohdalla != null) hnro = kohdalla.getPv();
+       }
+       
+       int k = cbKentat.getSelectionModel().getSelectedIndex() + 1; //TODO:
+       String ehto = hakuehto.getText();
+       
+       if(ehto.indexOf('*') < 0) ehto = "*" + ehto + "*";
+       
        chooserHarjoitukset.clear();
        
        int index = 0;
        for(int i = 1; i < 1+joukkue.getHarjoituksia(); i++) {
-           Collection<Harjoitus> har = joukkue.annaHarjoitukset(i);
+           Collection<Harjoitus> har = joukkue.etsi(ehto, k, i);
            boolean lisattyH = false;
            for(Harjoitus h : har) {
                if (h.getTunnusNro() == hnro) index = i;

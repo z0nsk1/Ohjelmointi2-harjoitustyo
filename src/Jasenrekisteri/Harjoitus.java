@@ -2,7 +2,6 @@ package Jasenrekisteri;
 
 import java.io.OutputStream;
 import java.io.PrintStream;
-
 import fi.jyu.mit.ohj2.Mjonot;
 //import java.time.LocalDateTime;
 //import java.time.format.DateTimeFormatter;
@@ -88,8 +87,8 @@ public class Harjoitus {
      */
     public void hTiedot(int jNro) {
         paivaMaara = 00000000;
-        kloAloitus = 1700;
-        kloLopetus = 1800;
+        kloAloitus = 0;
+        kloLopetus = 0;
         paikalla = jNro; //jatkossa kutsuu kyseista jasenta jolla on tama id
         poissa = -1; //poissa olleen jasenen id, -1 jos kukaan ei poissa/paikalla
         hLisatietoja = "";
@@ -132,6 +131,22 @@ public class Harjoitus {
                 getJasenNro() + "|" +
                 poissa + "|" +
                 hLisatietoja + "|";
+    }
+    
+    
+    /**
+     * Antaa k:n kentän sisällön merkkijonona
+     * @param k monenenko kentän sisältö palautetaan
+     * @return kentän sisältö merkkijonona
+     */
+    public String anna(int k) {
+        switch ( k ) {
+        case 0: return "" + harjoitusId;
+        case 1: return "" + paivaMaara;
+        case 2: return "" + kloAloitus;
+        case 3: return "" + kloLopetus;
+        default: return "mehu";
+        }
     }
     
     

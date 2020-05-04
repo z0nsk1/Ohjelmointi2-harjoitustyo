@@ -12,6 +12,8 @@ import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
 
+import fi.jyu.mit.ohj2.WildChars;
+
 
 /**
  * @author z0nsk1
@@ -49,7 +51,7 @@ import java.util.List;
  *  String tiedNimi = "testiJoukkue";
  *  File ftied = new File(tiedNimi+".dat");
  *  ftied.delete();
- *  harjoitukset.lueTiedostosta(tiedNimi); #THROWS SailoException
+ *  harjoitukset.lueTiedostosta(tiedNimi);
  *  harjoitukset.lisaa(harj1);
  *  harjoitukset.lisaa(harj2);
  *  harjoitukset.lisaa(harj3);
@@ -94,10 +96,10 @@ import java.util.List;
  *  i2.next() === harj4;  #THROWS NoSuchElementException  
  *  
  *  int n = 0;
- *  int jnrot[] = {2,1,2,1,2};
+ *  int jnrot[] = {1,2,3,4,5};
  *  
  *  for ( Harjoitus har:harjoitukset ) { 
- *    har.getJasenNro() === jnrot[n]; n++;  
+ *    har.getTunnusNro() === jnrot[n]; n++;  
  *  }
  *  
  *  n === 5;
@@ -222,6 +224,28 @@ public class Harjoitukset implements Iterable<Harjoitus> {
             if (har.getTunnusNro() == tunnusNroH) palautus.add(har);
         }
         return palautus;
+    }
+    
+    
+    
+    
+    /**
+     * @param hakuehto ehto
+     * @param k indexi
+     * @param i tutkittava harjoitus
+     * @return lista
+     */
+    public Collection<Harjoitus> etsi(String hakuehto, int k, int i) { 
+        String ehto = "*"; 
+        if ( hakuehto != null && hakuehto.length() > 0 ) ehto = hakuehto; 
+        int hk = k; 
+        if ( hk < 0 ) hk = 1;
+        Collection<Harjoitus> loytyneet = new ArrayList<Harjoitus>(); 
+        for (Harjoitus harjoitus : harjoitukset) { 
+            if (WildChars.onkoSamat(harjoitus.anna(hk) ,ehto) && i == harjoitus.getTunnusNro()) loytyneet.add(harjoitus);   
+        } 
+        //  TODO: lajittelua varten vertailija  
+        return loytyneet; 
     }
     
     

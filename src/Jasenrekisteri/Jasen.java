@@ -57,7 +57,7 @@ import fi.jyu.mit.ohj2.Mjonot;
  * //getAktiivisuus() 
  * Jasen jasen = new Jasen();
  * jasen.parse("2|Marko Esimerkki|2000|1|0120000789|23|7|100.0|2000|Tosi rehti");
- * jasen.getAktiivisuus() === "76,7"; 
+ * jasen.getAktiivisuus() === "76.7"; 
  * </pre>
  */
 public class Jasen {

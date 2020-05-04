@@ -1,6 +1,7 @@
 package Jasenrekisteri;
 
 import java.io.File;
+import java.util.Collection;
 import java.util.List;
 
 /**
@@ -68,6 +69,18 @@ public class Joukkue {
     public void lisaa(Harjoitus har) {
         harjoitukset.lisaa(har);
     }
+    
+    
+    /**
+     * @param hakuehto hakuehto
+     * @param k indexi
+     * @param i tutkittava harjoitus
+     * @return listan vastaavista harjoituksista
+     */
+    public Collection<Harjoitus> etsi(String hakuehto, int k, int i) { 
+         return harjoitukset.etsi(hakuehto, k, i); 
+     } 
+
     
     
     /**

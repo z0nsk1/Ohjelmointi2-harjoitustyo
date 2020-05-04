@@ -287,7 +287,7 @@ public class JasenrekisteriGUIController implements Initializable, ModalControll
            double jPoi = jPois;
            jAkt = 100 * jPai / (jPai+jPoi);
        }
-       editAktiivisuus.setText(String.valueOf(String.format("%.02f", jAkt)));
+       editAktiivisuus.setText(String.valueOf(String.format("%.02f", jAkt)) + "%");
        
        editLisatietoja.setText(jasenKohdalla.getLisatietoja());
        editPelinumero.setText(String.valueOf(jasenKohdalla.getPelinumero()));

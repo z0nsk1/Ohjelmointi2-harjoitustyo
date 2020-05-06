@@ -357,6 +357,7 @@ public class Harjoitus {
      * @return mahdollisen virheen
      */
     public String setLisat(String s) {
+        if (s.contains("\n") | s.contains("\r")) return "Enteria ei saa kayttaa";
         hLisatietoja = s;
         return null;
     }

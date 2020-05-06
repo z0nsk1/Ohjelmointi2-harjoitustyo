@@ -278,6 +278,7 @@ public class HarjoitusController implements Initializable, ModalControllerInterf
            int i = h.getJPoissa();
            if (i<0) continue;
            Jasen jasen = joukkue.annaJasen(i-1);
+           if ( jasen.getTunnusNro() < 0 ) continue;
            chooserPoissa.add(jasen.getNimi(), h);
        }
    }
@@ -313,6 +314,7 @@ public class HarjoitusController implements Initializable, ModalControllerInterf
            int i = h.getJasenNro();
            if (i<0) continue;
            Jasen jasen = joukkue.annaJasen(i-1);
+           if ( jasen.getTunnusNro() < 0 ) continue;
            chooserPaikalla.add(jasen.getNimi(), h);
        }
    }

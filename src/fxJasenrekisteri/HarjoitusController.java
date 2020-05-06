@@ -182,6 +182,7 @@ public class HarjoitusController implements Initializable, ModalControllerInterf
     */
    public void poistaHarjoitus() {
        harjoitusKohdalla = chooserHarjoitukset.getSelectedObject();
+       if(harjoitusKohdalla == null) return;
        int harjoId = harjoitusKohdalla.getTunnusNro();
        
        Collection<Harjoitus> har = joukkue.annaHarjoitukset(harjoId);

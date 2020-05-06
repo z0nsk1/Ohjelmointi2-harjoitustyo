@@ -68,7 +68,7 @@ import java.io.PrintWriter;
 
  */
 public class Jasenet {
-    private static final int    MAX_JASENIA     = 20;
+    private static final int    MAX_JASENIA     = 10;
     private int                 lkm             =  0;
     private String              tiedostonNimi   = "";
     private Jasen               alkiot[]        = new Jasen[MAX_JASENIA];
@@ -91,7 +91,13 @@ public class Jasenet {
      * @throws SailoException jos liikaa j�senia
      */
     public void lisaa(Jasen jasen) throws SailoException {
-        if (lkm >= alkiot.length) throw new SailoException("Liikaa Jasenia(:D)");
+        if (lkm >= alkiot.length) {
+            Jasen taulukko[] = new Jasen[lkm+10];
+            for (int i = 0; i < alkiot.length; i++) {
+                taulukko[i] = alkiot[i];
+            }
+            alkiot = taulukko;
+        }
         alkiot[lkm] = jasen;
         lkm++;
     }

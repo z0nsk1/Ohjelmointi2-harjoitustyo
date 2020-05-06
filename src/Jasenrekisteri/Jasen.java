@@ -86,7 +86,7 @@ public class Jasen {
      * Asetetaan jasenelle tiedot
      */
     public void tiedot() {
-        nimi = "Uusi jasen";
+        nimi = "UusiJasen";
         svuosi = 0000;
         puh = "0000000000";
         cooper = 2000;

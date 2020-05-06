@@ -34,16 +34,14 @@ import fi.jyu.mit.fxgui.ModalControllerInterface;
 import fi.jyu.mit.ohj2.Mjonot;
 
 /**
- * @author z0nsk1
- * @version 13.2.2020
- *
+ * @author Jonni ja Mikko
+ * @version 6.5.2020
  */
 public class JasenrekisteriGUIController implements Initializable, ModalControllerInterface<Joukkue> {
       
     @FXML private ComboBox<String> haku;
     @FXML private ResourceBundle resources;
     @FXML private URL location;
-    //Jasenet
     @FXML private ListChooser<Jasen> chooserJasenet;
     @FXML private ScrollPane panelJasen;
     @FXML private GridPane gridJasen;
@@ -57,18 +55,6 @@ public class JasenrekisteriGUIController implements Initializable, ModalControll
     @FXML private TextField editLisatietoja;
     @FXML private TextField editPelinumero;
     @FXML private TextField editId;
-    //Harjoitukset
-    @FXML private ListChooser<Harjoitus> chooserHarjoitukset;
-    @FXML private ScrollPane panelHarjoitus;
-    @FXML private GridPane gridHarjoitus;
-    @FXML private TextField editPvm;
-    @FXML private TextField editAloitus;
-    @FXML private TextField editLopetus;
-    @FXML private TextField edit;
-    @FXML private TextField editJPaikalla;
-    @FXML private TextField editJPoissa;
-    @FXML private TextField editHLisatietoja;
-    @FXML private TextField editHId;
     
     Stage stagel = new Stage();
 
@@ -150,6 +136,12 @@ public class JasenrekisteriGUIController implements Initializable, ModalControll
                "Vaihtoehto 3" 
                ); */
    }
+   
+   
+   @FXML
+   private void handlePoistaJasen() {
+       poistaJasen();
+   }
 
    
    // ===================================================================================================================================================================
@@ -157,7 +149,6 @@ public class JasenrekisteriGUIController implements Initializable, ModalControll
    private Jasen jasenKohdalla;
    private Joukkue joukkue;
    private TextArea areaJasen = new TextArea();
-   //private static Jasen apujasen = new Jasen(); 
    
    
    /**
@@ -166,6 +157,20 @@ public class JasenrekisteriGUIController implements Initializable, ModalControll
    public void setJoukkue(Joukkue joukkue) {
        this.joukkue = joukkue;
        naytaJasen();
+       hae(0);
+   }
+   
+   
+   /**
+    * Poistaa jasenen muuttamalla sen ID:n negatiiviseksi
+    */
+   public void poistaJasen() {
+       jasenKohdalla = chooserJasenet.getSelectedObject();
+       if(jasenKohdalla == null) return;
+       int jasenId = jasenKohdalla.getTunnusNro();
+       
+       Jasen jasen = joukkue.annaJasen(jasenId-1);
+       jasen.setPoistaJasen();
        hae(0);
    }
    
@@ -189,34 +194,16 @@ public class JasenrekisteriGUIController implements Initializable, ModalControll
    
    
    /**
- * 
- */
-/*private void tulosta(PrintStream os, Jasen jasen) {
-       jasen.tulosta(os);
-       List<Harjoitus> loytyneet = joukkue.annaHarjoitukset(jasen); //TODO:
-       for (Harjoitus harjoitus : loytyneet) {
-           harjoitus.tulosta(os);
-       }
-   } 
-   
-   
-   /**
     * 
-     */
+    */
    protected void alusta() {
-       //panelJasen.setContent(areaJasen);
        areaJasen.setFont(new Font("Courier New", 12));
        panelJasen.setFitToHeight(true);
 
        chooserJasenet.clear();
        chooserJasenet.addSelectionListener(e -> naytaJasen());
-       /*haku.clear(); 
-       for (int k = apujasen.ekaKentta(); k < apujasen.getKenttia(); k++) 
-           haku.add(apujasen.getKysymys(k), null); 
-       haku.getSelectionModel().select(0); 
-       */
        TextField edits[] = new TextField[]{editNimi, editSvuosi, editPuh, editCooper, editLisatietoja, editPelinumero, editId};
-       for(@SuppressWarnings("hiding") TextField edit : edits) {
+       for(TextField edit : edits) {
            if(edit == null) break;
            edit.setOnMouseClicked(new EventHandler<MouseEvent>() {
                @Override
@@ -230,7 +217,6 @@ public class JasenrekisteriGUIController implements Initializable, ModalControll
            });
        } 
        
-       
        int i = 0;
        for (TextField muok : edits) {
            final int k = ++i;
@@ -239,7 +225,7 @@ public class JasenrekisteriGUIController implements Initializable, ModalControll
    }
        
    
-      /**
+   /**
     * @param obj asd
     * @param oletus asd
     * @return asd
@@ -248,7 +234,7 @@ public class JasenrekisteriGUIController implements Initializable, ModalControll
           if ( !( obj instanceof Node)) return oletus;
           Node node = (Node)obj;
           return Mjonot.erotaInt(node.getId().substring(1),oletus);
-      }
+   }
       
      
    private void naytaJasen() {
@@ -320,10 +306,6 @@ public class JasenrekisteriGUIController implements Initializable, ModalControll
    } 
    
    
-   /**
-    * 
-    * @return
-    */
    private String tallenna() {
        try {
            joukkue.tallenna();
@@ -342,6 +324,7 @@ public class JasenrekisteriGUIController implements Initializable, ModalControll
        int index = 0;
        for(int i = 0; i < joukkue.getJasenia(); i++) {
            Jasen jasen = joukkue.annaJasen(i);
+           if (jasen.getTunnusNro() < 0) continue;
            if (jasen.getTunnusNro() == jnro) index = i;
            chooserJasenet.add(jasen.getNimi(), jasen);
        }
@@ -351,7 +334,7 @@ public class JasenrekisteriGUIController implements Initializable, ModalControll
    
   /**
    * @param nimi tiedoston nimi
-   * @return null tai virhe jos luku ep�onnistuu
+   * @return null tai virhe jos luku epaonnistuu
    */
    protected String lueTiedosto(String nimi) {
        joukkueenNimi = nimi;
@@ -371,21 +354,18 @@ public class JasenrekisteriGUIController implements Initializable, ModalControll
    
    @Override
    public Joukkue getResult() {
-       // TODO Auto-generated method stub
        return null;
    }
    
    
    @Override
    public void handleShown() {
-       // TODO Auto-generated method stub
+       //
    }
    
    
    @Override
    public void setDefault(Joukkue oletus) {
-       // TODO Auto-generated method stub
+       //
    }
-   
-   
 }

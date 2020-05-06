@@ -129,7 +129,7 @@
 			                  <TextField fx:id="editPvm" editable="false" prefHeight="25.0" prefWidth="45.0" GridPane.columnIndex="1" GridPane.hgrow="ALWAYS" />
 			                  <TextField fx:id="editAloitus" editable="false" GridPane.columnIndex="1" GridPane.hgrow="ALWAYS" GridPane.rowIndex="1" />
 			                  <TextField fx:id="editLopetus" editable="false" GridPane.columnIndex="1" GridPane.hgrow="ALWAYS" GridPane.rowIndex="2" />
-			                  <TextField fx:id="editHLisatietoja" editable="false" prefHeight="183.0" prefWidth="122.0" GridPane.columnIndex="1" GridPane.hgrow="ALWAYS" GridPane.rowIndex="3" GridPane.rowSpan="2" />
+			                  <TextField fx:id="editHLisatietoja" editable="false" prefHeight="183.0" prefWidth="122.0" GridPane.columnIndex="1" GridPane.hgrow="ALWAYS" GridPane.rowIndex="3" GridPane.rowSpan="2"/>
 			                  <TextField fx:id="editHId" editable="false" GridPane.columnIndex="1" GridPane.hgrow="ALWAYS" GridPane.rowIndex="5" />
                               <Label text="Paikalla" GridPane.columnIndex="2" />
                               <Label text="Poissa" GridPane.columnIndex="3" />

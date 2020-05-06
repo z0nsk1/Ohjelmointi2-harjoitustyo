@@ -6,8 +6,8 @@ import java.io.PrintStream;
 import fi.jyu.mit.ohj2.Mjonot;
 
 /**
- * @author z0nsk1
- * @version 19.3.2020
+ * @author Jonni ja Mikko
+ * @version 6.5.2020
  * @example
  * <pre name="test_rekisteroi">
  * // rekisteroi()
@@ -76,10 +76,6 @@ public class Jasen {
 
     /**
      * @return jasenen nimi
-     * @example
-     * <pre name="test">
-     * 
-     * </pre>
      */
     public String getNimi() {
         return nimi;
@@ -129,7 +125,7 @@ public class Jasen {
 
 
     /**
-     * Tulostetaan henkil�n tiedot
+     * Tulostetaan henkilon tiedot
      * @param os tietovirta johon tulostetaan
      */
     public void tulosta(OutputStream os) {
@@ -138,7 +134,7 @@ public class Jasen {
 
 
     /**
-     * @return Rekister�id��n j�sen ja annetaan sille id
+     * @return Rekisteroidaan jasen ja annetaan sille id
      */
     public int rekisteroi() {
         jasenId = seuraavaNro;
@@ -148,7 +144,7 @@ public class Jasen {
 
 
     /**
-     * @return palauttaa j�senen id:n
+     * @return palauttaa jasenen id:n
      */
     public int getTunnusNro() {
         return jasenId;
@@ -157,8 +153,8 @@ public class Jasen {
 
     private void setTunnusNro(int nr) {
         jasenId = nr;
-        if (jasenId >= seuraavaNro)
-            seuraavaNro = jasenId + 1;
+        if (jasenId >= seuraavaNro) seuraavaNro = jasenId + 1;
+        if ( jasenId < 0 ) seuraavaNro = -1*jasenId + 1;
     }
 
 
@@ -250,7 +246,6 @@ public class Jasen {
 
 
     /**
-     * 
      * @param s nimi
      * @return null
      */
@@ -261,7 +256,6 @@ public class Jasen {
 
 
     /**
-     * 
      * @param s vuosi
      * @return null
      */
@@ -275,7 +269,6 @@ public class Jasen {
 
 
     /**
-     * 
      * @param s puhelin
      * @return null
      */
@@ -289,7 +282,6 @@ public class Jasen {
 
 
     /**
-     * 
      * @param s cooper
      * @return null
      */
@@ -313,7 +305,7 @@ public class Jasen {
 
     /**
      * @param s teksti
-     * @return mahdolinen virge
+     * @return mahdollinen virhe
      */
     public String setPeliNro(String s) {
         if (!s.matches("[0-9]*")) return "Cooperissa saa olla pelkkia numeroita";
@@ -324,7 +316,15 @@ public class Jasen {
     
     
     /**
-     * @param args ei k�yt�ss� toistaiseksi
+     * muuttaa harjoituksen id negatiiviseksi, jolloin se poistuu kayttajalta nakyvista
+     */
+    public void setPoistaJasen() {
+        jasenId = -1*jasenId;
+    }
+    
+    
+    /**
+     * @param args ei kaytossa
      */
     public static void main(String[] args) {
         Jasen jasen1 = new Jasen();

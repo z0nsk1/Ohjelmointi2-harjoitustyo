@@ -9,9 +9,8 @@ import javafx.fxml.FXMLLoader;
 
 
 /**
- * @author z0nsk1
- * @version 13.2.2020
- *
+ * @author Jonni ja Mikko
+ * @version 6.5.2020
  */
 public class JasenrekisteriMain extends Application {
     @Override
@@ -26,28 +25,19 @@ public class JasenrekisteriMain extends Application {
             primaryStage.setScene(scene);
             primaryStage.setTitle("Jasenrekisteri");
             
-            /*primaryStage.setOnCloseRequest((event) -> {
-                if (!harjoitusCtrl.voikoSulkea()) event.consume();
-            }); */
-            
             Joukkue joukkue = new Joukkue();
             harjoitusCtrl.setJoukkue(joukkue);
-            
-            //Application.Parameters params = getParameters(); 
-            //if ( params.getRaw().size() > 0 ) 
+
             harjoitusCtrl.lueTiedosto("MahottomatMestarit");  
-            //else
-               // if ( !harjoitusCtrl.avaa() ) Platform.exit();
-            
+
             primaryStage.show();
-            //if (!harjoitusCtrl.avaa()) Platform.exit();
         } catch(Exception e) {
             e.printStackTrace();
         }
     }
 
     /**
-     * @param args Ei k�yt�ss�
+     * @param args Ei kaytossa
      */
     public static void main(String[] args) {
         launch(args);

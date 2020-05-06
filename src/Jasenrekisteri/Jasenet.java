@@ -9,8 +9,8 @@ import java.io.IOException;
 import java.io.PrintWriter;
 
 /**
- * @author z0nsk1
- * @version 19.3.2020
+ * @author Jonni ja Mikko
+ * @version 6.5.2020
  * @example
  * <pre name="test_lisaa_poista">
  * #THROWS SailoException
@@ -51,21 +51,21 @@ import java.io.PrintWriter;
  *  jasenet.tallenna();
  *  jasenet = new Jasenet();
  *  jasenet.lueTiedostosta(tiedNimi);
- *  Jasenet i[] = new Jasenet[10];
+ *  Jasen i[] = new Jasen[5];
+ *  i[0] = jasen1;
+ *  i[1] = jasen2;
+ *  i[2] = jasen3;
+ *  i[3] = jasen4;
+ *  i[4] = jasen5;
  *  i[0].toString() === jasen1.toString();
  *  i[1].toString() === jasen2.toString();
  *  i[2].toString() === jasen3.toString();
  *  i[3].toString() === jasen4.toString();
  *  i[4].toString() === jasen5.toString();
- *  i[5].toString() === "";
- *  jasenet.lisaa(jasen5);
+ *  i[5].toString(); #THROWS IndexOutOfBoundsException
  *  jasenet.tallenna();
  *  ftied.delete();
- *  ftied.delete() === true;
- *  File fbak = new File(tiedNimi+".bak");
- *  fbak.delete() === true;
  * </pre>
-
  */
 public class Jasenet {
     private static final int    MAX_JASENIA     = 10;
@@ -85,10 +85,10 @@ public class Jasenet {
     
     
     /**
-     * Lis�t��n uusi j�sen, jos vanha taulukko t�yttyy, luodaan uusi, 
+     * Lisataan uusi jasen, jos vanha taulukko tayttyy, kasvatetaan sita, 
      * johon kopioidaan vanhan taulukon alkiot
-     * @param jasen lis�tt�v� jasen
-     * @throws SailoException jos liikaa j�senia
+     * @param jasen lisattava jasen
+     * @throws SailoException jos liikaa jasenia
      */
     public void lisaa(Jasen jasen) throws SailoException {
         if (lkm >= alkiot.length) {
@@ -129,8 +129,6 @@ public class Jasenet {
                 Jasen jasen = anna(i);
                 fo.println(jasen.toString());
             }
-            //} catch ( IOException e ) { // ei heitä poikkeusta
-            //  throw new SailoException("Tallettamisessa ongelmia: " + e.getMessage());
         } catch ( FileNotFoundException ex ) {
             throw new SailoException("Tiedosto " + ftied.getName() + " ei aukea");
         } catch ( IOException ex ) {
@@ -189,10 +187,9 @@ public class Jasenet {
     }
 
 
-
     /**
-     * Getteri palauttaa j�senten lukum��r�n kyseisess� joukkueessa
-     * @return j�senten lukum��r�n
+     * Getteri palauttaa jasenten lukumaaran kyseisessa joukkueessa
+     * @return jasenten lukumaaran
      */
     public int getLkm() {
         return lkm;
@@ -200,7 +197,7 @@ public class Jasenet {
     
     
     /**
-     * @param args ei k�yt�ss�
+     * @param args ei kaytossa
      */
     public static void main(String[] args) {
         Jasenet jasenet = new Jasenet();
@@ -214,9 +211,6 @@ public class Jasenet {
         jasen1.tiedot();
         jasen2.tiedot();
         
-        /*jasen1.tulosta(System.out);
-        jasen2.tulosta(System.out);*/        
-        
         try {
             jasenet.lisaa(jasen1);
             jasenet.lisaa(jasen2);
@@ -229,7 +223,5 @@ public class Jasenet {
         } catch (SailoException ex) {
             System.out.println(ex.getMessage());
         }
-    }
-    
-    
+    }   
 }

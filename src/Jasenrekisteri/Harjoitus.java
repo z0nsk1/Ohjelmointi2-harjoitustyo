@@ -3,12 +3,10 @@ package Jasenrekisteri;
 import java.io.OutputStream;
 import java.io.PrintStream;
 import fi.jyu.mit.ohj2.Mjonot;
-//import java.time.LocalDateTime;
-//import java.time.format.DateTimeFormatter;
 
 /**
- * @author z0nsk1
- * @version 19.3.2020
+ * @author Jonni ja Mikko
+ * @version 6.5.2020
  * <pre name="test_rekisteroi">
  * // rekisteroi()
  *   Harjoitus harjoitus1 = new Harjoitus();
@@ -135,9 +133,9 @@ public class Harjoitus {
     
     
     /**
-     * Antaa k:n kentän sisällön merkkijonona
-     * @param k monenenko kentän sisältö palautetaan
-     * @return kentän sisältö merkkijonona
+     * Antaa k:n kentan sisallon merkkijonona
+     * @param k monenenko kentan sisalto palautetaan
+     * @return kentan sisalto merkkijonona
      */
     public String anna(int k) {
         switch ( k ) {
@@ -185,15 +183,6 @@ public class Harjoitus {
             default:
                 return "virhe";
         }
-        
-        
-        
-        /*paivaMaara = Mjonot.erota(sb, '|', paivaMaara);
-        kloAloitus = Mjonot.erota(sb, '|', kloAloitus);
-        kloLopetus = Mjonot.erota(sb, '|', kloLopetus);
-        paikalla = Mjonot.erota(sb, '|', getJasenNro());
-        poissa = Mjonot.erota(sb, '|', poissa);
-        hLisatietoja = Mjonot.erota(sb, '|', hLisatietoja);*/
     }
     
     
@@ -378,7 +367,6 @@ public class Harjoitus {
      */
     public static void main(String[] args) {
         Harjoitus harj = new Harjoitus();
-        //harj.asetaTiedot();
         harj.hTiedot(1);
         harj.tulosta(System.out);
     }

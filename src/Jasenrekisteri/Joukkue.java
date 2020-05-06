@@ -6,8 +6,8 @@ import java.util.List;
 
 /**
  * Joukkueluokka, joka johtaa Jasenet- ja Harjoitukset-luokkaan
- * @author mikko
- * @version 19 Mar 2020
+ * @author Jonni ja Mikko
+ * @version 6.5.2020
  * @example
  * <pre name="testJoukkue">
  * #import Jasenrekisteri.SailoException;
@@ -63,8 +63,8 @@ public class Joukkue {
     
     
     /**
-     * Lisää uuden harjoituksen
-     * @param har lisättävä harjoitus
+     * Lisaa uuden harjoituksen
+     * @param har lisattava harjoitus
      */
     public void lisaa(Harjoitus har) {
         harjoitukset.lisaa(har);
@@ -82,9 +82,7 @@ public class Joukkue {
      } 
 
     
-    
     /**
-     * 
      * @throws SailoException jos ei toimi
      */
     public void tallenna() throws SailoException {
@@ -106,8 +104,7 @@ public class Joukkue {
     
     /**
      * @param i indeksi
-     * @return viite i j�seneen
-     * 
+     * @return viite i jaseneen
      */
     public Jasen annaJasen(int i) {
         return jasenet.anna(i);
@@ -125,7 +122,7 @@ public class Joukkue {
     
     
     /**
-     *  Antaa jasenten lukumaaran
+     * Antaa jasenten lukumaaran
      * @return Jasenten lukumaaran
      */
     public int getJasenia() {
@@ -169,8 +166,7 @@ public class Joukkue {
         harjoitukset.setTiedostonNimi(hakemistonNimi + "harjoitukset.dat");
     }
 
-    
-    
+     
     /**
      * Testiohjelma 
      * @param args ei kaytossa
@@ -213,5 +209,4 @@ public class Joukkue {
             System.out.println(ex.getMessage());
         }
     }
-
 }

@@ -34,9 +34,8 @@ import fi.jyu.mit.fxgui.ModalControllerInterface;
 import fi.jyu.mit.ohj2.Mjonot;
 
 /**
- * @author z0nsk1
- * @version 13.2.2020
- *
+ * @author Jonni ja Mikko
+ * @version 6.5.2020
  */
 public class HarjoitusController implements Initializable, ModalControllerInterface<Joukkue> {
     
@@ -44,7 +43,6 @@ public class HarjoitusController implements Initializable, ModalControllerInterf
     @FXML private URL location;
     @FXML private ComboBoxChooser<String> cbKentat;
     @FXML private TextField hakuehto;
-    //Harjoitukset
     @FXML private ListChooser<Harjoitus> chooserHarjoitukset;
     @FXML private ListChooser<Harjoitus> chooserPaikalla;
     @FXML private ListChooser<Harjoitus> chooserPoissa;
@@ -148,7 +146,6 @@ public class HarjoitusController implements Initializable, ModalControllerInterf
    private Harjoitus harjoitusKohdalla;
    private Joukkue joukkue;
    private TextArea areaHarjoitus = new TextArea();
-   //private static Harjoitus apuHarjoitus = new Harjoitus(); 
    
    
    /**
@@ -194,7 +191,7 @@ public class HarjoitusController implements Initializable, ModalControllerInterf
    
    
    /**
-    * vfhgbjnfvg
+    * 
     */
    protected void alusta() {
        cbKentat.clear(); //TODO:
@@ -344,7 +341,6 @@ public class HarjoitusController implements Initializable, ModalControllerInterf
    
    /**
     * 
-    * @return
     */
    private String tallenna() {
        try {
@@ -391,7 +387,6 @@ public class HarjoitusController implements Initializable, ModalControllerInterf
    }
 
    
-   
   /**
    * @param nimi tiedoston nimi
    * @return null tai virhe jos luku ep�onnistuu
@@ -414,20 +409,19 @@ public class HarjoitusController implements Initializable, ModalControllerInterf
    
    @Override
    public Joukkue getResult() {
-       // TODO Auto-generated method stub
        return null;
    }
    
    
    @Override
    public void handleShown() {
-       // TODO Auto-generated method stub
+       //
    }
    
    
    @Override
    public void setDefault(Joukkue oletus) {
-       // TODO Auto-generated method stub
+       //
    }
    
    

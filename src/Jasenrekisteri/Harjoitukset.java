@@ -22,6 +22,7 @@ import fi.jyu.mit.ohj2.WildChars;
  * <pre name="test_lisaa_poista">
  * // lisaa(harj), poista(harjoitus)
  * #import java.io.File;
+ * #import java.util.List;
  * // #import fxJasenrekisteri.SailoException;
  *  Harjoitukset harjoitukset = new Harjoitukset();
  *  Harjoitus harj1 = new Harjoitus(); harj1.parse("1|20191215|1500|1700|2|4|Hyva treeni");
@@ -33,76 +34,9 @@ import fi.jyu.mit.ohj2.WildChars;
  *  harjoitukset.lisaa(harj2);
  *  harjoitukset.lisaa(harj3);
  *  harjoitukset.lisaa(harj4);
- *  // List<Harjoitus> h = harjoitukset.annaHarrastukset(1);
- *  // h.size() === 1; 
- *  // h.get(0) === harj4;
- * </pre>
- * 
- * @example
- * <pre name="test_tiedosto">
- * #THROWS SailoException 
- * #import java.io.File;
- *  Harjoitukset harjoitukset = new Harjoitukset();
- *  Harjoitus harj1 = new Harjoitus(); harj1.parse("1|20191215|1500|1700|2|4|Hyva treeni");
- *  Harjoitus harj2 = new Harjoitus(); harj2.parse("2|20191220|1800|2000|5|1|Hyva treeni");
- *  Harjoitus harj3 = new Harjoitus(); harj3.parse("3|20191011|1600|1900|1|2|Hyva treeni"); 
- *  Harjoitus harj4 = new Harjoitus(); harj4.parse("4|20190907|1700|1830|3|4|Hyva treeni"); 
- *  Harjoitus harj5 = new Harjoitus(); harj5.parse("5|20180316|1800|1930|5|4|Hyva treeni"); 
- *  String tiedNimi = "testiJoukkue";
- *  File ftied = new File(tiedNimi+".dat");
- *  ftied.delete();
- *  harjoitukset.lueTiedostosta(tiedNimi);
- *  harjoitukset.lisaa(harj1);
- *  harjoitukset.lisaa(harj2);
- *  harjoitukset.lisaa(harj3);
- *  harjoitukset.lisaa(harj4);
- *  harjoitukset.lisaa(harj5);
- *  harjoitukset.tallenna();
- *  harjoitukset = new Harjoitukset();
- *  harjoitukset.lueTiedostosta(tiedNimi);
- *  Iterator<Harjoitus> i = harjoitukset.iterator();
- *  i.next().toString() === harj1.toString();
- *  i.next().toString() === harj2.toString();
- *  i.next().toString() === harj3.toString();
- *  i.next().toString() === harj4.toString();
- *  i.next().toString() === harj5.toString();
- *  i.hasNext() === false;
- *  harjoitukset.lisaa(harj5);
- *  harjoitukset.tallenna();
- *  ftied.delete() === true;
- *  File fbak = new File(tiedNimi+".bak");
- *  fbak.delete() === true;
- * </pre>
- * 
- * @example
- * <pre name="test_iterator">
- * // iterator()
- * #PACKAGEIMPORT
- * #import java.util.*;
- * 
- *  Harjoitukset harjoitukset = new Harjoitukset();
- *  Harjoitus harj1 = new Harjoitus(); harjoitukset.lisaa(harj1);
- *  Harjoitus harj2 = new Harjoitus(); harjoitukset.lisaa(harj2);
- *  Harjoitus harj3 = new Harjoitus(); harjoitukset.lisaa(harj3);
- *  Harjoitus harj4 = new Harjoitus(); harjoitukset.lisaa(harj4);
- *  Harjoitus harj5 = new Harjoitus(); harjoitukset.lisaa(harj5);
- * 
- *  Iterator<Harjoitus> i2=harjoitukset.iterator();
- *  i2.next() === harj1;
- *  i2.next() === harj2;
- *  i2.next() === harj3;
- *  i2.next() === harj4;
- *  i2.next() === harj5;
- *  i2.next() === harj4;  #THROWS NoSuchElementException  
- *  
- *  int n = 0;
- *  int jnrot[] = {1,2,3,4,5};
- *  
- *  for ( Harjoitus har:harjoitukset ) { 
- *    har.getTunnusNro() === jnrot[n]; n++;  
- *  }
- *  
- *  n === 5;
+ *  List<Harjoitus> h = harjoitukset.annaHarjoitukset(3);
+ *  h.size() === 1; 
+ *  h.get(0) === harj3;
  * </pre>
  */
 public class Harjoitukset implements Iterable<Harjoitus> {

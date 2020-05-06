@@ -265,6 +265,7 @@ public class JasenrekisteriGUIController implements Initializable, ModalControll
        for(int i = 1; i < 1+joukkue.getHarjoituksia(); i++) {
            Collection<Harjoitus> har = joukkue.annaHarjoitukset(i);
            for(Harjoitus h : har) {
+               if (h.getTunnusNro() < 0) continue;
                if (h.getJPaikalla() != jasenKohdalla.getTunnusNro()) continue;
                jPaik++;
            }
@@ -275,6 +276,7 @@ public class JasenrekisteriGUIController implements Initializable, ModalControll
        for(int i = 1; i < 1+joukkue.getHarjoituksia(); i++) {
            Collection<Harjoitus> har = joukkue.annaHarjoitukset(i);
            for(Harjoitus h : har) {
+               if (h.getTunnusNro() < 0) continue;
                if (h.getJPoissa() != jasenKohdalla.getTunnusNro()) continue;
                jPois++;
            }

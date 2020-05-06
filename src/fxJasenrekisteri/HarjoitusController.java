@@ -78,9 +78,15 @@ public class HarjoitusController implements Initializable, ModalControllerInterf
     @FXML
     private void handleLisaaHarjoitus() {
         uusiHarjoitus();
+    }    
+    
+    
+    @FXML
+    private void handlePoistaHarjoitus() {
+        poistaHarjoitus();
     }
-    
-    
+
+
     @FXML
     private void handleToggle() {
         ModalController.<Joukkue, JasenrekisteriGUIController>showModal(JasenrekisteriGUIController.class.getResource("JasenrekisteriGUIView.fxml"), "Mahottomat Mestarit", null, joukkue, 
@@ -168,6 +174,21 @@ public class HarjoitusController implements Initializable, ModalControllerInterf
            joukkue.lisaa(har);    
            haeHarjoitus(har.getTunnusNro());
        }
+   }
+   
+   
+   /**
+    * Poistaa harjoituksen muuttamalla sen ID:n negatiiviseksi
+    */
+   public void poistaHarjoitus() {
+       harjoitusKohdalla = chooserHarjoitukset.getSelectedObject();
+       int harjoId = harjoitusKohdalla.getTunnusNro();
+       
+       Collection<Harjoitus> har = joukkue.annaHarjoitukset(harjoId);
+       for (Harjoitus h : har) {
+           h.setPoistaHarj();
+       }
+       haeHarjoitus(0);
    }
    
    

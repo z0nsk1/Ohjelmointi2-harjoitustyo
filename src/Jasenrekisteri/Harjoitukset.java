@@ -219,9 +219,12 @@ public class Harjoitukset implements Iterable<Harjoitus> {
      * @return lista harjoituksista, joissa jasen on ollut paikalla
      */
     public List<Harjoitus> annaHarjoitukset(int tunnusNroH) {
+        int tunnusH = tunnusNroH;
         List<Harjoitus> palautus = new ArrayList<Harjoitus>();
         for (Harjoitus har : harjoitukset) {
-            if (har.getTunnusNro() == tunnusNroH) palautus.add(har);
+            int ha = har.getTunnusNro();
+            if (ha == -1*tunnusH ) tunnusH = -1*tunnusNroH;
+            if (ha == tunnusH) palautus.add(har);
         }
         return palautus;
     }

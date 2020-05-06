@@ -209,6 +209,7 @@ public class Harjoitus {
     private void setTunnusNro(int nr) {
         harjoitusId = nr;
         if ( harjoitusId >= seuraavaNro ) seuraavaNro = harjoitusId + 1;
+        if ( harjoitusId < 0 ) seuraavaNro = -1*harjoitusId + 1;
     }
     
     
@@ -217,6 +218,14 @@ public class Harjoitus {
      */
     public void setPaikalla(int nr) {
         paikalla = nr;
+    }
+    
+    
+    /**
+     * muuttaa harjoituksen id negatiiviseksi, jolloin se poistuu kayttajalta nakyvista
+     */
+    public void setPoistaHarj() {
+        harjoitusId = -1*harjoitusId;
     }
     
     

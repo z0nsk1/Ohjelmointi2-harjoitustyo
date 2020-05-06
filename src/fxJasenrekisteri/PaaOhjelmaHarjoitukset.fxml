@@ -87,6 +87,7 @@
       <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0" BorderPane.alignment="CENTER">
          <children>
             <Button mnemonicParsing="false" onAction="#handleLisaaHarjoitus" prefHeight="30.0" prefWidth="156.0" text="Lisaa harjoitus" />
+            <Button layoutY="32.0" mnemonicParsing="false" onAction="#handlePoistaHarjoitus" prefHeight="30.0" prefWidth="156.0" text="Poista harjoitus" />
             <Button layoutX="2.0" layoutY="583.0" mnemonicParsing="false" onAction="#handleTallenna" prefHeight="25.0" prefWidth="156.0" text="Tallenna" />
             <Button layoutX="2.0" layoutY="608.0" mnemonicParsing="false" onAction="#handlePeruuta" prefHeight="25.0" prefWidth="156.0" text="Eiku (peruuta)" />
             <Button layoutX="2.0" layoutY="633.0" mnemonicParsing="false" onAction="#handlePoistu" prefHeight="25.0" prefWidth="156.0" text="Poistu" />

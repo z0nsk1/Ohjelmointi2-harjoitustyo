@@ -244,6 +244,8 @@ public class HarjoitusController implements Initializable, ModalControllerInterf
            final int k = ++i;
            muok.setOnKeyReleased( e -> kasitteleMuutosH(k, (TextField)(e.getSource())));
        }  
+       
+       editHLisatietoja.setOnKeyReleased(e -> kasitteleMuutosLisat(1, (TextArea)(e.getSource())) );
    }
        
    
@@ -340,6 +342,24 @@ public class HarjoitusController implements Initializable, ModalControllerInterf
           case 2 : virhe = harjoitusKohdalla.setAloitus(s); break;
           case 3 : virhe = harjoitusKohdalla.setLopetus(s); break;
           case 4 : virhe = harjoitusKohdalla.setLisat(s); break;
+          default:
+       }
+       if (virhe == null) {
+           Dialogs.setToolTipText(muok,"");
+           muok.getStyleClass().removeAll("virhe");
+       } else {
+           Dialogs.setToolTipText(muok,virhe);
+           muok.getStyleClass().add("virhe");
+       } 
+   }    
+   
+   
+   private void kasitteleMuutosLisat(int k, TextArea muok) {
+       if (harjoitusKohdalla == null) return;
+       String s = muok.getText();
+       String virhe = null;
+       switch (k) {
+          case 1 : virhe = harjoitusKohdalla.setLisat(s); break;
           default:
        }
        if (virhe == null) {

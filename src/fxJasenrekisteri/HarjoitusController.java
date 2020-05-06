@@ -52,7 +52,7 @@ public class HarjoitusController implements Initializable, ModalControllerInterf
     @FXML private TextField editAloitus;
     @FXML private TextField editLopetus;
     @FXML private TextField edit;
-    @FXML private TextField editHLisatietoja;
+    @FXML private TextArea editHLisatietoja;
     @FXML private TextField editHId;
     
     Stage stagel = new Stage();
@@ -199,6 +199,7 @@ public class HarjoitusController implements Initializable, ModalControllerInterf
        cbKentat.add("Aloitus kellonaika", null);
        cbKentat.add("Lopetus kellonaika", null);
        cbKentat.getSelectionModel().select(0);
+       editHLisatietoja.setWrapText(true);
        
        areaHarjoitus.setFont(new Font("Courier New", 12));
        panelHarjoitus.setFitToHeight(true);
@@ -212,7 +213,7 @@ public class HarjoitusController implements Initializable, ModalControllerInterf
            haku.add(apujasen.getKysymys(k), null); 
        haku.getSelectionModel().select(0); 
        */
-       TextField edits[] = new TextField[]{editPvm, editAloitus, editLopetus, editHLisatietoja, editHId};
+       TextField edits[] = new TextField[]{editPvm, editAloitus, editLopetus, editHId};
        for(@SuppressWarnings("hiding") TextField edit : edits) {
            if(edit == null) break;
            edit.setOnMouseClicked(new EventHandler<MouseEvent>() {
@@ -225,6 +226,16 @@ public class HarjoitusController implements Initializable, ModalControllerInterf
                    }
                }
            });
+           editHLisatietoja.setOnMouseClicked(new EventHandler<MouseEvent>() {
+               @Override
+               public void handle(MouseEvent mouseEvent) {
+                   if(mouseEvent.getButton().equals(MouseButton.PRIMARY)){
+                       if(mouseEvent.getClickCount() > 1){
+                           editHLisatietoja.setEditable(true);
+                       }
+                   }
+               }
+        });
        } 
 
        

@@ -1,6 +1,1 @@
-# pohja
-
-Pohja kevään 2020 harjoitustöiden GIT-repoille
-
-Lue käyttöohjeet TIMistä: <https://tim.jyu.fi/view/kurssit/tie/ohj2/tyokalut/git/ohj2git#fork>
-
+Keväällä 2020 suoritettu Ohjelmointi 2 -kurssin harjoitystyö. Harjoitustyö on tehty parityönä kaverini kanssa. Sovellus on Javalla toteutettu jäsenrekisteri, jossa on mahdollisuus lisätä joukkueita ja hallita niiden jäseniä. Sovelluksella voi myös seurata jäsenten aktiivisuutta esimerkiksi treeneissä.
